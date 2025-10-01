@@ -9,7 +9,6 @@
 		<tradeability>None</tradeability>
 		<pathCost>0</pathCost>
 		<graphicData>
-			<graphicClass>Graphic_Multi</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<placeWorkers>
@@ -19,6 +18,12 @@
 		<comps>
 			<li Class ="TinyBuilder.CompProperties_TinyThing"></li>
 		</comps>
+		<building>
+			<isEdifice>false</isEdifice>
+			<blueprintGraphicData>
+				<texPath>Things/Blank_Blueprint</texPath>
+			</blueprintGraphicData>
+		</building>
 	</ThingDef>
 
 	<ThingDef ParentName="TinyBase" Name ="RecessedLight">
@@ -50,6 +55,7 @@
 		<costStuffCount>1</costStuffCount>
 		<graphicData>
 			<texPath>Things/Building/Decoration/RecessedLight</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>(0.2,0.2)</drawSize>
 		</graphicData>
 		<comps>

@@ -74,3 +74,41 @@ C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\BamStructure\Sources
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\BamStructure\Sources\obj\Debug\BamStruc.4180E193.Up2Date
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\BamStructure\Sources\obj\Debug\BamStructure.dll
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\BamStructure\Sources\obj\Debug\BamStructure.pdb
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\BamStructure.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\BamStructure.pdb
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\0Harmony.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\Assembly-CSharp.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.CoreModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\NAudio.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\NVorbis.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.AudioModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\Unity.Collections.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\Unity.Burst.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\Unity.Mathematics.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\com.rlabrecque.steamworks.net.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\Assembly-CSharp-firstpass.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.AssetBundleModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.PhysicsModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\Unity.TextMeshPro.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\ISharpZipLib.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.InputLegacyModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.PerformanceReportingModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.ImageConversionModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.ScreenCaptureModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.UI.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\netstandard.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.SharedInternalsModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.TextCoreTextEngineModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.PropertiesModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\Unity.Collections.LowLevel.ILSupport.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\Unity.Burst.Unsafe.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.TextCoreFontEngineModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.UIModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.Physics2DModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.AnimationModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\bin\Debug\UnityEngine.SpriteShapeModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\obj\Debug\BamStructure.csproj.AssemblyReference.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\obj\Debug\BamStructure.csproj.CoreCompileInputs.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\obj\Debug\BamStruc.4180E193.Up2Date
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\obj\Debug\BamStructure.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\BamStructure\Sources\obj\Debug\BamStructure.pdb

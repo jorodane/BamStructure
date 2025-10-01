@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using HarmonyLib;
+using RimWorld;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Security.Cryptography;
 using UnityEngine;
 using Verse;
@@ -10,19 +13,7 @@ namespace TinyBuilder
 	{
 		public static Vector3 GetMouseOffset(this IntVec3 cell) => UI.MouseMapPosition() - cell.ToVector3Shifted();
 
-		public static Vector2 GetRotatedVector(this Vector2 origin, Rot4 rotation)
-		{
-			switch (rotation.AsInt)
-			{
-				case 0: return origin;                    
-				case 1: return new Vector2(origin.y, -origin.x);
-				case 2: return new Vector2(-origin.x, -origin.y);
-				case 3: return new Vector2(-origin.y, origin.x);
-				default: return origin;
-			}
-		}
-
-        public static Vector3 ToInMapVector3(this Vector2 origin) => new Vector3(origin.x, 1.0f, origin.y);
+        public static Vector3 ToWorldVector3(this Vector2 origin) => new Vector3(origin.x, 1.0f, origin.y);
 
         public static bool TryGetCompProperties<PropertiesType>(this BuildableDef originDef, out PropertiesType result) where PropertiesType : CompProperties
 		{
@@ -49,49 +40,106 @@ namespace TinyBuilder
 		}
 	}
 
-	public class MapComponent_TinyBuilder : MapComponent
+    [HarmonyPatch(typeof(GenConstruct), nameof(GenConstruct.CanPlaceBlueprintAt))]
+    static class Patch_CanPlaceBlueprintAt_TinyOverride
+    {
+        static void Postfix(BuildableDef entDef, IntVec3 center, Rot4 rot, Map map,ref AcceptanceReport __result)
+        {
+            if (__result.Accepted) return;
+
+            if (!entDef.TryGetCompProperties(out CompProperties_TinyThing _)) return;
+
+            __result = AcceptanceReport.WasAccepted;
+        }
+    }
+
+    [HarmonyPatch(typeof(GhostDrawer), nameof(GhostDrawer.DrawGhostThing))]
+    static class Patch_GhostDrawer_Tiny
+    {
+        static bool Prefix(IntVec3 center, Rot4 rot, ThingDef thingDef,Graphic baseGraphic, Color ghostCol, AltitudeLayer drawAltitude)
+        {
+            if (thingDef == null || !thingDef.TryGetCompProperties(out CompProperties_TinyThing _)) return true;
+
+			Graphic finalGraphic = baseGraphic ?? thingDef.graphic;
+
+            Vector3 drawPos = UI.MouseMapPosition() + finalGraphic.DrawOffset(rot);
+            drawPos.y = drawAltitude.AltitudeFor();
+
+			Vector3 size = finalGraphic.drawSize.ToWorldVector3();
+            Graphic ghost = GhostUtility.GhostGraphicFor(finalGraphic, thingDef, ghostCol);
+            Matrix4x4 matrix = Matrix4x4.TRS(drawPos, Quaternion.identity, size);
+            Graphics.DrawMesh(MeshPool.plane10, matrix, ghost.MatAt(rot), 0);
+
+            return false;
+        }
+    }
+
+    public class MapComponent_TinyBuilder : MapComponent
 	{
 
-        public Dictionary<string, Vector3> offsets = new Dictionary<string, Vector3>();
+        public Dictionary<string, List<Vector3>> offsets = new Dictionary<string, List<Vector3>>();
 
 		public MapComponent_TinyBuilder(Map map) : base(map) { }
 
-        public static string GetBuildHash(BuildableDef def, IntVec3 cell) => $"{def.defName}|{cell.x},{cell.z}";
+        public static string GetBuildKey(BuildableDef def, IntVec3 cell) => $"{def.defName}|{cell.x}|{cell.z}";
+        public static IntVec3 GetCellFromKey(string key)
+		{
+			string[] splited = key.Split('|');
+			if (splited.Length >= 3)
+			{
+				return new IntVec3(int.Parse(splited[1]), 0, int.Parse(splited[2]));
+			}
+			return default;
+        }
         public override void ExposeData()
 		{
 			base.ExposeData();
 			Scribe_Collections.Look(ref offsets, "TinyBuilderOffsets", LookMode.Value, LookMode.Value);
-			if(offsets == null) offsets = new Dictionary<string, Vector3>();
+			if(offsets == null) offsets = new Dictionary<string, List<Vector3>>();
+			else
+			{
+				foreach(var currentPair in offsets)
+				{
+					foreach(var currentThing in GetCellFromKey(currentPair.Key).GetThingList(map))
+					{
+                        if (!(currentThing is Building currentBuilding)) continue;
+                    }
+				}
+			}
 		}
 
 
 		public void AddTransform(BuildableDef def, IntVec3 cell, Vector3 offset)
 		{
-			string hash = GetBuildHash(def, cell);
-            offsets.SetOrAdd(hash, offset);
+			string key = GetBuildKey(def, cell);
+            if (!offsets.TryGetValue(key, out List<Vector3> list))
+            {
+                list = new List<Vector3>();
+                offsets[key] = list;
+            }
+            list.Add(offset);
 		}
 
-		public void RemoveTransform(BuildableDef def, IntVec3 cell)
-		{
-            string hash = GetBuildHash(def, cell);
-			offsets.Remove(hash);
-        }
-
-
-        public bool TryGetTransform(BuildableDef def, IntVec3 cell, out Vector3 result)
-        {
-            string hash = GetBuildHash(def, cell);
-            return offsets.TryGetValue(hash, out result);
-        }
         public bool TryPopTransform(BuildableDef def, IntVec3 cell, out Vector3 result)
         {
-            string hash = GetBuildHash(def, cell);
-            if(offsets.TryGetValue(hash, out result))
-			{
-				offsets.Remove(hash);
-				return true;
+            string key = GetBuildKey(def, cell);
+            if (offsets.TryGetValue(key, out List<Vector3> list) && list.Count > 0)
+            {
+                result = list[0];
+                list.RemoveAt(0);
+                if (list.Count == 0) offsets.Remove(key);
+                return true;
             }
-			return false;
+            result = default;
+            return false;
+        }
+
+        public bool TryGetOffsets(BuildableDef def, IntVec3 cell, out List<Vector3> list)
+        {
+            string key = GetBuildKey(def, cell);
+            if (offsets.TryGetValue(key, out list) && list != null && list.Count > 0) return true;
+            list = null;
+            return false;
         }
     }
 
@@ -113,6 +161,7 @@ namespace TinyBuilder
 		{
 			base.PostExposeData();
 			Scribe_Values.Look(ref drawOffset, "DrawOffset", Vector3.zero);
+			(parent as Building_Tiny)?.InitTiny(this);
         }
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
@@ -134,89 +183,47 @@ namespace TinyBuilder
 	public class Building_Tiny : Building
 	{
 		CompTinyThing asTiny;
-		Matrix4x4 finalMatrix;
-        Material drawMaterial;
 		public void InitTiny(CompTinyThing newTiny)
 		{
+			if (newTiny == null) return;
 			asTiny = newTiny;
-            Vector3 finalPos = DrawPos + asTiny.drawOffset;
-            Vector3 finalSize = def.graphic.drawSize.ToInMapVector3();
-			finalMatrix = Matrix4x4.TRS(finalPos, Quaternion.identity, finalSize);
-            drawMaterial = def.graphic.MatAt(Rotation, this);
-            Log.Warning($"Initiated To {asTiny.drawOffset}");
         }
 
-        protected override void DrawAt(Vector3 drawLoc, bool flip = false)
-		{
-			if (asTiny == null || Graphic == null)
-			{
-				base.DrawAt(drawLoc, flip);
-				return;
-			}
-			Graphics.DrawMesh(MeshPool.plane10, finalMatrix, drawMaterial, 0);
-            Comps_PostDraw();
-		}
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+			InitTiny(GetComp<CompTinyThing>());
+        }
+
+        public override void Print(SectionLayer layer)
+        {
+            if (asTiny == null || Graphic == null) { base.Print(layer); return; }
+
+            Vector3 pos = base.DrawPos + asTiny.drawOffset + def.graphic.DrawOffset(Rotation);
+            pos.y = def.altitudeLayer.AltitudeFor();
+
+            Vector2 size = def.graphic.drawSize;
+            Material mat = def.graphic.MatAt(Rotation, this);
+
+            Printer_Plane.PrintPlane(layer, pos, size, mat, 0f, false, null, null, 0.01f);
+        }
     }
 
 
 	public class Placeworker_TinyThing : PlaceWorker
 	{
+        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null)
+        {
+			return AcceptanceReport.WasAccepted;
+        }
 
-		public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null)
-		{
-			return base.AllowsPlacing(checkingDef, loc, rot, map, thingToIgnore, thing);
-
-			////테이블 위라던지 본인 레이어와 겹치는데 작은게 아닌 거라던지 다 빼버리기..
-			//if (!checkingDef.TryGetCompProperties(out CompProperties_TinyThing asTiny)) return base.AllowsPlacing(checkingDef, loc, rot, map, thingToIgnore, thing);
-
-			//Rect currentRect = GetMouseWorldOffset(loc.ToVector3()).GetClampedRect(asTiny.drawSize, rot);
-			//IEnumerable<Thing> thingsInSameLoc = loc.GetThingList(map)?.Where(current => current.def.category == ThingCategory.Building);
-
-			//if (thingsInSameLoc.Count() == 0) return AcceptanceReport.WasAccepted;
-
-			//CompTinyThing otherTiny = null;
-
-			//bool isFailed = thingsInSameLoc.Any(
-			//	current =>
-			//		current != thingToIgnore &&
-			//		current.def.surfaceType != SurfaceType.Eat
-			//		&& (current.def.altitudeLayer == checkingDef.altitudeLayer &&
-			//		(!current.TryGetComp(out otherTiny) ||
-			//		/otherTiny.DrawRect.IsColliding(currentRect)))
-			//);
-
-			//return isFailed ? AcceptanceReport.WasRejected : AcceptanceReport.WasAccepted;
-		}
-
-		//public override bool ForceAllowPlaceOver(BuildableDef other)
-		//{
-			//return true;
-			//테이블 위에만 둘까 생각하고 있었음..
-			//if (!(other is ThingDef otherThing)) return base.ForceAllowPlaceOver(other);
-			//return otherThing.surfaceType == SurfaceType.Eat;
-		//}
-
+        public override bool ForceAllowPlaceOver(BuildableDef other)
+        {
+			return true;
+        }
 		public override void DrawGhost(ThingDef def, IntVec3 center, Rot4 rot, Color ghostCol, Thing thing = null)
 		{
-			if (!def.TryGetCompProperties(out CompProperties_TinyThing asTiny))
-			{
-				base.DrawGhost(def, center, rot, ghostCol, thing);
-				return;
-			}
-
-			Vector3 size = Vector3.up;
-			CompProperties_TinyThing props = def.GetCompProperties<CompProperties_TinyThing>();
-
-			Vector2 drawSize = props != null ? def.graphic.drawSize : Vector2.one;
-			size.x = drawSize.x;
-			size.z = drawSize.y;
-
-			Vector3 drawPos = UI.MouseMapPosition() + def.graphic.DrawOffset(rot);
-			drawPos.y = def.altitudeLayer.AltitudeFor();
-			Matrix4x4 matrix = Matrix4x4.TRS(drawPos, Quaternion.identity, size);
-			Graphic ghost = GhostUtility.GhostGraphicFor(def.graphic, def, ghostCol);
-			Graphics.DrawMesh(MeshPool.plane10, matrix, ghost.MatAt(rot), 0);
-
+			if (!def.TryGetCompProperties(out CompProperties_TinyThing asTiny)) { base.DrawGhost(def, center, rot, ghostCol, thing); return; }
 		}
 
 
