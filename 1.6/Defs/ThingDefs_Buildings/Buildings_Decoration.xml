@@ -1,24 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<!-->ThingDef Abstract ="true" ParentName="BuildingBase" Name ="TinyBase">
-		<defName>TinyBase</defName>
-		<graphicData>
-			<graphicClass>Graphic_Multi</graphicClass>
-			<shaderType>CutoutComplex</shaderType>
-		</graphicData>
+	<ThingDef Abstract ="true" ParentName="BuildingBase" Name ="TinyBase">
 		<thingClass>TinyBuilder.Building_Tiny</thingClass>
-	</ThingDef-->
-
-	<ThingDef ParentName="LampBase" Name ="RecessedLight">
-		<defName>RecessedLight</defName>
-		<label>recessed light</label>
-		<description>An ground mounted electrical lamp that lights an area. People need light to move and work at full speed.</description>
+		<defName>TinyBase</defName>
 		<designationCategory>Decoration</designationCategory>
 		<altitudeLayer>BuildingOnTop</altitudeLayer>
 		<passability>Standable</passability>
 		<tradeability>None</tradeability>
-		<rotatable>false</rotatable>
 		<pathCost>0</pathCost>
+		<graphicData>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<placeWorkers>
+			<li>TinyBuilder.Placeworker_TinyThing</li>
+		</placeWorkers>
+		<drawPlaceWorkersWhileSelected>false</drawPlaceWorkersWhileSelected>
+		<comps>
+			<li Class ="TinyBuilder.CompProperties_TinyThing"></li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase" Name ="RecessedLight">
+		<defName>RecessedLight</defName>
+		<label>recessed light</label>
+		<description>An ground mounted electrical lamp that lights an area. People need light to move and work at full speed.</description>
+		<rotatable>false</rotatable>
 		<uiIconScale>4</uiIconScale>
 		<uiIconOffset>(0, -0.1)</uiIconOffset>
 		<uiOrder>2990</uiOrder>
@@ -43,12 +50,9 @@
 		<costStuffCount>1</costStuffCount>
 		<graphicData>
 			<texPath>Things/Building/Decoration/RecessedLight</texPath>
-      <graphicClass>Graphic_Multi</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
-      <drawSize>(0.2,0.2)</drawSize>
+			<drawSize>(0.2,0.2)</drawSize>
 		</graphicData>
 		<comps>
-			<li Class ="TinyBuilder.CompProperties_TinyThing"></li>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
 				<basePowerConsumption>4</basePowerConsumption>
@@ -66,10 +70,6 @@
 				<darklightToggle>true</darklightToggle>
 			</li>
 		</comps>
-		<placeWorkers>
-			<li>TinyBuilder.Placeworker_TinyThing</li>
-		</placeWorkers>
-		<drawPlaceWorkersWhileSelected>false</drawPlaceWorkersWhileSelected>
 	</ThingDef>
 
 </Defs>

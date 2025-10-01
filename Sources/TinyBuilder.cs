@@ -1,13 +1,8 @@
-﻿using HarmonyLib;
-using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Markup;
+﻿using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using Verse;
+using Verse.Noise;
 
 namespace TinyBuilder
 {
@@ -15,7 +10,7 @@ namespace TinyBuilder
 	{
 		public static Vector3 GetMouseOffset(this IntVec3 cell) => UI.MouseMapPosition() - cell.ToVector3Shifted();
 
-		public static Vector3 GetRotatedVector(this Vector2 origin, Rot4 rotation)
+		public static Vector2 GetRotatedVector(this Vector2 origin, Rot4 rotation)
 		{
 			switch (rotation.AsInt)
 			{
@@ -27,9 +22,9 @@ namespace TinyBuilder
 			}
 		}
 
-		public static Vector3 GetTinySize(this CompProperties_TinyThing props, ThingDef def) => new Vector3(def.graphic.drawSize.x, 1.0f, def.graphic.drawSize.y);
+        public static Vector3 ToInMapVector3(this Vector2 origin) => new Vector3(origin.x, 1.0f, origin.y);
 
-		public static bool TryGetCompProperties<PropertiesType>(this BuildableDef originDef, out PropertiesType result) where PropertiesType : CompProperties
+        public static bool TryGetCompProperties<PropertiesType>(this BuildableDef originDef, out PropertiesType result) where PropertiesType : CompProperties
 		{
 			result = (originDef as ThingDef)?.GetCompProperties<PropertiesType>();
 			return result != null;
@@ -56,25 +51,51 @@ namespace TinyBuilder
 
 	public class MapComponent_TinyBuilder : MapComponent
 	{
-		public Dictionary<int, List<Vector3>> offsets = new Dictionary<int, List<Vector3>>();
+
+        public Dictionary<string, Vector3> offsets = new Dictionary<string, Vector3>();
 
 		public MapComponent_TinyBuilder(Map map) : base(map) { }
 
-		public static int GetBuildHash(BuildableDef def, IntVec3 cell)  
-
-		public override void ExposeData()
+        public static string GetBuildHash(BuildableDef def, IntVec3 cell) => $"{def.defName}|{cell.x},{cell.z}";
+        public override void ExposeData()
 		{
 			base.ExposeData();
-			Scribe_Collections.Look(ref offsets, "TinyBuilderOffsets", LookMode.Reference, LookMode.Value);
-			if(offsets == null) offsets = new Dictionary<int, List<Vector3>>();
+			Scribe_Collections.Look(ref offsets, "TinyBuilderOffsets", LookMode.Value, LookMode.Value);
+			if(offsets == null) offsets = new Dictionary<string, Vector3>();
 		}
 
 
-		public void AddOffset(BuildableDef def, IntVec3 cell)
+		public void AddTransform(BuildableDef def, IntVec3 cell, Vector3 offset)
+		{
+			string hash = GetBuildHash(def, cell);
+            offsets.SetOrAdd(hash, offset);
+		}
 
-	}
+		public void RemoveTransform(BuildableDef def, IntVec3 cell)
+		{
+            string hash = GetBuildHash(def, cell);
+			offsets.Remove(hash);
+        }
 
-	public class CompProperties_TinyThing : CompProperties
+
+        public bool TryGetTransform(BuildableDef def, IntVec3 cell, out Vector3 result)
+        {
+            string hash = GetBuildHash(def, cell);
+            return offsets.TryGetValue(hash, out result);
+        }
+        public bool TryPopTransform(BuildableDef def, IntVec3 cell, out Vector3 result)
+        {
+            string hash = GetBuildHash(def, cell);
+            if(offsets.TryGetValue(hash, out result))
+			{
+				offsets.Remove(hash);
+				return true;
+            }
+			return false;
+        }
+    }
+
+    public class CompProperties_TinyThing : CompProperties
 	{
 		public CompProperties_TinyThing()
 		{
@@ -92,41 +113,54 @@ namespace TinyBuilder
 		{
 			base.PostExposeData();
 			Scribe_Values.Look(ref drawOffset, "DrawOffset", Vector3.zero);
-		}
+        }
 
-	}
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+
+            if (drawOffset == Vector3.zero && parent.Map.TryGetTinyBuilder(out MapComponent_TinyBuilder builder))
+            {
+                if (builder.TryPopTransform(parent.def, parent.Position, out drawOffset))
+                {
+                    Log.Warning($"Placed At {drawOffset}");
+                }
+				(parent as Building_Tiny)?.InitTiny(this);
+            }
+        }
+
+    }
 
 	public class Building_Tiny : Building
 	{
 		CompTinyThing asTiny;
-		Vector3 drawScale;
-
-		public override void SpawnSetup(Map map, bool respawningAfterLoad)
+		Matrix4x4 finalMatrix;
+        Material drawMaterial;
+		public void InitTiny(CompTinyThing newTiny)
 		{
-			base.SpawnSetup(map, respawningAfterLoad);
-			asTiny = GetComp<CompTinyThing>();
-			if (asTiny == null) Log.Warning("[TinyBuilder] Missing CompTinyThing");
-			else
+			asTiny = newTiny;
+            Vector3 finalPos = DrawPos + asTiny.drawOffset;
+            Vector3 finalSize = def.graphic.drawSize.ToInMapVector3();
+			finalMatrix = Matrix4x4.TRS(finalPos, Quaternion.identity, finalSize);
+            drawMaterial = def.graphic.MatAt(Rotation, this);
+            Log.Warning($"Initiated To {asTiny.drawOffset}");
+        }
+
+        protected override void DrawAt(Vector3 drawLoc, bool flip = false)
+		{
+			if (asTiny == null || Graphic == null)
 			{
-				drawScale = asTiny.Props.GetTinySize(def);
+				base.DrawAt(drawLoc, flip);
+				return;
 			}
+			Graphics.DrawMesh(MeshPool.plane10, finalMatrix, drawMaterial, 0);
+            Comps_PostDraw();
 		}
-
-		protected override void DrawAt(Vector3 drawLoc, bool flip = false)
-		{
-			if(asTiny == null || Graphic == null)	base.DrawAt(drawLoc, flip);
-			Material drawMaterial = def.graphic.MatAt(Rotation, this);
-			Matrix4x4 drawMatrix = Matrix4x4.TRS(drawLoc + asTiny.drawOffset, Quaternion.identity, drawScale);
-			Graphics.DrawMesh(MeshPool.plane10, drawMatrix, drawMaterial, 0);
-
-			Comps_PostDraw();
-		}
-	}
+    }
 
 
 	public class Placeworker_TinyThing : PlaceWorker
 	{
-		public static Vector3 currentOffset;
 
 		public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null)
 		{
@@ -154,13 +188,13 @@ namespace TinyBuilder
 			//return isFailed ? AcceptanceReport.WasRejected : AcceptanceReport.WasAccepted;
 		}
 
-		public override bool ForceAllowPlaceOver(BuildableDef other)
-		{
-			return true;
+		//public override bool ForceAllowPlaceOver(BuildableDef other)
+		//{
+			//return true;
 			//테이블 위에만 둘까 생각하고 있었음..
 			//if (!(other is ThingDef otherThing)) return base.ForceAllowPlaceOver(other);
 			//return otherThing.surfaceType == SurfaceType.Eat;
-		}
+		//}
 
 		public override void DrawGhost(ThingDef def, IntVec3 center, Rot4 rot, Color ghostCol, Thing thing = null)
 		{
@@ -177,12 +211,12 @@ namespace TinyBuilder
 			size.x = drawSize.x;
 			size.z = drawSize.y;
 
-			Material mat = SolidColorMaterials.SimpleSolidColorMaterial(ghostCol, false);
-			Vector3 drawPos = UI.MouseMapPosition();
-			currentOffset = center.GetMouseOffset();
+			Vector3 drawPos = UI.MouseMapPosition() + def.graphic.DrawOffset(rot);
+			drawPos.y = def.altitudeLayer.AltitudeFor();
 			Matrix4x4 matrix = Matrix4x4.TRS(drawPos, Quaternion.identity, size);
-			Material drawMaterial = def.graphic.MatAt(rot);
-			Graphics.DrawMesh(MeshPool.plane10, matrix, drawMaterial, 0);
+			Graphic ghost = GhostUtility.GhostGraphicFor(def.graphic, def, ghostCol);
+			Graphics.DrawMesh(MeshPool.plane10, matrix, ghost.MatAt(rot), 0);
+
 		}
 
 
@@ -190,6 +224,10 @@ namespace TinyBuilder
 		{
 			base.PostPlace(map, def, loc, rot);
 
+			if(map.TryGetTinyBuilder(out MapComponent_TinyBuilder builder))
+			{
+				builder.AddTransform(def, loc, loc.GetMouseOffset());
+			}
 		}
 
 	}
