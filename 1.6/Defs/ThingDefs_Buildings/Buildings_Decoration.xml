@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-->ThingDef Abstract ="true" ParentName="BuildingBase" Name ="TinyBase">
+		<defName>TinyBase</defName>
+		<graphicData>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<thingClass>TinyBuilder.Building_Tiny</thingClass>
+	</ThingDef-->
+
+	<ThingDef ParentName="LampBase" Name ="RecessedLight">
+		<defName>RecessedLight</defName>
+		<label>recessed light</label>
+		<description>An ground mounted electrical lamp that lights an area. People need light to move and work at full speed.</description>
+		<designationCategory>Decoration</designationCategory>
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
+		<passability>Standable</passability>
+		<tradeability>None</tradeability>
+		<rotatable>false</rotatable>
+		<pathCost>0</pathCost>
+		<uiIconScale>4</uiIconScale>
+		<uiIconOffset>(0, -0.1)</uiIconOffset>
+		<uiOrder>2990</uiOrder>
+		<statBases>
+			<MaxHitPoints>10</MaxHitPoints>
+			<WorkToBuild>100</WorkToBuild>
+			<Mass>1</Mass>
+			<Flammability>0</Flammability>
+			<Beauty>0</Beauty>
+		</statBases>
+		<researchPrerequisites>
+			<li>Electricity</li>
+		</researchPrerequisites>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costList>
+			<Steel>1</Steel>
+		</costList>
+		<costStuffCount>1</costStuffCount>
+		<graphicData>
+			<texPath>Things/Building/Decoration/RecessedLight</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(0.2,0.2)</drawSize>
+		</graphicData>
+		<comps>
+			<li Class ="TinyBuilder.CompProperties_TinyThing"></li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>4</basePowerConsumption>
+				<powerUpgrades>
+					<li>
+						<researchProject>ColoredLights</researchProject>
+						<factor>0.1</factor>
+					</li>
+				</powerUpgrades>
+			</li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2</glowRadius>
+				<glowColor>(214,148,94,0)</glowColor>
+				<colorPickerEnabled>true</colorPickerEnabled>
+				<darklightToggle>true</darklightToggle>
+			</li>
+		</comps>
+		<placeWorkers>
+			<li>TinyBuilder.Placeworker_TinyThing</li>
+		</placeWorkers>
+		<drawPlaceWorkersWhileSelected>false</drawPlaceWorkersWhileSelected>
+	</ThingDef>
+
+</Defs>

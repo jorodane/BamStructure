@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef Abstract ="true" ParentName ="BuildingBase" Name="TownBellBase">
+		<thingClass>CallToArms.Building_TownBell</thingClass>
+		<surfaceType>Item</surfaceType>
+		<noRightClickDraftAttack>true</noRightClickDraftAttack>
+		<graphicData>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<damageData>
+				<rect>(0.25,0.25,0.75,0.75)</rect>
+			</damageData>
+		</graphicData>
+		<size>(1,1)</size>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costList>
+			<Steel>40</Steel>
+		</costList>
+		<designationHotKey>Misc2</designationHotKey>
+		<passability>PassThroughOnly</passability>
+		<defaultPlacingRot>South</defaultPlacingRot>
+		<uiOrder>20</uiOrder>
+		<designationCategory>Security</designationCategory>
+		<inspectorTabs>
+			<li>CallToArms.ITab_DraftSetting</li>
+			<li>CallToArms.ITab_EquipmentSetting</li>
+		</inspectorTabs>
+		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+		<placeWorkers>
+			<li>CallToArms.PlaceWorker_TownBellDraftArea</li>
+		</placeWorkers>
+	</ThingDef>
+
+	<ThingDef ParentName="TownBellBase" Name="EmergencyAlarm">
+		<defName>EmergencyAlarm</defName>
+		<label>emergency alarm</label>
+		<description>Wall mounted Town Bell. Can Draft Colonists to around 12 tile-radius</description>
+		<thingCategories>
+			<li>BuildingsFurniture</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>Things/Building/Furniture/EmergencyAlarm</texPath>
+			<drawSize>(1,1)</drawSize>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawOffsetNorth>(0,0,0.43)</drawOffsetNorth>
+			<drawOffsetSouth>(0,0,-0.2)</drawOffsetSouth>
+			<drawOffsetWest>(-0.3,0,0)</drawOffsetWest>
+			<drawOffsetEast>(0.3,0,0)</drawOffsetEast>
+			<damageData>
+				<enabled>false</enabled>
+			</damageData>
+		</graphicData>
+		<uiIconPath>Things/Building/Furniture/EmergencyAlarm_MenuIcon</uiIconPath>
+		<statBases>
+			<MaxHitPoints>120</MaxHitPoints>
+			<Beauty>-2</Beauty>
+			<WorkToBuild>200</WorkToBuild>
+			<Mass>5</Mass>
+		</statBases>
+		<costStuffCount>15</costStuffCount>
+		<building>
+			<buildingSizeCategory>Small</buildingSizeCategory>
+			<paintable>true</paintable>
+			<isEdifice>false</isEdifice>
+			<isAttachment>true</isAttachment>
+		</building>
+		<comps>
+			<li Class="CallToArms.CompProperties_EmergencyDrafter">
+				<draftRadius>8</draftRadius>
+			</li>
+		</comps>
+		<size>(1,1)</size>
+		<rotatable>true</rotatable>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
+		<pathCost>0</pathCost>
+		<passability>Standable</passability>
+		<defaultPlacingRot>South</defaultPlacingRot>
+		<placeWorkers>
+			<li>Placeworker_AttachedToWall</li>
+		</placeWorkers>
+
+	</ThingDef>
+
+	<ThingDef ParentName="TownBellBase" Name="MiniTownBell">
+		<defName>Mini_Town_Bell</defName>
+		<label>MiniBell</label>
+		<description>Mini Size Town Bell. Can Draft Colonists to around 12 tile-radius</description>
+		<rotatable>true</rotatable>
+		<fillPercent>0.4</fillPercent>
+		<thingCategories>
+			<li>BuildingsFurniture</li>
+		</thingCategories>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<size>(1,1)</size>
+		<graphicData>
+			<texPath>Things/Building/Furniture/MiniTownBell</texPath>
+			<drawSize>(1,1)</drawSize>
+			<damageData>
+				<rect>(0.25,0.25,0.75,0.75)</rect>
+			</damageData>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<Beauty>-2</Beauty>
+			<WorkToBuild>300</WorkToBuild>
+			<Mass>30</Mass>
+		</statBases>
+		<costStuffCount>20</costStuffCount>
+		<passability>PassThroughOnly</passability>
+		<building>
+			<buildingSizeCategory>Small</buildingSizeCategory>
+			<paintable>true</paintable>
+		</building>
+		<comps>
+			<li Class="CallToArms.CompProperties_EmergencyDrafter">
+				<draftRadius>12</draftRadius>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="TownBellBase" Name="MediumTownBell">
+		<defName>Medium_Town_Bell</defName>
+		<label>MediumBell</label>
+		<rotatable>false</rotatable>
+		<fillPercent>0.7</fillPercent>
+		<description>Medium Size Town Bell. Can Draft Colonists to around 25 tile-radius</description>
+		<costStuffCount>50</costStuffCount>
+		<passability>Standable</passability>
+		<size>(2,1)</size>
+		<statBases>
+			<MaxHitPoints>500</MaxHitPoints>
+			<Beauty>0</Beauty>
+			<WorkToBuild>1000</WorkToBuild>
+			<Mass>100</Mass>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Building/Furniture/MediumTownBell</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(2,2)</drawSize>
+			<drawOffset>(0,0.5,0.5)</drawOffset>
+			<damageData>
+				<rect>(0.25,0.25,0.75,0.75)</rect>
+			</damageData>
+		</graphicData>
+		<building>
+			<buildingSizeCategory>Medium</buildingSizeCategory>
+			<paintable>true</paintable>
+		</building>
+		<comps>
+			<li Class="CallToArms.CompProperties_EmergencyDrafter">
+				<draftRadius>25</draftRadius>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>

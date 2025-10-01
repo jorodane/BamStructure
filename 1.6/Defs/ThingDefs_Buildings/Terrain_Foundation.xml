@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<TerrainDef Name="CoveredBridgeBase" Abstract="True">
+		<layerable>true</layerable>
+		<bridge>true</bridge>
+		<isFoundation>true</isFoundation>
+		<isPaintable>true</isPaintable>
+		<designationCategory>Structure</designationCategory>
+		<fertility>0</fertility>
+		<terrainAffordanceNeeded>Bridgeable</terrainAffordanceNeeded>
+		<preventCraters>true</preventCraters>
+		<edgeType>Hard</edgeType>
+		<renderPrecedence>400</renderPrecedence>
+		<autoRebuildable>true</autoRebuildable>
+		<drawStyleCategory>Foundations</drawStyleCategory>
+		<destroyBuildingsOnDestroyed>true</destroyBuildingsOnDestroyed>
+		<destroyEffect>Bridge_Collapse</destroyEffect>
+		<destroyEffectWater>Bridge_CollapseWater</destroyEffectWater>
+		<cropIcon>false</cropIcon>
+	</TerrainDef>
+
+	<TerrainDef ParentName="CoveredBridgeBase">
+		<defName>CoveredBridge</defName>
+		<label>covered bridge</label>
+		<description>A flat wooden surface on supportive panels which can be built over water. You can build light structures on bridges, but be careful - bridges are fragile. If a bridge falls, buildings on top of it fall as well.</description>
+		<texturePath>Terrain/Surfaces/CoveredWoodFloor</texturePath>
+		<bridgePropsPath>Terrain/Misc/CoveredBridgeProps</bridgePropsPath>
+		<spaceBridgePropsPath>Terrain/Misc/BridgeSpaceProps</spaceBridgePropsPath>
+		<color>(108,78,55)</color>
+		<uiIconPath>Terrain/Surfaces/CoveredBridge_MenuIcon</uiIconPath>
+		<affordances>
+			<li>Light</li>
+		</affordances>
+		<constructEffect>ConstructWood</constructEffect>
+		<statBases>
+			<WorkToBuild>1500</WorkToBuild>
+			<Flammability>0.8</Flammability>
+		</statBases>
+		<costList>
+			<WoodLog>12</WoodLog>
+		</costList>
+		<designationHotKey>Misc4</designationHotKey>
+		<destroyOnBombDamageThreshold>35</destroyOnBombDamageThreshold>
+	</TerrainDef>
+
+	<TerrainDef ParentName="CoveredBridgeBase">
+		<defName>CoveredHeavyBridge</defName>
+		<label>covered heavy bridge</label>
+		<description>A stronger and face covered version of the basic bridge which supports heavy structures on top. You can build a whole colony on water with this.</description>
+		<texturePath>Terrain/Surfaces/GenericFloorTile</texturePath>
+		<bridgePropsPath>Terrain/Misc/CoveredHeavyBridgeProps</bridgePropsPath>
+		<spaceBridgePropsPath>Terrain/Misc/HeavyBridgeSpaceProps</spaceBridgePropsPath>
+		<color>(1.0, 1.0, 1.0)</color>
+		<uiIconPath>Terrain/Surfaces/CoveredHeavyBridge_MenuIcon</uiIconPath>
+		<affordances>
+			<li>Light</li>
+			<li>Medium</li>
+			<li>Heavy</li>
+			<li>Walkable</li>
+		</affordances>
+		<constructEffect>ConstructMetal</constructEffect>
+		<statBases>
+			<WorkToBuild>2500</WorkToBuild>
+		</statBases>
+		<costList>
+			<Steel>14</Steel>
+		</costList>
+		<researchPrerequisites>
+			<li>HeavyBridges</li>
+		</researchPrerequisites>
+		<designationHotKey>Misc4</designationHotKey>
+		<destroyOnBombDamageThreshold>45</destroyOnBombDamageThreshold>
+	</TerrainDef>
+
+
+	<ThingDef Abstract="True" ParentName="BuildingBase" Name="CurbStoneBase" >
+		<noRightClickDraftAttack>true</noRightClickDraftAttack>
+		<designationCategory>Floors</designationCategory>
+		<uiOrder>2040</uiOrder>
+		<altitudeLayer>FloorEmplacement</altitudeLayer>
+		<category>Building</category>
+		<thingClass>Building</thingClass>
+    <drawStyleCategory>Walls</drawStyleCategory>
+    <replaceTags>
+			<li>Floor</li>
+		</replaceTags>
+		<coversFloor>false</coversFloor>
+		<passability>Standable</passability>
+		<fillPercent>0</fillPercent>
+		<uiIconScale>0.4</uiIconScale>
+		<uiIconOffset>(0, -0.2)</uiIconOffset>
+		<graphicData>
+			<texPath>Terrain/Surfaces/CurbStone_Single_Straight</texPath>
+			<drawSize>(1.02,1.02)</drawSize>
+			<graphicClass>Graphic_Multi</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToBuild>100</WorkToBuild>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+			<Beauty>1</Beauty>
+		</statBases>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>5</costStuffCount>
+		<canOverlapZones>true</canOverlapZones>
+		<rotatable>true</rotatable>
+		<fertility>0</fertility>
+		<clearBuildingArea>false</clearBuildingArea>
+		<scatterableOnMapGen>false</scatterableOnMapGen>
+    <!--useHitPoints>false</useHitPoints-->
+		<building>
+			<isInert>false</isInert>
+			<isEdifice>false</isEdifice>
+			<paintable>true</paintable>
+			<relatedBuildCommands>
+				<li>CurbStoneStraight</li>
+				<li>CurbStoneCorner</li>
+				<li>CurbStoneEdge</li>
+				<li>CurbStoneDoubleEdge</li>
+				<li>CurbStoneDoubleEdgeEnd</li>
+				<li>CurbStoneLeftEdgeEnd</li>
+				<li>CurbStoneRightEdgeEnd</li>
+				<li>CurbStoneTripleEdge</li>
+				<li>CurbStoneEveryEdge</li>
+				<li>CurbStoneSquare</li>
+				<li>CurbStoneDoubleStraight</li>
+				<li>CurbStoneDoubleCorner</li>
+				<li>CurbStoneDoubleEnd</li>
+			</relatedBuildCommands>
+		</building>
+	</ThingDef>
+
+	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneStraight" >
+		<defName>CurbStoneStraight</defName>
+		<label>curb stone straight</label>
+		<description>A curb stone for way</description>
+		<graphicData>
+			<texPath>Terrain/Surfaces/CurbStone_Single_Straight</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneCorner" >
+		<defName>CurbStoneCorner</defName>
+		<label>curb stone corner</label>
+		<description>A curb stone for way</description>
+		<graphicData>
+			<texPath>Terrain/Surfaces/CurbStone_Single_Corner</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneEdge" >
+		<defName>CurbStoneEdge</defName>
+		<label>curb stone edge</label>
+		<description>A curb stone for way</description>
+		<graphicData>
+			<texPath>Terrain/Surfaces/CurbStone_Single_Edge</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneDoubleEdge" >
+		<defName>CurbStoneDoubleEdge</defName>
+		<label>curb stone double edge</label>
+		<description>A curb stone for way</description>
+		<graphicData>
+			<texPath>Terrain/Surfaces/CurbStone_Double_Edge</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneDoubleEdgeEnd" >
+		<defName>CurbStoneDoubleEdgeEnd</defName>
+		<label>curb stone double edge end</label>
+		<description>A curb stone for way</description>
+		<graphicData>
+			<texPath>Terrain/Surfaces/CurbStone_Double_EdgeEnd</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneLeftEdgeEnd" >
+		<defName>CurbStoneLeftEdgeEnd</defName>
+		<label>curb stone left edge end</label>
+		<description>A curb stone for way</description>
+		<graphicData>
+			<texPath>Terrain/Surfaces/CurbStone_Left_EdgeEnd</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneRightEdgeEnd" >
+		<defName>CurbStoneRightEdgeEnd</defName>
+		<label>curb stone right edge end</label>
+		<description>A curb stone for way</description>
+		<graphicData>
+			<texPath>Terrain/Surfaces/CurbStone_Right_EdgeEnd</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneTripleEdge" >
+		<defName>CurbStoneTripleEdge</defName>
+		<label>curb stone triple edge</label>
+		<description>A curb stone for way</description>
+		<graphicData>
+			<texPath>Terrain/Surfaces/CurbStone_Triple_Edge</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneEveryEdge" >
+		<defName>CurbStoneEveryEdge</defName>
+		<label>curb stone every edge</label>
+		<description>A curb stone for way</description>
+		<rotatable>false</rotatable>
+		<graphicData>
+			<texPath>Terrain/Surfaces/CurbStone_Every_Edge</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneSquare" >
+		<defName>CurbStoneSquare</defName>
+		<label>curb stone square</label>
+		<description>A curb stone for way</description>
+		<rotatable>false</rotatable>
+		<graphicData>
+			<texPath>Terrain/Surfaces/CurbStone_Square</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneDoubleStraight" >
+		<defName>CurbStoneDoubleStraight</defName>
+		<label>curb stone double straight</label>
+		<description>A curb stone for way</description>
+		<graphicData>
+			<texPath>Terrain/Surfaces/CurbStone_Double_Straight</texPath>
+		</graphicData>
+	</ThingDef>
+
+
+	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneDoubleCorner" >
+		<defName>CurbStoneDoubleCorner</defName>
+		<label>curb stone double corner</label>
+		<description>A curb stone for way</description>
+		<graphicData>
+			<texPath>Terrain/Surfaces/CurbStone_Double_Corner</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneDoubleEnd" >
+		<defName>CurbStoneDoubleEnd</defName>
+		<label>curb stone double end</label>
+		<description>A curb stone for way</description>
+		<graphicData>
+			<texPath>Terrain/Surfaces/CurbStone_Double_End</texPath>
+		</graphicData>
+	</ThingDef>
+
+</Defs>

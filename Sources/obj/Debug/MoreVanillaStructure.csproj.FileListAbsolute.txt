@@ -1,0 +1,77 @@
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\MoreVanillaStructure.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\MoreVanillaStructure.pdb
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Assembly-CSharp.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.CoreModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\NAudio.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\NVorbis.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.AudioModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Unity.Collections.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Unity.Burst.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Unity.Mathematics.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\com.rlabrecque.steamworks.net.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Assembly-CSharp-firstpass.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.AssetBundleModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.PhysicsModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Unity.TextMeshPro.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\ISharpZipLib.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.InputLegacyModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.PerformanceReportingModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.ImageConversionModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.ScreenCaptureModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.UI.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\netstandard.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.SharedInternalsModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.TextCoreTextEngineModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.PropertiesModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Unity.Collections.LowLevel.ILSupport.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Unity.Burst.Unsafe.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.TextCoreFontEngineModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.UIModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.Physics2DModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.AnimationModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.SpriteShapeModule.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\obj\Debug\MoreVanillaStructure.csproj.AssemblyReference.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\obj\Debug\MoreVanillaStructure.csproj.CoreCompileInputs.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\obj\Debug\MoreVani.58D61369.Up2Date
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\obj\Debug\MoreVanillaStructure.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\obj\Debug\MoreVanillaStructure.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Assembly-CSharp.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.CoreModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\NAudio.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\NVorbis.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.AudioModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Unity.Collections.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Unity.Burst.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Unity.Mathematics.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\com.rlabrecque.steamworks.net.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.AssetBundleModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.PhysicsModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Unity.TextMeshPro.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\ISharpZipLib.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.InputLegacyModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.PerformanceReportingModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.ImageConversionModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.ScreenCaptureModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.UI.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\netstandard.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.SharedInternalsModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.TextCoreTextEngineModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.PropertiesModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Unity.Collections.LowLevel.ILSupport.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\Unity.Burst.Unsafe.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.TextCoreFontEngineModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.UIModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.Physics2DModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.AnimationModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\UnityEngine.SpriteShapeModule.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\obj\Debug\MoreVanillaStructure.csproj.AssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\obj\Debug\MoreVanillaStructure.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\obj\Debug\MoreVani.58D61369.Up2Date
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Assemblies\BamStructure.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Assemblies\BamStructure.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\obj\Debug\BamStructure.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\obj\Debug\BamStructure.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\BamStructure.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\BamStructure.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\MoreVanillaStructure\Sources\bin\Debug\0Harmony.dll

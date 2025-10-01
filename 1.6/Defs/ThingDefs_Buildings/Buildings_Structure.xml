@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+
+
+	<ThingDef ParentName="BuildingBase" Name="MVSWallBase" Abstract="True">
+		<thingClass>Building</thingClass>
+		<category>Building</category>
+		<replaceTags>
+			<li>Wall</li>
+		</replaceTags>
+		<noRightClickDraftAttack>true</noRightClickDraftAttack>
+		<graphicData>
+			<graphicClass>Graphic_Appearances</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<linkType>CornerFiller</linkType>
+			<damageData>
+				<cornerTL>Damage/Corner</cornerTL>
+				<cornerTR>Damage/Corner</cornerTR>
+				<cornerBL>Damage/Corner</cornerBL>
+				<cornerBR>Damage/Corner</cornerBR>
+				<edgeTop>Damage/Edge</edgeTop>
+				<edgeBot>Damage/Edge</edgeBot>
+				<edgeLeft>Damage/Edge</edgeLeft>
+				<edgeRight>Damage/Edge</edgeRight>
+			</damageData>
+		</graphicData>
+		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>Impassable</passability>
+		<blockWind>true</blockWind>
+		<castEdgeShadows>true</castEdgeShadows>
+		<fillPercent>1</fillPercent>
+		<coversFloor>true</coversFloor>
+		<drawStyleCategory>Walls</drawStyleCategory>
+		<tickerType>Never</tickerType>
+		<rotatable>false</rotatable>
+		<selectable>true</selectable>
+		<neverMultiSelect>true</neverMultiSelect>
+		<useStuffTerrainAffordance>true</useStuffTerrainAffordance>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<!-- Best affordance needed for stone -->
+		<holdsRoof>true</holdsRoof>
+		<designationCategory>Structure</designationCategory>
+		<uiOrder>2000</uiOrder>
+		<staticSunShadowHeight>1.0</staticSunShadowHeight>
+		<blockLight>true</blockLight>
+		<canOverlapZones>false</canOverlapZones>
+		<fertility>0</fertility>
+		<building>
+			<paintable>true</paintable>
+			<isInert>true</isInert>
+			<isEdifice>true</isEdifice>
+			<isWall>true</isWall>
+			<isPlaceOverableWall>true</isPlaceOverableWall>
+			<ai_chillDestination>false</ai_chillDestination>
+			<supportsWallAttachments>true</supportsWallAttachments>
+			<isStuffableAirtight>true</isStuffableAirtight>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Linked/Wall_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+			<relatedBuildCommands>
+				<li>Door</li>
+				<li>Autodoor</li>
+				<li>OrnateDoor</li>
+				<li MayRequire="Ludeon.RimWorld.Anomaly">SecurityDoor</li>
+				<li MayRequire="Ludeon.RimWorld.Odyssey">VacBarrier</li>
+				<li>Cooler</li>
+				<li>Vent</li>
+			</relatedBuildCommands>
+		</building>
+		<comps>
+			<li Class="CompProperties_MeditationFocus">
+				<statDef>MeditationFocusStrength</statDef>
+				<focusTypes>
+					<li>Minimal</li>
+				</focusTypes>
+			</li>
+		</comps>
+		<damageMultipliers>
+			<li>
+				<damageDef>Bomb</damageDef>
+				<multiplier>2</multiplier>
+			</li>
+			<li>
+				<damageDef>Thump</damageDef>
+				<multiplier>2</multiplier>
+			</li>
+		</damageMultipliers>
+		<designationHotKey>Misc3</designationHotKey>
+	</ThingDef>
+
+	<ThingDef Abstract ="true" ParentName="BuildingBase" Name ="LinkableStorageBase">
+		<graphicData>
+			<graphicClass>Graphic_Appearances</graphicClass>
+			<linkType>CornerFiller</linkType>
+		</graphicData>
+		<building>
+			<preventDeteriorationOnTop>true</preventDeteriorationOnTop>
+			<ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+			<maxItemsInCell>1</maxItemsInCell>
+			<blueprintClass>Blueprint_Storage</blueprintClass>
+			<paintable>true</paintable>
+		</building>
+		<inspectorTabs>
+			<li>ITab_Storage</li>
+		</inspectorTabs>
+		<staticSunShadowHeight>0.5</staticSunShadowHeight>
+		<surfaceType>Item</surfaceType>
+		<canOverlapZones>false</canOverlapZones>
+		<thingClass>Building_Storage</thingClass>
+		<building>
+			<storageGroupTag>Shelf</storageGroupTag>
+			<fixedStorageSettings>
+				<filter>
+					<disallowNotEverStorable>true</disallowNotEverStorable>
+					<categories>
+						<li>Root</li>
+					</categories>
+					<disallowedCategories>
+						<li>Chunks</li>
+						<li>Plants</li>
+						<li>Buildings</li>
+					</disallowedCategories>
+					<disallowedThingDefs MayRequire="Ludeon.RimWorld.Biotech">
+						<li MayRequire="Ludeon.RimWorld.Biotech">Wastepack</li>
+					</disallowedThingDefs>
+					<specialFiltersToDisallow>
+						<li>AllowLargeCorpses</li>
+					</specialFiltersToDisallow>
+				</filter>
+			</fixedStorageSettings>
+			<defaultStorageSettings>
+				<priority>Preferred</priority>
+			</defaultStorageSettings>
+		</building>
+		<designationHotKey>Misc12</designationHotKey>
+	</ThingDef>
+
+	<ThingDef ParentName="LinkableStorageBase" Name ="HalfHeightWall">
+		<defName>HalfHeightWall</defName>
+		<label>half height wall</label>
+		<description>An impassable wall. Capable of holding up a roof. Only one floor settled. Can store item on it</description>
+		<graphicData>
+			<texPath>Things/Building/Linked/HalfHeightWall</texPath>
+			<linkFlags>
+				<li>Custom6</li>
+			</linkFlags>
+		</graphicData>
+		<uiIconPath>Things/Building/Linked/HalfHeightWall/WallSmooth_MenuIcon</uiIconPath>
+		<uiIconPathsStuff>
+			<li>
+				<appearance>Planks</appearance>
+				<iconPath>Things/Building/Linked/HalfHeightWall/WallPlanks_MenuIcon</iconPath>
+			</li>
+			<li>
+				<appearance>Bricks</appearance>
+				<iconPath>Things/Building/Linked/HalfHeightWall/WallBricks_MenuIcon</iconPath>
+			</li>
+		</uiIconPathsStuff>
+		<costStuffCount>3</costStuffCount>
+		<stuffCategories>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Metallic</li>
+		</stuffCategories>
+		<replaceTags>
+			<li>Wall</li>
+		</replaceTags>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToBuild>80</WorkToBuild>
+			<Flammability>1.0</Flammability>
+			<MeditationFocusStrength>0.20</MeditationFocusStrength>
+		</statBases>
+		<building>
+			<paintable>true</paintable>
+			<isInert>true</isInert>
+			<isEdifice>true</isEdifice>
+			<isWall>true</isWall>
+			<isPlaceOverableWall>true</isPlaceOverableWall>
+			<ai_chillDestination>false</ai_chillDestination>
+			<supportsWallAttachments>true</supportsWallAttachments>
+			<isStuffableAirtight>true</isStuffableAirtight>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Linked/Wall_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+			<relatedBuildCommands>
+				<li>Door</li>
+				<li>Autodoor</li>
+				<li>OrnateDoor</li>
+				<li MayRequire="Ludeon.RimWorld.Anomaly">SecurityDoor</li>
+				<li MayRequire="Ludeon.RimWorld.Odyssey">VacBarrier</li>
+				<li>Cooler</li>
+				<li>Vent</li>
+			</relatedBuildCommands>
+		</building>
+		<comps>
+			<li Class="CompProperties_MeditationFocus">
+				<statDef>MeditationFocusStrength</statDef>
+				<focusTypes>
+					<li>Minimal</li>
+				</focusTypes>
+			</li>
+		</comps>
+		<damageMultipliers>
+			<li>
+				<damageDef>Bomb</damageDef>
+				<multiplier>2</multiplier>
+			</li>
+			<li>
+				<damageDef>Thump</damageDef>
+				<multiplier>2</multiplier>
+			</li>
+		</damageMultipliers>
+    <designationHotKey>Misc3</designationHotKey>
+    <surfaceType>Eat</surfaceType>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>Impassable</passability>
+		<drawStyleCategory>Walls</drawStyleCategory>
+		<designationCategory>Structure</designationCategory>
+		<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+		<rotatable>false</rotatable>
+		<fillPercent>1</fillPercent>
+		<coversFloor>true</coversFloor>
+		<selectable>true</selectable>
+		<neverMultiSelect>false</neverMultiSelect>
+		<useStuffTerrainAffordance>true</useStuffTerrainAffordance>
+		<uiOrder>2000</uiOrder>
+		<holdsRoof>true</holdsRoof>
+		<blockLight>false</blockLight>
+		<staticSunShadowHeight>0.3</staticSunShadowHeight>
+
+
+	</ThingDef>
+
+
+	<ThingDef ParentName="MVSWallBase" Name="HalfWoodWall">
+		<defName>HalfWoodWall</defName>
+		<label>half wood wall</label>
+		<description>An impassable wall. Capable of holding up a roof. Decorated by Wood on Top.</description>
+		<graphicData>
+			<texPath>Things/Building/Linked/HalfWoodWall</texPath>
+			<linkFlags>
+				<li>Wall</li>
+				<li>Rock</li>
+			</linkFlags>
+		</graphicData>
+		<uiIconPath>Things/Building/Linked/HalfWoodWall/WallSmooth_MenuIcon</uiIconPath>
+		<uiIconPathsStuff>
+			<li>
+				<appearance>Planks</appearance>
+				<iconPath>Things/Building/Linked/HalfWoodWall/WallPlanks_MenuIcon</iconPath>
+			</li>
+			<li>
+				<appearance>Bricks</appearance>
+				<iconPath>Things/Building/Linked/HalfWoodWall/WallBricks_MenuIcon</iconPath>
+			</li>
+		</uiIconPathsStuff>
+		<statBases>
+			<MaxHitPoints>300</MaxHitPoints>
+			<WorkToBuild>135</WorkToBuild>
+			<Flammability>1.0</Flammability>
+			<MeditationFocusStrength>0.22</MeditationFocusStrength>
+		</statBases>
+		<costStuffCount>4</costStuffCount>
+		<costList>
+			<WoodLog>1</WoodLog>
+		</costList>
+		<stuffCategories>
+			<li>Stony</li>
+			<li>Metallic</li>
+		</stuffCategories>
+	</ThingDef>
+
+
+
+
+	<ThingDef ParentName="MVSWallBase" Name="GlassWall">
+		<defName>GlassWall</defName>
+		<label>glass wall</label>
+		<description>An impassable wall. Capable of holding up a roof. Decorated by Glass In Middle Line.</description>
+		<graphicData>
+			<texPath>Things/Building/Linked/GlassWall</texPath>
+			<linkFlags>
+				<li>Wall</li>
+				<li>Rock</li>
+			</linkFlags>
+		</graphicData>
+		<castEdgeShadows>false</castEdgeShadows>
+		<staticSunShadowHeight>0.0</staticSunShadowHeight>
+		<blockLight>false</blockLight>
+		<uiIconPath>Things/Building/Linked/GlassWall/WallSmooth_MenuIcon</uiIconPath>
+		<uiIconPathsStuff>
+			<li>
+				<appearance>Planks</appearance>
+				<iconPath>Things/Building/Linked/GlassWall/WallPlanks_MenuIcon</iconPath>
+			</li>
+			<li>
+				<appearance>Bricks</appearance>
+				<iconPath>Things/Building/Linked/GlassWall/WallBricks_MenuIcon</iconPath>
+			</li>
+		</uiIconPathsStuff>
+		<statBases>
+			<MaxHitPoints>200</MaxHitPoints>
+			<WorkToBuild>150</WorkToBuild>
+			<Flammability>1.0</Flammability>
+			<MeditationFocusStrength>0.5</MeditationFocusStrength>
+		</statBases>
+		<costStuffCount>4</costStuffCount>
+		<costList>
+			<Steel>1</Steel>
+		</costList>
+		<stuffCategories>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Metallic</li>
+		</stuffCategories>
+	</ThingDef>
+
+
+
+
+	<ThingDef ParentName="GlassWall" Name="GlassWallOutside">
+		<defName>GlassWallOutside</defName>
+		<label>glass wall outside</label>
+		<description>Glass Wall But Wide Square.</description>
+		<graphicData>
+			<texPath>Things/Building/Linked/GlassWallOutside</texPath>
+		</graphicData>
+	</ThingDef>
+
+
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>FenceLight</defName>
+		<label>fence light</label>
+		<description>A fence made of posts joined by crossbars used for building pens for certain kinds of animals. Some kinds of animals can get past fences. Predators will not hunt creatures on the other side of a fence, but may still wander inside.</description>
+		<thingClass>Building</thingClass>
+		<category>Building</category>
+		<replaceTags>
+			<li>Wall</li>
+		</replaceTags>
+		<graphicData>
+			<texPath>Things/Building/Linked/FenceLight</texPath>
+			<graphicClass>Graphic_Appearances</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<linkType>Asymmetric</linkType>
+			<linkFlags>
+				<li>Fences</li>
+			</linkFlags>
+			<asymmetricLink>
+				<linkFlags>
+					<li>Wall</li>
+					<li>Rock</li>
+				</linkFlags>
+				<linkToDoors>true</linkToDoors>
+				<drawDoorBorderEast>
+					<color>(0,0,0)</color>
+					<size>(0.04, 0.77)</size>
+					<offset>(0.5, 0, -0.08)</offset>
+				</drawDoorBorderEast>
+				<drawDoorBorderWest>
+					<color>(0,0,0)</color>
+					<size>(0.04, 0.77)</size>
+					<offset>(-0.5, 0, -0.08)</offset>
+				</drawDoorBorderWest>
+			</asymmetricLink>
+			<shadowData>
+				<volume>(0.3, 0.5, 0.3)</volume>
+				<offset>(0,0,-0.23)</offset>
+			</shadowData>
+			<damageData>
+				<rect>(0.35,0.1,0.3,0.7)</rect>
+			</damageData>
+		</graphicData>
+		<uiIconPath>Things/Building/Linked/FenceLight/Fence_MenuIcon</uiIconPath>
+		<uiIconPathsStuff>
+			<li>
+				<appearance>Metal</appearance>
+				<iconPath>Things/Building/Linked/FenceLight/FenceMetal_MenuIcon</iconPath>
+			</li>
+		</uiIconPathsStuff>
+		<statBases>
+			<MaxHitPoints>40</MaxHitPoints>
+			<WorkToBuild>70</WorkToBuild>
+			<Flammability>1.0</Flammability>
+		</statBases>
+		<costStuffCount>1</costStuffCount>
+		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<pathCost>80</pathCost>
+		<blockWind>false</blockWind>
+		<fillPercent>0.25</fillPercent>
+		<drawStyleCategory>Defenses</drawStyleCategory>
+		<tickerType>Never</tickerType>
+		<rotatable>false</rotatable>
+		<selectable>true</selectable>
+		<neverMultiSelect>false</neverMultiSelect>
+		<useStuffTerrainAffordance>true</useStuffTerrainAffordance>
+		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+		<designationCategory>Structure</designationCategory>
+		<uiOrder>2020</uiOrder>
+		<canOverlapZones>false</canOverlapZones>
+		<fertility>0</fertility>
+		<costList>
+			<Steel>20</Steel>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<researchPrerequisites>
+			<li>Electricity</li>
+		</researchPrerequisites>
+		<placeWorkers>
+			<li>PlaceWorker_GlowRadius</li>
+		</placeWorkers>
+		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+		<building>
+			<isInert>true</isInert>
+			<isFence>true</isFence>
+			<isPlaceOverableWall>true</isPlaceOverableWall>
+			<ai_chillDestination>false</ai_chillDestination>
+			<ai_neverTrashThis>true</ai_neverTrashThis>
+			<relatedBuildCommands>
+				<li>Fence</li>
+				<li>PenMarker</li>
+				<li>LightPenMarker</li>
+				<li>FenceGate</li>
+				<li>FenceAutoLightGate</li>
+			</relatedBuildCommands>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Linked/Fence_Blueprint</texPath>
+				<graphicClass>Graphic_Appearances</graphicClass>
+			</blueprintGraphicData>
+			<paintable>true</paintable>
+		</building>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>30</basePowerConsumption>
+				<powerUpgrades>
+					<li>
+						<researchProject>ColoredLights</researchProject>
+						<factor>0.5</factor>
+					</li>
+				</powerUpgrades>
+			</li>
+			<li Class="CompProperties_Styleable" />
+			<li Class="CompProperties_Glower">
+				<glowRadius>11</glowRadius>
+				<glowColor>(214,148,94,0)</glowColor>
+				<colorPickerEnabled>true</colorPickerEnabled>
+				<darklightToggle>true</darklightToggle>
+			</li>
+		</comps>
+		<tradeability>None</tradeability>
+	</ThingDef>
+
+
+	<ThingDef ParentName="DoorBase">
+		<defName>FenceAutoLightGate</defName>
+		<label>fence auto light gate</label>
+		<description>A simple gate made of posts and crossbars. It blocks some animals like a fence. Handlers can lead animals in and out of the pen through these gates. Powered operation allows people to move through the door without slowing down. And also Glowing</description>
+		<uiOrder>2030</uiOrder>
+		<statBases>
+			<MaxHitPoints>20</MaxHitPoints>
+			<WorkToBuild>750</WorkToBuild>
+			<DoorOpenSpeed>1.15</DoorOpenSpeed>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Building/Door/FenceAutoLightGate_Mover</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<shadowData>
+				<volume>(0.3, 0.5, 0.3)</volume>
+			</shadowData>
+			<damageData>
+				<enabled>false</enabled>
+			</damageData>
+		</graphicData>
+		<uiIconPath>Things/Building/Door/FenceAutoLightGate_MenuIcon</uiIconPath>
+		<costList>
+			<Steel>50</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<costStuffCount>25</costStuffCount>
+		<holdsRoof>false</holdsRoof>
+		<blockWeather>true</blockWeather>
+		<staticSunShadowHeight>0</staticSunShadowHeight>
+		<blockWind>false</blockWind>
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+		<researchPrerequisites>
+			<li>Autodoors</li>
+		</researchPrerequisites>
+		<building>
+			<ai_chillDestination>false</ai_chillDestination>
+			<relatedBuildCommands>
+				<li>Fence</li>
+				<li>FenceLight</li>
+				<li>PenMarker</li>
+				<li>LightPenMarker</li>
+				<li>FenceGate</li>
+			</relatedBuildCommands>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Door/FenceGate_Blueprint</texPath>
+				<graphicClass>Graphic_Multi</graphicClass>
+			</blueprintGraphicData>
+			<preferConnectingToFences>true</preferConnectingToFences>
+			<soundDoorOpenManual>Door_FenceGateManual</soundDoorOpenManual>
+			<soundDoorCloseManual>Door_FenceGateManual</soundDoorCloseManual>
+			<paintable>true</paintable>
+		</building>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>80</basePowerConsumption>
+				<powerUpgrades>
+					<li>
+						<researchProject>ColoredLights</researchProject>
+						<factor>0.8125</factor>
+					</li>
+				</powerUpgrades>
+			</li>
+			<li Class="CompProperties_Breakdownable"/>
+			<li Class="CompProperties_Glower">
+				<glowRadius>11</glowRadius>
+				<glowColor>(214,148,94,0)</glowColor>
+				<colorPickerEnabled>true</colorPickerEnabled>
+				<darklightToggle>true</darklightToggle>
+			</li>
+		</comps>
+	</ThingDef>
+
+
+
+	<ThingDef Name="GlassDoor" ParentName="DoorBase">
+    <defName>GlassDoor</defName>
+    <label>glass door</label>
+    <description>Divides rooms with glass. Simple doors must be manually opened, which slows people down. The amount of slowdown depends on what the door is made of.</description>
+    <statBases>
+      <WorkToBuild>850</WorkToBuild>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Building/Door/GlassDoorSimple_Mover</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <damageData>
+        <enabled>false</enabled>
+      </damageData>
+    </graphicData>
+    <uiIconPath>Things/Building/Door/GlassDoorSimple_MenuIcon</uiIconPath>
+    <costList>
+      <Steel>10</Steel>
+    </costList>
+    <costStuffCount>15</costStuffCount>
+    <designationHotKey>Misc1</designationHotKey>
+    <building>
+      <isStuffableAirtight>true</isStuffableAirtight>
+    </building>
+  </ThingDef>
+
+  <ThingDef ParentName="DoorBase">
+    <defName>GlassAutodoor</defName>
+    <label>glass autodoor</label>
+    <description>Divides rooms with glass. Powered operation allows people to move through the door without slowing down.</description>
+    <statBases>
+      <WorkToBuild>1100</WorkToBuild>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Building/Door/GlassAutodoor_Mover</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <damageData>
+        <enabled>false</enabled>
+      </damageData>
+    </graphicData>
+    <uiIconPath>Things/Building/Door/GlassAutodoor_MenuIcon</uiIconPath>
+    <costList>
+      <Steel>50</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+    <costStuffCount>15</costStuffCount>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>50</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Styleable" />
+    </comps>
+    <designationHotKey>Misc2</designationHotKey>
+    <researchPrerequisites>
+      <li>Autodoors</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    <building>
+      <isStuffableAirtight>true</isStuffableAirtight>
+    </building>
+  </ThingDef>
+
+</Defs>

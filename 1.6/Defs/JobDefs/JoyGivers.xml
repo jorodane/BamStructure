@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<JoyGiverDef>
+		<defName>Play_Darts</defName>
+		<giverClass>JoyGiver_WatchBuilding</giverClass>
+		<baseChance>2.5</baseChance>
+		<thingDefs>
+			<li>DartBoard</li>
+		</thingDefs>
+		<jobDef>Play_Darts</jobDef>
+		<desireSit>false</desireSit>
+		<joyKind>Gaming_Dexterity</joyKind>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+	</JoyGiverDef>
+
+	<JoyGiverDef>
+		<defName>Watch_Face</defName>
+		<giverClass>BamStructure.JoyGiver_WatchFace</giverClass>
+		<baseChance>1.5</baseChance>
+		<thingDefs>
+			<li>RoundMirror</li>
+			<li>SquareMirror</li>
+		</thingDefs>
+		<jobDef>Watch_Face</jobDef>
+		<desireSit>false</desireSit>
+		<joyKind>Television</joyKind>
+		<requiredCapacities>
+			<li>Sight</li>
+		</requiredCapacities>
+	</JoyGiverDef>
+
+</Defs>

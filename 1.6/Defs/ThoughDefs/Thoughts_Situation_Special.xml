@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThoughtDef>
+		<defName>HitBetweenTheEyes</defName>
+		<durationDays>0.2</durationDays>
+		<stackLimit>1</stackLimit>
+		<thoughtClass>Thought_Memory</thoughtClass>
+		<stages>
+			<li>
+				<label>Right between the eyes</label>
+				<baseMoodEffect>6</baseMoodEffect>
+				<description>I pierced the center of the dartboard. Easy enough.</description>
+			</li>
+		</stages>
+	</ThoughtDef>
+  
+</Defs>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<HediffDef Name ="FanBreeze">
+		<defName>FanBreeze</defName>
+		<label>fan breeze</label>
+		<description>A gentle fan breeze flows around, reducing the strain of hot weather. While under this effect, Can endure higher temperatures without discomfort.</description>
+		<isBad>false</isBad>
+		<tendable>false</tendable>
+		<hediffClass>HediffWithComps</hediffClass>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>1200</disappearsAfterTicks>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>gentle</label>
+				<statOffsets>
+					<ComfyTemperatureMin>+3</ComfyTemperatureMin>
+					<ComfyTemperatureMax>+3</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+			<li>
+				<label>light</label>
+				<minSeverity>0.2</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>+5</ComfyTemperatureMin>
+					<ComfyTemperatureMax>+5</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+			<li>
+				<label>strong</label>
+				<minSeverity>0.6</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>+10</ComfyTemperatureMin>
+					<ComfyTemperatureMax>+10</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+</Defs>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<JobDef>
+		<defName>Play_Darts</defName>
+		<driverClass>BamStructure.JobDriver_PlayDarts</driverClass>
+		<reportString>throwing darts.</reportString>
+		<joyDuration>4000</joyDuration>
+		<joyMaxParticipants>3</joyMaxParticipants>
+		<joySkill>Shooting</joySkill>
+		<joyXpPerTick>0.003</joyXpPerTick>
+		<joyKind>Gaming_Dexterity</joyKind>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<JobDef>
+		<defName>Watch_Face</defName>
+		<driverClass>BamStructure.JobDriver_WatchFace</driverClass>
+		<reportString>watching face.</reportString>
+		<joyDuration>500</joyDuration>
+		<joyMaxParticipants>3</joyMaxParticipants>
+		<joyKind>Television</joyKind>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+		<isCrawlingIfDowned>false</isCrawlingIfDowned>
+	</JobDef>
+
+
+</Defs>

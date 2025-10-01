@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="BuildingBase" Name ="DartBoard">
+		<defName>DartBoard</defName>
+		<label>Dart Board</label>
+		<description>A simple old game played with darts and a circular plate on the wall. Players throw darts to try to pierce the board for get points. It's exciting, and trains shooting skills.</description>
+		<graphicData>
+			<texPath>Things/Building/Furniture/Joy/DartBoard</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawOffsetNorth>(0,0,0.43)</drawOffsetNorth>
+			<drawOffsetSouth>(0,0,-0.2)</drawOffsetSouth>
+			<drawOffsetWest>(-0.3,0,0)</drawOffsetWest>
+			<drawOffsetEast>(0.3,0,0)</drawOffsetEast>
+			<damageData>
+				<enabled>false</enabled>
+			</damageData>
+		</graphicData>
+		<uiIconPath>Things/Building/Furniture/Joy/DartBoard_MenuIcon</uiIconPath>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<overrideMinifiedRot>North</overrideMinifiedRot>
+		<minifiedDrawOffset>(0, 0, 0.2)</minifiedDrawOffset>
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
+		<rotatable>true</rotatable>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+		<thingCategories>
+			<li>BuildingsJoy</li>
+		</thingCategories>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToBuild>300</WorkToBuild>
+			<Mass>3</Mass>
+			<Flammability>1.0</Flammability>
+			<JoyGainFactor>1.2</JoyGainFactor>
+			<Beauty>3</Beauty>
+		</statBases>
+		<costList>
+			<Cloth>20</Cloth>
+		</costList>
+		<costStuffCount>20</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<building>
+			<joyKind>Gaming_Dexterity</joyKind>
+			<watchBuildingStandDistanceRange>-3~-3</watchBuildingStandDistanceRange>
+			<watchBuildingStandRectWidth>1</watchBuildingStandRectWidth>
+			<watchBuildingInSameRoom>true</watchBuildingInSameRoom>
+			<artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+			<paintable>true</paintable>
+			<isEdifice>false</isEdifice>
+			<isAttachment>true</isAttachment>
+		</building>
+		<terrainAffordanceNeeded IsNull="True" />
+		<passability>Standable</passability>
+		<pathCost>0</pathCost>
+		<placeWorkers>
+			<li>Placeworker_AttachedToWall</li>
+			<li>PlaceWorker_WatchArea</li>
+		</placeWorkers>
+		<designationCategory>Joy</designationCategory>
+		<designationHotKey>Misc1</designationHotKey>
+	</ThingDef>
+  
+  
+
+</Defs>

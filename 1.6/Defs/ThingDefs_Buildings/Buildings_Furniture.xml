@@ -1,0 +1,843 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+
+	
+	<!-- Beds -->
+	<ThingDef ParentName="Bed" Name="WoodBed">
+		<defName>WoodBed</defName>
+		<label>wood bed</label>
+		<graphicData>
+			<texPath>Things/Building/Furniture/Bed/WoodBed</texPath>
+		</graphicData>
+		<costStuffCount>20</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costList>
+			<WoodLog>45</WoodLog>
+		</costList>
+	</ThingDef>
+
+	<ThingDef ParentName="DoubleBed" Name="WoodDoubleBed">
+		<defName>WoodDoubleBed</defName>
+		<label>wood double bed</label>
+		<graphicData>
+			<texPath>Things/Building/Furniture/Bed/WoodDoubleBed</texPath>
+		</graphicData>
+		<costStuffCount>50</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costList>
+			<WoodLog>85</WoodLog>
+		</costList>
+	</ThingDef>
+
+	<ThingDef ParentName="BasicBedBase" Name="GoldRoyalBed">
+		<defName>GoldRoyalBed</defName>
+		<label>gold royal bed</label>
+		<description>A luxurious gold-inlaid bed fit for the highborn. Very comfy and beautiful, it is a work of art in itself. Fits two.</description>
+		<graphicData>
+			<texPath>Things/Building/Furniture/Bed/GoldRoyalBed</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(2.05,2.05)</drawSize>
+			<damageData>
+				<rect>(0,0.05,2,1.95)</rect>
+			</damageData>
+		</graphicData>
+		<thingSetMakerTags>
+			<li>RewardStandardQualitySuper</li>
+		</thingSetMakerTags>
+		<statBases>
+			<MaxHitPoints>200</MaxHitPoints>
+			<WorkToBuild>50000</WorkToBuild>
+			<Mass>60</Mass>
+			<Beauty>85</Beauty>
+			<BedRestEffectiveness>1.05</BedRestEffectiveness>
+			<Comfort>0.90</Comfort>
+		</statBases>
+		<size>(2,2)</size>
+		<costStuffCount>50</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costList>
+			<Gold>1050</Gold>
+		</costList>
+		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+		<leaveResourcesWhenKilled>True</leaveResourcesWhenKilled>
+		<designationHotKey>Misc4</designationHotKey>
+		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+		<building>
+			<paintable>true</paintable>
+		</building>
+	</ThingDef>
+
+
+
+
+
+
+
+
+
+
+
+	<!-- Chairs -->
+
+
+
+
+
+
+	<ThingDef ParentName="ArtableFurnitureBase">
+		<defName>SchoolChair</defName>
+		<label>school chair</label>
+		<description>A uncomfortable and attractive chair. Can be used at tables, work stations, and elsewhere.</description>
+		<replaceTags>
+			<li>Chair</li>
+		</replaceTags>
+		<graphicData>
+			<texPath>Things/Building/Furniture/SchoolChair</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(1,1)</drawSize>
+			<damageData>
+				<rectN>(0.25,0.234375,0.5,0.28125)</rectN>
+				<rectS>(0.25,0.234375,0.5,0.28125)</rectS>
+				<rectE>(0.28125,0.25,0.453125,0.25)</rectE>
+				<rectW>(0.28125,0.25,0.453125,0.25)</rectW>
+			</damageData>
+			<shadowData>
+				<volume>(0.23, 0.26, 0.23)</volume>
+			</shadowData>
+		</graphicData>
+		<altitudeLayer>Building</altitudeLayer>
+		<statBases>
+			<MaxHitPoints>120</MaxHitPoints>
+			<WorkToBuild>6000</WorkToBuild>
+			<Mass>5</Mass>
+			<Flammability>1.0</Flammability>
+			<Beauty>6</Beauty>
+			<Comfort>0.60</Comfort>
+		</statBases>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+		</stuffCategories>
+		<costStuffCount>45</costStuffCount>
+		<pathCost>30</pathCost>
+		<designationHotKey>Misc7</designationHotKey>
+		<fillPercent>0.35</fillPercent>
+		<defaultPlacingRot>South</defaultPlacingRot>
+		<uiOrder>2305</uiOrder>
+		<building>
+			<isSittable>true</isSittable>
+			<paintable>true</paintable>
+		</building>
+		<constructionSkillPrerequisite>3</constructionSkillPrerequisite>
+		<researchPrerequisites>
+			<li>ComplexFurniture</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+	<ThingDef ParentName="FurnitureWithQualityBase">
+		<defName>RoundStool</defName>
+		<label>roundstool</label>
+		<description>A simple platform on which to sit. Not very comfortable, but much better than nothing and round. Can be used at tables, work stations, and elsewhere.</description>
+		<replaceTags>
+			<li>Chair</li>
+		</replaceTags>
+		<rotatable>false</rotatable>
+		<graphicData>
+			<texPath>Things/Building/Furniture/RoundStool</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<damageData>
+				<rectN>(0.125,0.296875,0.734375,0.421875)</rectN>
+				<rectS>(0.125,0.296875,0.734375,0.421875)</rectS>
+				<rectE>(0.234375,0.296875,0.5,0.546875)</rectE>
+				<rectW>(0.234375,0.296875,0.5,0.546875)</rectW>
+				<cornerTL>Damage/Corner</cornerTL>
+				<cornerTR>Damage/Corner</cornerTR>
+				<cornerBL>Damage/Corner</cornerBL>
+				<cornerBR>Damage/Corner</cornerBR>
+			</damageData>
+			<shadowData>
+				<volume>(0.18, 0.23, 0.18)</volume>
+			</shadowData>
+		</graphicData>
+		<altitudeLayer>Building</altitudeLayer>
+		<statBases>
+			<MaxHitPoints>80</MaxHitPoints>
+			<WorkToBuild>500</WorkToBuild>
+			<Mass>3</Mass>
+			<Flammability>1.0</Flammability>
+			<Beauty>0</Beauty>
+			<Comfort>0.5</Comfort>
+			<StyleDominance MayRequire="Ludeon.RimWorld.Ideology">5</StyleDominance>
+		</statBases>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>25</costStuffCount>
+		<pathCost>30</pathCost>
+		<designationHotKey>Misc6</designationHotKey>
+		<uiOrder>2400</uiOrder>
+		<fillPercent>0.20</fillPercent>
+		<building>
+			<isSittable>true</isSittable>
+			<paintable>true</paintable>
+		</building>
+		<uiIconOffset>(0, -0.05)</uiIconOffset>
+		<comps>
+			<li Class="CompProperties_Styleable" />
+		</comps>
+	</ThingDef>
+
+
+
+	<!-- Mirrors -->
+
+	<ThingDef Abstract ="true" ParentName="BuildingBase" Name ="MirrorBase">
+		<graphicData>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawOffsetNorth>(0,0,0.43)</drawOffsetNorth>
+			<drawOffsetSouth>(0,0,-0.2)</drawOffsetSouth>
+			<drawOffsetWest>(-0.3,0,0)</drawOffsetWest>
+			<drawOffsetEast>(0.3,0,0)</drawOffsetEast>
+			<damageData>
+				<enabled>false</enabled>
+			</damageData>
+		</graphicData>
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
+		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+		<rotatable>true</rotatable>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<thingCategories>
+			<li>BuildingsJoy</li>
+		</thingCategories>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>300</MaxHitPoints>
+			<Mass>3</Mass>
+			<Flammability>1.0</Flammability>
+			<JoyGainFactor>0.5</JoyGainFactor>
+			<Beauty>3</Beauty>
+		</statBases>
+		<costList>
+			<Steel>20</Steel>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>20</costStuffCount>
+		<pathCost>0</pathCost>
+		<passability>Standable</passability>
+		<defaultPlacingRot>South</defaultPlacingRot>
+		<building>
+			<joyKind>Television</joyKind>
+			<watchBuildingStandDistanceRange>-1~-1</watchBuildingStandDistanceRange>
+			<watchBuildingStandRectWidth>1</watchBuildingStandRectWidth>
+			<watchBuildingInSameRoom>true</watchBuildingInSameRoom>
+			<effectWatching>WatchingTelevision</effectWatching>
+			<paintable>true</paintable>
+			<isEdifice>false</isEdifice>
+			<isAttachment>true</isAttachment>
+			<relatedBuildCommands>
+				<li>RoundMirror</li>
+				<li>SquareMirror</li>
+			</relatedBuildCommands>
+		</building>
+		<terrainAffordanceNeeded IsNull="True" />
+		<placeWorkers>
+			<li>Placeworker_AttachedToWall</li>
+			<li>PlaceWorker_WatchArea</li>
+		</placeWorkers>
+		<tradeTags>
+			<li>Furniture</li>
+		</tradeTags>
+		<designationCategory>Furniture</designationCategory>
+		<designationHotKey>Misc4</designationHotKey>
+		<constructionSkillPrerequisite>2</constructionSkillPrerequisite>
+	</ThingDef>
+
+	<ThingDef ParentName="MirrorBase" Name ="RoundMirror">
+		<defName>RoundMirror</defName>
+		<label>round mirror</label>
+		<description>A round mirror. It reflects the other side. Those with beauty sometimes find joy in tending to themselves.</description>
+		<graphicData>
+			<texPath>Things/Building/Furniture/RoundMirror</texPath>
+		</graphicData>
+		<uiIconPath>Things/Building/Furniture/RoundMirror_MenuIcon</uiIconPath>
+	</ThingDef>
+
+	<ThingDef ParentName="MirrorBase" Name ="SquareMirror">
+		<defName>SquareMirror</defName>
+		<label>square mirror</label>
+		<description>A square mirror. It reflects the other side. Those with beauty sometimes find joy in tending to themselves.</description>
+		<graphicData>
+			<texPath>Things/Building/Furniture/SquareMirror</texPath>
+		</graphicData>
+		<uiIconPath>Things/Building/Furniture/SquareMirror_MenuIcon</uiIconPath>
+	</ThingDef>
+
+
+
+
+
+
+
+	<!-- Linked   -->
+
+
+
+
+
+
+
+
+
+
+
+
+	<ThingDef ParentName="TableGatherSpotBase" Name ="LinkedTable">
+		<defName>LinkedTable</defName>
+		<label>linked table</label>
+		<replaceTags>
+			<li>Table</li>
+		</replaceTags>
+		<graphicData>
+			<graphicClass>Graphic_Appearances</graphicClass>
+			<linkType>CornerFiller</linkType>
+			<texPath>Things/Building/Linked/LinkedTable</texPath>
+			<linkFlags>
+				<li>Custom7</li>
+			</linkFlags>
+		</graphicData>
+		<castEdgeShadows>true</castEdgeShadows>
+		<uiIconPath>Things/Building/Linked/LinkedTable_MenuIcon</uiIconPath>
+		<statBases>
+			<MaxHitPoints>40</MaxHitPoints>
+			<WorkToBuild>400</WorkToBuild>
+			<Mass>2</Mass>
+			<Flammability>1.0</Flammability>
+			<Beauty>0.3</Beauty>
+		</statBases>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Linked/LinkedTable_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
+		<drawStyleCategory>Floors</drawStyleCategory>
+		<costStuffCount>20</costStuffCount>
+		<rotatable>false</rotatable>
+	</ThingDef>
+
+
+	<ThingDef ParentName="TableGatherSpotBase" Name ="LinkedCoveredTable">
+		<defName>LinkedCoveredTable</defName>
+		<label>linked covered table</label>
+		<replaceTags>
+			<li>Table</li>
+		</replaceTags>
+		<graphicData>
+			<graphicClass>Graphic_Appearances</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<linkType>CornerFiller</linkType>
+			<texPath>Things/Building/Linked/LinkedCoveredTable</texPath>
+			<linkFlags>
+				<li>Custom7</li>
+			</linkFlags>
+		</graphicData>
+		<castEdgeShadows>true</castEdgeShadows>
+		<uiIconPath>Things/Building/Linked/LinkedCoveredTable_MenuIcon</uiIconPath>
+		<statBases>
+			<MaxHitPoints>40</MaxHitPoints>
+			<WorkToBuild>400</WorkToBuild>
+			<Mass>2</Mass>
+			<Flammability>1.0</Flammability>
+			<Beauty>0.3</Beauty>
+		</statBases>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Linked/LinkedCoveredTable_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
+		<drawStyleCategory>Floors</drawStyleCategory>
+		<costList>
+			<WoodLog>15</WoodLog>
+		</costList>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>20</costStuffCount>
+		<rotatable>false</rotatable>
+	</ThingDef>
+	
+	
+	
+	
+
+
+	<ThingDef Abstract = "true" ParentName="FurnitureWithQualityBase" Name ="LinkedPlantPotBase">
+		<thingClass>Building_PlantGrower</thingClass>
+		<graphicData>
+			<graphicClass>Graphic_Appearances</graphicClass>
+			<linkType>CornerFiller</linkType>
+			<texPath>Things/Building/Linked/LinkedTable</texPath>
+			<linkFlags>
+				<li>Custom8</li>
+			</linkFlags>
+		</graphicData>
+		<replaceTags>
+			<li>PlantPot</li>
+		</replaceTags>
+		<drawStyleCategory>Floors</drawStyleCategory>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<fillPercent>0.20</fillPercent>
+		<pathCost>50</pathCost>
+		<statBases>
+			<MaxHitPoints>75</MaxHitPoints>
+			<WorkToBuild>250</WorkToBuild>
+			<Mass>2</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>20</costStuffCount>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+		</comps>
+		<fertility>1.0</fertility>
+		<designationHotKey>Misc9</designationHotKey>
+		<uiOrder>2600</uiOrder>
+		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+		<building>
+			<defaultPlantToGrow>Plant_Daylily</defaultPlantToGrow>
+			<sowTag>Decorative</sowTag>
+			<paintable>true</paintable>
+			<relatedBuildCommands>
+				<li>LinkedPlantPotRound</li>
+				<li>LinkedPlantPotSquare</li>
+			</relatedBuildCommands>
+		</building>
+		<rotatable>false</rotatable>
+	</ThingDef>
+
+	<ThingDef ParentName="LinkedPlantPotBase" Name ="LinkedPlantPotRound">
+		<defName>LinkedPlantPotRound</defName>
+		<label>linked plant pot round</label>
+		<description>Plant decorative flowers here to improve the mood of people nearby. Can link for every pots</description>
+		<uiIconPath>Things/Building/Linked/LinkedPlantPotRound_MenuIcon</uiIconPath>
+		<graphicData>
+			<texPath>Things/Building/Linked/LinkedPlantPotRound</texPath>
+		</graphicData>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Linked/LinkedPlantPotRound_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
+	</ThingDef>
+
+	<ThingDef ParentName="LinkedPlantPotBase" Name ="LinkedPlantPotSquare">
+		<defName>LinkedPlantPotSquare</defName>
+		<label>linked plant pot square</label>
+		<description>Plant decorative flowers here to improve the mood of people nearby. Can link for every pots</description>
+		<uiIconPath>Things/Building/Linked/LinkedPlantPotSquare_MenuIcon</uiIconPath>
+		<graphicData>
+			<texPath>Things/Building/Linked/LinkedPlantPotSquare</texPath>
+		</graphicData>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Linked/LinkedPlantPotSquare_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
+	</ThingDef>
+
+
+
+
+
+	<!-- Fans -->
+	<ThingDef ParentName="BuildingBase">
+		<defName>ElectricFan</defName>
+		<label>electric fan</label>
+		<description>A electric powered fan. send a wind to small area.</description>
+		<thingCategories>
+			<li>BuildingsFurniture</li>
+		</thingCategories>
+		<category>Building</category>
+		<graphicData>
+			<texPath>Things/Building/Furniture/ElectricFan</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<shadowData>
+				<volume>(0.1,0.2,0.1)</volume>
+				<offset>(0, 0, -0.4)</offset>
+			</shadowData>
+			<allowFlip>true</allowFlip>
+		</graphicData>
+		<building>
+			<watchBuildingStandDistanceRange>1~2</watchBuildingStandDistanceRange>
+			<watchBuildingStandRectWidth>3</watchBuildingStandRectWidth>
+			<watchBuildingInSameRoom>true</watchBuildingInSameRoom>
+		</building>
+		<defaultPlacingRot>South</defaultPlacingRot>
+		<rotatable>true</rotatable>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<pathCost>30</pathCost>
+		<tickerType>Rare</tickerType>
+		<drawerType>RealtimeOnly</drawerType>
+		<fillPercent>0.40</fillPercent>
+		<statBases>
+			<MaxHitPoints>80</MaxHitPoints>
+			<WorkToBuild>600</WorkToBuild>
+			<Flammability>0.5</Flammability>
+			<Mass>10</Mass>
+		</statBases>
+		<selectable>true</selectable>
+		<costList>
+			<Steel>15</Steel>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>25</costStuffCount>
+		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+		<resourcesFractionWhenDeconstructed>0</resourcesFractionWhenDeconstructed>
+		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+		<placeWorkers>
+			<li>PlaceWorker_WatchArea</li>
+		</placeWorkers>
+		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+		<designationCategory>Temperature</designationCategory>
+		<designationHotKey>Misc4</designationHotKey>
+		<researchPrerequisites>
+			<li>Electricity</li>
+		</researchPrerequisites>
+		<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>0</basePowerConsumption>
+				<shortCircuitInRain>true</shortCircuitInRain>
+			</li>
+			<li Class="CompProperties_Flickable"/>
+			<li Class="BamStructure.CompProperties_AreaCooler">
+				<compClass>BamStructure.CompAreaCooler</compClass>
+        <heatPerSecond_Gentle>-1</heatPerSecond_Gentle>
+        <heatPerSecond_Light>-2</heatPerSecond_Light>
+        <heatPerSecond_Strong>-3</heatPerSecond_Strong>
+        <energyByLevel_Gentle>50</energyByLevel_Gentle>
+        <energyByLevel_Light>100</energyByLevel_Light>
+        <energyByLevel_Strong>200</energyByLevel_Strong>
+        <heatPushMinTemperature>21</heatPushMinTemperature>
+        <!--heatPushMaxTemperature>35</heatPushMaxTemperature-->
+			</li>
+			<li Class="CompProperties_Breakdownable"/>
+		</comps>
+	</ThingDef>
+
+
+
+
+
+
+
+
+
+	<!-- Lights -->
+
+
+
+
+	<ThingDef ParentName="LampBase">
+		<defName>SimpleStreetLamp</defName>
+		<label>simple street lamp</label>
+		<description>A low-intensity light but good for outdoor spaces.</description>
+		<graphicData>
+			<texPath>Things/Building/Furniture/SimpleStreetLamp</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>3.5</drawSize>
+			<addTopAltitudeBias>true</addTopAltitudeBias>
+			<drawOffset>(0,0.6,0.6)</drawOffset>
+			<shadowData>
+				<volume>(0.3, 0.7, 0.3)</volume>
+				<offset>(0, 0, -0.2)</offset>
+			</shadowData>
+		</graphicData>
+		<uiIconScale>0.3</uiIconScale>
+		<costList>
+			<Steel>10</Steel>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>40</costStuffCount>
+		<statBases>
+			<MaxHitPoints>120</MaxHitPoints>
+			<WorkToBuild>600</WorkToBuild>
+			<Flammability>0</Flammability>
+			<Mass>10</Mass>
+			<Beauty>-5</Beauty>
+		</statBases>
+		<uiOrder>2992</uiOrder>
+		<researchPrerequisites>
+			<li>ColoredLights</li>
+		</researchPrerequisites>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>50</basePowerConsumption>
+				<powerUpgrades>
+					<li>
+						<researchProject>ColoredLights</researchProject>
+						<factor>0.5</factor>
+					</li>
+				</powerUpgrades>
+			</li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>12</glowRadius>
+				<glowColor>(214,148,94,0)</glowColor>
+				<colorPickerEnabled>true</colorPickerEnabled>
+				<darklightToggle>true</darklightToggle>
+			</li>
+		</comps>
+		<tradeability>None</tradeability>
+	</ThingDef>
+
+
+	<ThingDef Abstract ="true" ParentName="LampBase" Name ="RecessedLightBase">
+		<designationHotKey>Misc11</designationHotKey>
+		<drawStyleCategory>Walls</drawStyleCategory>
+		<passability>Standable</passability>
+		<rotatable>true</rotatable>
+		<pathCost>0</pathCost>
+		<uiIconScale>0.4</uiIconScale>
+		<uiIconOffset>(0, -0.2)</uiIconOffset>
+		<graphicData>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>10</MaxHitPoints>
+			<WorkToBuild>100</WorkToBuild>
+			<Mass>2</Mass>
+			<Flammability>0</Flammability>
+			<Beauty>0</Beauty>
+		</statBases>
+		<researchPrerequisites>
+			<li>Electricity</li>
+		</researchPrerequisites>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costList>
+			<Steel>3</Steel>
+		</costList>
+		<uiOrder>2990</uiOrder>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>4</basePowerConsumption>
+				<powerUpgrades>
+					<li>
+						<researchProject>ColoredLights</researchProject>
+						<factor>0.5</factor>
+					</li>
+				</powerUpgrades>
+			</li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>4</glowRadius>
+				<glowColor>(214,148,94,0)</glowColor>
+				<colorPickerEnabled>true</colorPickerEnabled>
+				<darklightToggle>true</darklightToggle>
+			</li>
+		</comps>
+		<building>
+			<relatedBuildCommands>
+				<li>RecessedLightMiddle</li>
+				<li>RecessedLightMiddleEnd</li>
+				<li>RecessedLightSingleSideEnd</li>
+				<li>RecessedLightDoubleSideEnd</li>
+				<li>RecessedLightDoubleMiddleEnd</li>
+				<li>RecessedLightTrippleSideEnd</li>
+			</relatedBuildCommands>
+		</building>
+		<replaceTags>
+			<li>Lamp</li>
+		</replaceTags>
+		<tradeability>None</tradeability>
+	</ThingDef>
+
+	<ThingDef ParentName="RecessedLightBase" Name ="RecessedLightMiddle">
+		<defName>RecessedLightMiddle</defName>
+		<label>recessed light middle</label>
+		<description>An ground mounted electrical lamp that lights an area. People need light to move and work at full speed.</description>
+		<graphicData>
+			<texPath>Things/Building/Furniture/RecessedLight_Middle</texPath>
+		</graphicData>
+		<costStuffCount>1</costStuffCount>
+	</ThingDef>
+
+	<ThingDef ParentName="RecessedLightBase" Name ="RecessedLightMiddleEnd">
+		<defName>RecessedLightMiddleEnd</defName>
+		<label>recessed light middle end</label>
+		<description>An ground mounted electrical lamp that lights an area. People need light to move and work at full speed.</description>
+		<graphicData>
+			<texPath>Things/Building/Furniture/RecessedLight_MiddleEnd</texPath>
+		</graphicData>
+		<costStuffCount>1</costStuffCount>
+	</ThingDef>
+
+	<ThingDef ParentName="RecessedLightBase" Name ="RecessedLightSingleSideEnd">
+		<defName>RecessedLightSingleSideEnd</defName>
+		<label>recessed light single side end</label>
+		<description>An ground mounted electrical lamp that lights an area. People need light to move and work at full speed.</description>
+		<graphicData>
+			<texPath>Things/Building/Furniture/RecessedLight_SingleSideEnd</texPath>
+		</graphicData>
+		<costStuffCount>1</costStuffCount>
+	</ThingDef>
+
+	<ThingDef ParentName="RecessedLightBase" Name ="RecessedLightDoubleSideEnd">
+		<defName>RecessedLightDoubleSideEnd</defName>
+		<label>recessed light double side end</label>
+		<description>An ground mounted electrical lamp that lights an area. People need light to move and work at full speed.</description>
+		<graphicData>
+			<texPath>Things/Building/Furniture/RecessedLight_DoubleSideEnd</texPath>
+		</graphicData>
+		<costStuffCount>2</costStuffCount>
+	</ThingDef>
+
+	<ThingDef ParentName="RecessedLightBase" Name ="RecessedLightDoubleMiddleEnd">
+		<defName>RecessedLightDoubleMiddleEnd</defName>
+		<label>recessed light double middle end</label>
+		<description>An ground mounted electrical lamp that lights an area. People need light to move and work at full speed.</description>
+		<graphicData>
+			<texPath>Things/Building/Furniture/RecessedLight_DoubleMiddleEnd</texPath>
+		</graphicData>
+		<costStuffCount>2</costStuffCount>
+	</ThingDef>
+
+	<ThingDef ParentName="RecessedLightBase" Name ="RecessedLightTrippleSideEnd">
+		<defName>RecessedLightTrippleSideEnd</defName>
+		<label>recessed light tripple side end</label>
+		<description>An ground mounted electrical lamp that lights an area. People need light to move and work at full speed.</description>
+		<graphicData>
+			<texPath>Things/Building/Furniture/RecessedLight_TrippleSideEnd</texPath>
+		</graphicData>
+		<costStuffCount>3</costStuffCount>
+	</ThingDef>
+  
+  
+  
+  
+  
+
+	<ThingDef Abstract="True" Name="WindowBase" ParentName="NonBuildableLampBase">
+		<designationCategory>Furniture</designationCategory>
+		<uiOrder>2800</uiOrder>
+		<statBases>
+			<WorkToBuild>250</WorkToBuild>
+		</statBases>
+		<placeWorkers>
+			<li>PlaceWorker_GlowRadius</li>
+		</placeWorkers>
+		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+	</ThingDef>
+
+
+	<ThingDef ParentName="WindowBase">
+		<defName>Window</defName>
+		<label>window</label>
+		<description>A Window can be mounted on walls.</description>
+		<rotatable>true</rotatable>
+		<graphicData>
+			<texPath>Things/Building/Furniture/Window/Window</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawOffsetNorth>(0,0,0.9)</drawOffsetNorth>
+			<drawOffsetSouth>(0,0,-0.9)</drawOffsetSouth>
+			<drawOffsetWest>(-0.9,0,0)</drawOffsetWest>
+			<drawOffsetEast>(0.9,0,0)</drawOffsetEast>
+			<damageData>
+				<enabled>false</enabled>
+			</damageData>
+		</graphicData>
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
+		<costList>
+			<Steel>10</Steel>
+		</costList>
+		<stuffCategories>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>15</costStuffCount>
+		<statBases>
+			<WorkToBuild>250</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>2</Mass>
+		</statBases>
+		<uiOrder>2991</uiOrder>
+		<passability>Standable</passability>
+		<terrainAffordanceNeeded IsNull="True" />
+		<pathCost>0</pathCost>
+		<overrideMinifiedRot>North</overrideMinifiedRot>
+		<minifiedDrawOffset>(0, 0, 0.2)</minifiedDrawOffset>
+		<building>
+			<isEdifice>false</isEdifice>
+			<isAttachment>true</isAttachment>
+		</building>
+		<placeWorkers>
+			<li>Placeworker_AttachedToWall</li>
+		</placeWorkers>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>10</basePowerConsumption>
+				<powerUpgrades>
+					<li>
+						<researchProject>ColoredLights</researchProject>
+						<factor>0.5</factor>
+					</li>
+				</powerUpgrades>
+			</li>
+			<li Class="CompProperties_Styleable" />
+			<li Class="CompProperties_Glower">
+				<glowRadius>5</glowRadius>
+				<glowColor>(214,148,94,0)</glowColor>
+				<colorPickerEnabled>true</colorPickerEnabled>
+				<darklightToggle>true</darklightToggle>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>

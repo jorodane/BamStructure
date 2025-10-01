@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<FleckDef Abstract ="true" ParentName="FleckBase_Thrown" Name ="FleckDartBase">
+		<defName>FleckDartBase</defName>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<solidTime>1</solidTime>
+		<fadeOutTime>2</fadeOutTime>
+		<landSound>HorseshoeImpact</landSound>
+	</FleckDef>
+
+	<FleckDef ParentName="FleckDartBase">
+		<defName>Fleck_Dart_Red</defName>
+		<graphicData>
+			<texPath>Things/Mote/Dart_Red</texPath>
+		</graphicData>
+	</FleckDef>
+
+	<FleckDef ParentName="FleckDartBase">
+		<defName>Fleck_Dart_Yellow</defName>
+		<graphicData>
+			<texPath>Things/Mote/Dart_Yellow</texPath>
+		</graphicData>
+	</FleckDef>
+
+	<FleckDef ParentName="FleckDartBase">
+		<defName>Fleck_Dart_Blue</defName>
+		<graphicData>
+			<texPath>Things/Mote/Dart_Blue</texPath>
+		</graphicData>
+	</FleckDef>
+
+	<FleckDef ParentName="FleckDartBase">
+		<defName>Fleck_Dart_Green</defName>
+		<graphicData>
+			<texPath>Things/Mote/Dart_Green</texPath>
+		</graphicData>
+	</FleckDef>
+
+</Defs>

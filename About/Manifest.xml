@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+  <identifier>bamstructure</identifier>
+  <version>1.0.0</version>
+  <dependencies>
+	  <li>brrainz.harmony</li>
+  </dependencies>
+  <incompatibleWith />
+  <loadBefore>
+  </loadBefore>
+  <loadAfter>
+	  <li>brrainz.harmony</li>
+  </loadAfter>
+  <!-- <suggests> -->
+    <!-- <li>ExpansionMod &gt;= 1.5</li> -->
+    <!-- <li>OtherCoolMod</li> -->
+  <!-- </suggests> -->
+  <showCrossPromotions>true</showCrossPromotions>
+</Manifest>
