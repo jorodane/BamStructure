@@ -3,3 +3,4 @@ Linked Door
 Buildable Roof
 
 재질 색깔 날아감
+자동 재설치 때 오프셋 날아감

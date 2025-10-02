@@ -62,14 +62,14 @@ namespace TinyBuilder
 			BuildableDef def = asBuildInstance.EntityToBuild();
 			if (def == null) return true;
 			if (!def.TryGetCompProperties(out CompProperties_TinyThing _)) return true;
-			if (!map.TryGetTinyBuilder(out MapComponent_TinyBuilder asTinyBuilder)) return true;
+			if (!map.TryGetTinyBuilder(out MapComponent_TinyBuilder asTinyBuilder)) return false;
 
 			IntVec3 cell = __instance.Position;
-			string key = MapComponent_TinyBuilder.GetBuildKey(def, cell, __instance.Stuff);
-			if (!asTinyBuilder.GetDrawableTime(key, Find.TickManager.TicksGame)) return false;
+			string key = MapComponent_TinyBuilder.GetBuildKey(def, cell, asBuildInstance.stuffToUse);
+			if (!asTinyBuilder.GetDrawableTime(key, Time.time)) return false;
 
-			Graphic finalGraphic = __instance.Graphic;
-			if (finalGraphic == null) return true;
+            Graphic finalGraphic = __instance.Graphic;
+			if (finalGraphic == null) return false;
 			Vector3 initialPosition = __instance.DrawPos;
 			initialPosition.y = def.altitudeLayer.AltitudeFor();
 
@@ -80,9 +80,9 @@ namespace TinyBuilder
 				{
 					if ((!(currentThing is Blueprint_Build asBuild)) || asBuild.EntityToBuild() != def) continue;
 					Vector3 currentPosition = initialPosition + ((offsets.Count > index) ? offsets[index] : Vector3.zero);
-					Printer_Plane.PrintPlane(layer, currentPosition, currentThing.DrawSize, finalGraphic.MatAt(currentThing.Rotation));
+					Printer_Plane.PrintPlane(layer, currentPosition, currentThing.DrawSize, finalGraphic.MatAt(currentThing.Rotation, currentThing));
 					index++;
-				}
+                }
 			}
 			return false;
 		}
@@ -95,8 +95,7 @@ namespace TinyBuilder
         {
             if (thingDef == null || !thingDef.TryGetCompProperties(out CompProperties_TinyThing _)) return true;
 
-			Graphic finalGraphic = baseGraphic;
-			if(finalGraphic == null) return true;
+			Graphic finalGraphic = thingDef.graphic;
 
             Vector3 drawPos = UI.MouseMapPosition() + finalGraphic.DrawOffset(rot);
             drawPos.y = drawAltitude.AltitudeFor();
@@ -110,34 +109,22 @@ namespace TinyBuilder
         }
     }
 
-	[HarmonyPatch(typeof(Blueprint), nameof(Blueprint.Destroy))]
-	static class Patch_BlueprintDestroy_Tiny
-	{
-		static void Prefix(Blueprint __instance, DestroyMode mode)
-		{
-			if (__instance is Blueprint_Build build)
-			{
-				var map = __instance.Map;
-				if (map != null && map.TryGetTinyBuilder(out MapComponent_TinyBuilder asTinyBuilder))
-				{
-					BuildableDef def = build.EntityToBuild();
-					if (def != null){asTinyBuilder.RemoveOffset(def, __instance.Position, __instance.Stuff);}
-				}
-			}
-		}
-	}
-
 	[HarmonyPatch(typeof(Frame), nameof(Frame.Destroy))]
 	static class Patch_FrameDestroy_Tiny
 	{
 		static void Prefix(Frame __instance, DestroyMode mode)
 		{
+			if (mode == DestroyMode.Vanish) return;
+
 			Map map = __instance.Map;
 			if (map != null && map.TryGetTinyBuilder(out MapComponent_TinyBuilder asTinyBuilder))
 			{
 				BuildableDef def = __instance.def.entityDefToBuild;
-				if (def != null){asTinyBuilder.RemoveOffset(def, __instance.Position, __instance.Stuff);}
-			}
+				if (def != null)
+				{
+					asTinyBuilder.RemoveOffset(def, __instance.Position, __instance.Stuff);
+                }
+            }
 		}
 	}
 
@@ -146,14 +133,19 @@ namespace TinyBuilder
 	{
 		static void Prefix(Thing __instance, DestroyMode mode)
 		{
-			if (__instance.TryGetTinyThingComp(out CompTinyThing comp))
-			{
-				Map map = __instance.Map;
-				if (map != null && map.TryGetTinyBuilder(out MapComponent_TinyBuilder builder))
-				{
-					builder.AddOffset(__instance.def, __instance.Position, comp.drawOffset, __instance.Stuff);
-				}
-			}
+			if (mode == DestroyMode.Vanish) return;
+
+			MapComponent_TinyBuilder asTinyBuilder;
+
+            if (__instance is Blueprint_Build asBlueprint)
+            {
+                Map map = __instance.Map;
+                if (map != null && map.TryGetTinyBuilder(out asTinyBuilder))
+                {
+                    BuildableDef def = asBlueprint.EntityToBuild();
+                    if (def != null) { asTinyBuilder.RemoveOffset(def, __instance.Position, __instance.Stuff); }
+                }
+            }
 		}
 	}
 
@@ -165,7 +157,7 @@ namespace TinyBuilder
 
 		public MapComponent_TinyBuilder(Map map) : base(map) { }
 
-        public static string GetBuildKey(BuildableDef def, IntVec3 cell, ThingDef stuff) => $"{def.defName}|{cell.x}|{cell.z}|{stuff?.defName??"None"}";
+        public static string GetBuildKey(BuildableDef def, IntVec3 cell, ThingDef stuff) => $"{def.defName}|{cell.x}|{cell.z}|{stuff?.defName}";
         public static IntVec3 GetCellFromKey(string key)
 		{
 			string[] splited = key.Split('|');
@@ -179,22 +171,11 @@ namespace TinyBuilder
         public override void ExposeData()
 		{
 			base.ExposeData();
-			Scribe_Collections.Look(ref offsets, "TinyBuilderOffsets", LookMode.Value, LookMode.Value);
+			Scribe_Collections.Look(ref offsets, "TinyOffsets", LookMode.Value, LookMode.Value);
 			if(offsets == null) offsets = new Dictionary<string, List<Vector3>>();
-			else
-			{
-				foreach(var currentPair in offsets)
-				{
-					foreach(var currentThing in GetCellFromKey(currentPair.Key).GetThingList(map))
-					{
-                        if (!(currentThing is Building currentBuilding)) continue;
-						//여기에 빌드할 대상이 없으면 지우기
-                    }
-				}
-			}
 		}
 
-		public bool GetDrawableTime(string key, float wantTime)
+        public bool GetDrawableTime(string key, float wantTime)
 		{
 			if(string.IsNullOrEmpty(key)) return false;
 			if(lastDrawTimes.TryGetValue(key, out float drawTime)) 
@@ -223,7 +204,7 @@ namespace TinyBuilder
 		public void RemoveOffset(BuildableDef def, IntVec3 cell, ThingDef stuff)
 		{
 			string key = GetBuildKey(def, cell, stuff);
-			if (offsets.TryGetValue(key, out List<Vector3> list)) list.RemoveLast();
+			if (offsets.TryGetValue(key, out List<Vector3> list) && list.Count> 0)  list.RemoveLast(); 
 		}
 
         public bool TryPopOffset(BuildableDef def, IntVec3 cell, ThingDef stuff, out Vector3 result)
@@ -308,11 +289,11 @@ namespace TinyBuilder
         {
             if (asTiny == null || Graphic == null) { base.Print(layer); return; }
 
-            Vector3 pos = base.DrawPos + asTiny.drawOffset + def.graphic.DrawOffset(Rotation);
+            Vector3 pos = base.DrawPos + asTiny.drawOffset + Graphic.DrawOffset(Rotation);
             pos.y = def.altitudeLayer.AltitudeFor();
 
-            Vector2 size = def.graphic.drawSize;
-            Material mat = def.graphic.MatAt(Rotation, this);
+            Vector2 size = Graphic.drawSize;
+            Material mat = Graphic.MatAt(Rotation, this);
 
             Printer_Plane.PrintPlane(layer, pos, size, mat, 0f, false, null, null, 0.01f);
         }
@@ -342,9 +323,11 @@ namespace TinyBuilder
 
 			if(map.TryGetTinyBuilder(out MapComponent_TinyBuilder builder))
 			{
-				builder.AddOffset(def, loc, , loc.GetMouseOffset());
-			}
-		}
+				ThingDef stuff = null;
+				if(Find.DesignatorManager.SelectedDesignator is Designator_Build asBuild) stuff = asBuild.StuffDef;
+                builder.AddOffset(def, loc, loc.GetMouseOffset(), stuff);
+            }
+        }
 
 	}
 }
