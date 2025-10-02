@@ -20,9 +20,9 @@
 		</comps>
 		<building>
 			<isEdifice>false</isEdifice>
-			<blueprintGraphicData>
+      <!-->blueprintGraphicData>
 				<texPath>Things/Blank_Blueprint</texPath>
-			</blueprintGraphicData>
+			</blueprintGraphicData-->
 		</building>
 	</ThingDef>
 
