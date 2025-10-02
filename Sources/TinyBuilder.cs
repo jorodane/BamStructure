@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
 using RimWorld;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using Verse;
 
@@ -114,15 +116,18 @@ namespace TinyBuilder
 	{
 		static void Prefix(Frame __instance, DestroyMode mode)
 		{
-			if (mode == DestroyMode.Vanish) return;
+            if (mode == DestroyMode.Vanish)
+            {
+                return;
+            }
 
-			Map map = __instance.Map;
+            Map map = __instance.Map;
 			if (map != null && map.TryGetTinyBuilder(out MapComponent_TinyBuilder asTinyBuilder))
 			{
 				BuildableDef def = __instance.def.entityDefToBuild;
-				if (def != null)
+				if (def != null && def.TryGetCompProperties(out CompProperties_TinyThing _))
 				{
-					asTinyBuilder.RemoveOffset(def, __instance.Position, __instance.Stuff);
+					asTinyBuilder.RemoveOffset(def, __instance.Position, __instance.EntityToBuildStuff());
                 }
             }
 		}
@@ -133,7 +138,10 @@ namespace TinyBuilder
 	{
 		static void Prefix(Thing __instance, DestroyMode mode)
 		{
-			if (mode == DestroyMode.Vanish) return;
+			if (mode == DestroyMode.Vanish)
+			{
+				return;
+			}
 
 			MapComponent_TinyBuilder asTinyBuilder;
 
@@ -143,13 +151,62 @@ namespace TinyBuilder
                 if (map != null && map.TryGetTinyBuilder(out asTinyBuilder))
                 {
                     BuildableDef def = asBlueprint.EntityToBuild();
-                    if (def != null) { asTinyBuilder.RemoveOffset(def, __instance.Position, __instance.Stuff); }
+                    if (def != null && def.TryGetCompProperties(out CompProperties_TinyThing _))
+					{
+						asTinyBuilder.RemoveOffset(def, __instance.Position, asBlueprint.stuffToUse); 
+                    }
                 }
             }
+			else if(__instance is Building asBuilding)
+			{
+				Map map = __instance.Map;
+                if (map != null && map.TryGetTinyBuilder(out asTinyBuilder))
+				{
+                    if (!__instance.TryGetTinyThingComp(out CompTinyThing asTinyThing)) return;
+                    if (!(__instance.Faction == Faction.OfPlayer && (Find.PlaySettings?.autoRebuild ?? false) && (map.areaManager?.Home?[__instance.Position] ?? false))) return;
+
+                    asTinyBuilder.AddOffset(asBuilding.def, __instance.Position, asTinyThing.drawOffset, asBuilding.Stuff);
+                }
+			}
 		}
 	}
 
-	public class MapComponent_TinyBuilder : MapComponent
+    public class Designator_ClearTinyOffsets : Designator
+    {
+        public string GetTinyBuilderClear_Lable() => "TinyBuilderClear_Lable".Translate();
+        public string GetTinyBuilderClear_Description() => "TinyBuilderClear_Description".Translate();
+        public string GetTinyBuilderClear_Warning() => "TinyBuilderClear_Warning".Translate();
+        public string GetTinyBuilderClear_Complete() => "TinyBuilderClear_Complete".Translate();
+
+        public Designator_ClearTinyOffsets()
+        {
+            defaultLabel = GetTinyBuilderClear_Lable();
+            defaultDesc = GetTinyBuilderClear_Description();
+            icon = ContentFinder<Texture2D>.Get("UI/Designators/RemovePaint", true);
+            useMouseIcon = false;
+            soundSucceeded = SoundDefOf.Designate_Cancel;
+        }
+
+        public override bool DragDrawMeasurements => false;
+        public override AcceptanceReport CanDesignateCell(IntVec3 loc) => true;
+        public override void DesignateSingleCell(IntVec3 c) { }
+
+        public override void ProcessInput(Event ev)
+        {
+            base.ProcessInput(ev);
+            Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(GetTinyBuilderClear_Warning(), ClearOffset, destructive: true));
+        }
+
+        void ClearOffset()
+        {
+            Map map = Find.CurrentMap;
+            if (map == null || !map.TryGetTinyBuilder(out MapComponent_TinyBuilder asTinyBuilder) || asTinyBuilder == null) return;
+			asTinyBuilder.ClearOffsets();
+            Messages.Message(GetTinyBuilderClear_Complete(), MessageTypeDefOf.TaskCompletion, false);
+        }
+    }
+
+    public class MapComponent_TinyBuilder : MapComponent
 	{
 
         public Dictionary<string, List<Vector3>> offsets = new Dictionary<string, List<Vector3>>();
@@ -172,8 +229,15 @@ namespace TinyBuilder
 		{
 			base.ExposeData();
 			Scribe_Collections.Look(ref offsets, "TinyOffsets", LookMode.Value, LookMode.Value);
-			if(offsets == null) offsets = new Dictionary<string, List<Vector3>>();
-		}
+			if (offsets == null) offsets = new Dictionary<string, List<Vector3>>();
+			else ClearOffsets();
+        }
+
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+            offsets = new Dictionary<string, List<Vector3>>();
+        }
 
         public bool GetDrawableTime(string key, float wantTime)
 		{
@@ -190,7 +254,42 @@ namespace TinyBuilder
 			}
 		}
 
-		public void AddOffset(BuildableDef def, IntVec3 cell, Vector3 offset, ThingDef stuff)
+		bool ClearPredicate(Thing currentThing)
+		{
+			BuildableDef checkDef = null;
+            if(currentThing is Blueprint_Build asBlueprint)
+			{
+				checkDef = asBlueprint.EntityToBuild();
+            }
+			else if(currentThing is Frame asFrame)
+			{
+				checkDef = asFrame.def.entityDefToBuild;
+			}
+
+			return checkDef?.TryGetCompProperties(out CompProperties_TinyThing _) ?? false;
+        }
+
+		public void ClearOffsets()
+		{
+			foreach (var currentPair in offsets)
+			{
+				IntVec3 currentCell = GetCellFromKey(currentPair.Key);
+				int thingCount = currentCell.GetThingList(map).Count(ClearPredicate);
+				int offsetCount = currentPair.Value.Count;
+
+				if (thingCount == 0)
+				{
+					currentPair.Value.Clear();
+                }
+                else if (offsetCount > thingCount)
+				{
+					currentPair.Value.RemoveRange(thingCount, offsetCount - thingCount);
+				}
+            }
+            offsets.RemoveAll(currentPair => currentPair.Value.Count == 0);
+        }
+
+        public void AddOffset(BuildableDef def, IntVec3 cell, Vector3 offset, ThingDef stuff)
 		{
 			string key = GetBuildKey(def, cell, stuff);
             if (!offsets.TryGetValue(key, out List<Vector3> list))
@@ -234,6 +333,7 @@ namespace TinyBuilder
 			list = null;
 			return false;
 		}
+
 	}
 
     public class CompProperties_TinyThing : CompProperties

@@ -5,11 +5,6 @@ using UnityEngine;
 
 namespace TinyBuilder
 {
-    [DefOf]
-    public static class TinyBuilderDefs
-    {
-
-    }
 
 	[StaticConstructorOnStartup]
 	public static class TinyBuilderHarmonyInit
@@ -35,12 +30,9 @@ namespace BamStructure
 {
     public class BamStructureSettings : ModSettings
     {
-        //public int draftRadius = 25;
-
         public override void ExposeData()
         {
             base.ExposeData();
-            //Scribe_Values.Look(ref draftRadius, "DraftRadius", 25);
         }
     }
 
@@ -54,17 +46,6 @@ namespace BamStructure
         {
             Settings = GetSettings<BamStructureSettings>();
         }
-
-        //public override string SettingsCategory() => "More Vanilla Structure";
-
-        //public override void DoSettingsWindowContents(Rect inRect)
-        //{
-        //    Listing_Standard listing = new Listing_Standard();
-
-        //    listing.Begin(inRect);
-
-        //    listing.End();
-        //}
     }
 
     [DefOf]

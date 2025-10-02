@@ -34,4 +34,10 @@
 	<CallToArms_Message_DraftAreaNotEnough>소집할 영역이 부족하여 소집하지 못한 인원이 {count}명 있습니다</CallToArms_Message_DraftAreaNotEnough>
 	<CallToArms_Message_DraftCancelByCarryingBaby>아기를 안고 있어 소집하지 못한 인원이 {count}명 있습니다.</CallToArms_Message_DraftCancelByCarryingBaby>
 
+	<TinyBuilderClear_Lable>건축 캐시 삭제</TinyBuilderClear_Lable>
+	<TinyBuilderClear_Description>잘못 저장된 위치를 삭제하여 다시 정상적인 위치로 건설이 가능하게 합니다.</TinyBuilderClear_Description>
+	<TinyBuilderClear_Warning>정말 건축 캐시를 삭제하시겠습니까? 현재 건설 예정인 오프셋이 초기화될 위험성이 있습니다.</TinyBuilderClear_Warning>
+	<TinyBuilderClear_Complete>건축 캐시를 삭제했습니다.</TinyBuilderClear_Complete>
+	
+	
 </LanguageData>

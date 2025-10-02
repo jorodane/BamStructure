@@ -4,13 +4,10 @@
 		<thingClass>TinyBuilder.Building_Tiny</thingClass>
 		<defName>TinyBase</defName>
 		<designationCategory>Decoration</designationCategory>
-		<altitudeLayer>BuildingOnTop</altitudeLayer>
+		<altitudeLayer>Item</altitudeLayer>
 		<passability>Standable</passability>
 		<tradeability>None</tradeability>
 		<pathCost>0</pathCost>
-		<graphicData>
-			<shaderType>CutoutComplex</shaderType>
-		</graphicData>
 		<placeWorkers>
 			<li>TinyBuilder.Placeworker_TinyThing</li>
 		</placeWorkers>
@@ -23,6 +20,125 @@
 		</building>
 	</ThingDef>
 
+	
+	
+	<ThingDef ParentName="TinyBase">
+		<defName>SmallTable</defName>
+		<label>small table</label>
+		<rotatable>true</rotatable>
+		<graphicData>
+			<texPath>Things/Building/Furniture/Table1x2</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(0.3,0.4)</drawSize>
+		</graphicData>
+		<uiIconScale>8</uiIconScale>
+		<statBases>
+			<MaxHitPoints>75</MaxHitPoints>
+			<WorkToBuild>750</WorkToBuild>
+			<Mass>5</Mass>
+			<Flammability>1.0</Flammability>
+			<Beauty>0.5</Beauty>
+		</statBases>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>28</costStuffCount>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase">
+		<defName>TinyChair</defName>
+		<label>tiny chair</label>
+		<description>chair but tiny.</description>
+		<graphicData>
+			<texPath>Things/Building/Furniture/DiningChair</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(0.1,0.1)</drawSize>
+		</graphicData>
+		<uiIconScale>10</uiIconScale>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToBuild>8000</WorkToBuild>
+			<Mass>5</Mass>
+			<Flammability>1.0</Flammability>
+			<Beauty>8</Beauty>
+			<Comfort>0.70</Comfort>
+		</statBases>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+		</stuffCategories>
+		<costStuffCount>45</costStuffCount>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase">
+		<defName>TinyScreenTelevision</defName>
+		<label>tiny screen television</label>
+		<description>chair but tiny.</description>
+		<graphicData>
+			<texPath>Things/Building/Joy/MegascreenTelevision</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(0.03,0.1)</drawSize>
+		</graphicData>
+		<uiIconScale>10</uiIconScale>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToBuild>10</WorkToBuild>
+			<Mass>5</Mass>
+			<Flammability>1.0</Flammability>
+			<Beauty>8</Beauty>
+			<Comfort>0.70</Comfort>
+		</statBases>
+		<costList>
+			<WoodLog>20</WoodLog>
+		</costList>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase">
+		<defName>Smallbook</defName>
+		<label>small book</label>
+		<rotatable>true</rotatable>
+		<graphicData>
+			<texPath>Things/Item/Book/Novel/Novel_Open_north</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(0.1,0.1)</drawSize>
+		</graphicData>
+		<uiIconScale>10</uiIconScale>
+		<statBases>
+			<MaxHitPoints>75</MaxHitPoints>
+			<WorkToBuild>10</WorkToBuild>
+			<Mass>5</Mass>
+			<Flammability>1.0</Flammability>
+			<Beauty>0.5</Beauty>
+		</statBases>
+		<costList>
+			<WoodLog>20</WoodLog>
+		</costList>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase">
+		<defName>Tinybook</defName>
+		<label>tiny book</label>
+		<rotatable>true</rotatable>
+		<graphicData>
+			<texPath>Things/Item/Book/Textbook/Textbook</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(0.1,0.1)</drawSize>
+		</graphicData>
+		<uiIconScale>10</uiIconScale>
+		<statBases>
+			<MaxHitPoints>75</MaxHitPoints>
+			<WorkToBuild>10</WorkToBuild>
+			<Mass>5</Mass>
+			<Flammability>1.0</Flammability>
+			<Beauty>0.5</Beauty>
+		</statBases>
+		<costList>
+			<WoodLog>20</WoodLog>
+		</costList>
+	</ThingDef>
+	
 	<ThingDef ParentName="TinyBase" Name ="RecessedLight">
 		<defName>RecessedLight</defName>
 		<label>recessed light</label>
@@ -53,6 +169,7 @@
 		<graphicData>
 			<texPath>Things/Building/Decoration/RecessedLight</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
 			<drawSize>(0.2,0.2)</drawSize>
 		</graphicData>
 		<comps>
