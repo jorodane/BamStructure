@@ -15,6 +15,19 @@ namespace TinyBuilder
 			harmony.PatchAll();
 		}
 	}
+
+    public static class TinyBuilderTextures
+    {
+        static Material _LFrameMat;
+        public static Material LFrameMat
+        {
+            get
+            {
+                if (_LFrameMat == null) _LFrameMat = MaterialPool.MatFrom("UI/Frames/LFrame", ShaderDatabase.Transparent);
+                return _LFrameMat;
+            }
+        }
+    }
 }
 
 namespace CallToArms
@@ -23,6 +36,28 @@ namespace CallToArms
     public static class CallToArmsDefs
     {
         public static JobDef DraftAsJob;
+    }
+
+    public static class CallToArmsTextures
+    {
+        static Texture2D _copyTexture;
+        public static Texture2D CopyTexture
+        {
+            get 
+            {
+                if(_copyTexture == null) _copyTexture = ContentFinder<Texture2D>.Get("UI/Commands/CopySettings");
+                return _copyTexture;
+            }
+        }
+        static Texture2D _pasteTexture;
+        public static Texture2D PasteTexture
+        {
+            get
+            {
+                if (_pasteTexture == null) _pasteTexture = ContentFinder<Texture2D>.Get("UI/Commands/PasteSettings");
+                return _pasteTexture;
+            }
+        }
     }
 }
 

@@ -8,6 +8,10 @@
 		<passability>Standable</passability>
 		<tradeability>None</tradeability>
 		<pathCost>0</pathCost>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<thingCategories>
+			<li>BuildingsFurniture</li>
+		</thingCategories>
 		<placeWorkers>
 			<li>TinyBuilder.Placeworker_TinyThing</li>
 		</placeWorkers>
@@ -18,6 +22,7 @@
 		<building>
 			<isEdifice>false</isEdifice>
 		</building>
+		<defaultPlacingRot>South</defaultPlacingRot>
 	</ThingDef>
 
 	
@@ -32,19 +37,18 @@
 			<drawSize>(0.3,0.4)</drawSize>
 		</graphicData>
 		<uiIconScale>8</uiIconScale>
-		<statBases>
-			<MaxHitPoints>75</MaxHitPoints>
-			<WorkToBuild>750</WorkToBuild>
-			<Mass>5</Mass>
-			<Flammability>1.0</Flammability>
-			<Beauty>0.5</Beauty>
-		</statBases>
 		<stuffCategories>
 			<li>Metallic</li>
 			<li>Woody</li>
 			<li>Stony</li>
 		</stuffCategories>
 		<costStuffCount>28</costStuffCount>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
 	</ThingDef>
 
 	<ThingDef ParentName="TinyBase">
@@ -57,19 +61,17 @@
 			<drawSize>(0.1,0.1)</drawSize>
 		</graphicData>
 		<uiIconScale>10</uiIconScale>
-		<statBases>
-			<MaxHitPoints>100</MaxHitPoints>
-			<WorkToBuild>8000</WorkToBuild>
-			<Mass>5</Mass>
-			<Flammability>1.0</Flammability>
-			<Beauty>8</Beauty>
-			<Comfort>0.70</Comfort>
-		</statBases>
 		<stuffCategories>
 			<li>Metallic</li>
 			<li>Woody</li>
 		</stuffCategories>
 		<costStuffCount>45</costStuffCount>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
 	</ThingDef>
 
 	<ThingDef ParentName="TinyBase">
@@ -79,20 +81,18 @@
 		<graphicData>
 			<texPath>Things/Building/Joy/MegascreenTelevision</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(0.03,0.1)</drawSize>
+			<drawSize>(0.3,0.1)</drawSize>
 		</graphicData>
-		<uiIconScale>10</uiIconScale>
-		<statBases>
-			<MaxHitPoints>100</MaxHitPoints>
-			<WorkToBuild>10</WorkToBuild>
-			<Mass>5</Mass>
-			<Flammability>1.0</Flammability>
-			<Beauty>8</Beauty>
-			<Comfort>0.70</Comfort>
-		</statBases>
+		<uiIconScale>1</uiIconScale>
 		<costList>
 			<WoodLog>20</WoodLog>
 		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
 	</ThingDef>
 
 	<ThingDef ParentName="TinyBase">
@@ -105,16 +105,15 @@
 			<drawSize>(0.1,0.1)</drawSize>
 		</graphicData>
 		<uiIconScale>10</uiIconScale>
-		<statBases>
-			<MaxHitPoints>75</MaxHitPoints>
-			<WorkToBuild>10</WorkToBuild>
-			<Mass>5</Mass>
-			<Flammability>1.0</Flammability>
-			<Beauty>0.5</Beauty>
-		</statBases>
 		<costList>
 			<WoodLog>20</WoodLog>
 		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
 	</ThingDef>
 
 	<ThingDef ParentName="TinyBase">
@@ -127,32 +126,31 @@
 			<drawSize>(0.1,0.1)</drawSize>
 		</graphicData>
 		<uiIconScale>10</uiIconScale>
-		<statBases>
-			<MaxHitPoints>75</MaxHitPoints>
-			<WorkToBuild>10</WorkToBuild>
-			<Mass>5</Mass>
-			<Flammability>1.0</Flammability>
-			<Beauty>0.5</Beauty>
-		</statBases>
 		<costList>
 			<WoodLog>20</WoodLog>
 		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
 	</ThingDef>
 	
 	<ThingDef ParentName="TinyBase" Name ="RecessedLight">
 		<defName>RecessedLight</defName>
 		<label>recessed light</label>
 		<description>An ground mounted electrical lamp that lights an area. People need light to move and work at full speed.</description>
+		<altitudeLayer>FloorEmplacement</altitudeLayer>
 		<rotatable>false</rotatable>
 		<uiIconScale>4</uiIconScale>
 		<uiIconOffset>(0, -0.1)</uiIconOffset>
 		<uiOrder>2990</uiOrder>
 		<statBases>
-			<MaxHitPoints>10</MaxHitPoints>
 			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
 			<Mass>1</Mass>
-			<Flammability>0</Flammability>
-			<Beauty>0</Beauty>
+			<Flammability>1.0</Flammability>
 		</statBases>
 		<researchPrerequisites>
 			<li>Electricity</li>

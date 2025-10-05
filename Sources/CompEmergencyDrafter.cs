@@ -44,14 +44,11 @@ namespace CallToArms
         const float headerPadding = 16.0f;
         const float filterPadding = 10.0f;
 		const float allowLineHeight = 24.0f;
-        const float copyButtonSize = 60.0f;
+        const float copyButtonSize = 20.0f;
 
 		ThingFilterUI.UIState filterState = new ThingFilterUI.UIState();
 
         Rect windowRect, headerRect, copyRect, pasteRect, withWeaponLableRect, withWeaponCheckRect, withUtilityLableRect, withUtilityCheckRect, filterRect;
-
-        public static string GetDraftCopyString() => "CallToArms_Button_DraftCopy".Translate();
-        public static string GetDraftPasteString() => "CallToArms_Button_DraftPaste".Translate();
 
 		public string GetDraftAllowDraftWithoutWeaponLableString() => "CallToArms_AllowDraftWithoutWeapon_Lable".Translate();
 		public string GetDraftAllowDraftWithoutUtilityLableString() => "CallToArms_AllowDraftWithoutUtility_Lable".Translate();
@@ -64,7 +61,7 @@ namespace CallToArms
             headerRect = windowRect;
             headerRect.height = headerHeight;
             copyRect = headerRect;
-            copyRect.width = copyButtonSize;
+            copyRect.width = copyRect.height = copyButtonSize;
             copyRect.x = size.x - copyRect.width - 30.0f;
             pasteRect = copyRect;
             pasteRect.width = copyButtonSize;
@@ -90,8 +87,7 @@ namespace CallToArms
             CompEmergencyDrafter drafter = SelThing?.TryGetComp<CompEmergencyDrafter>();
             Map currentMap = SelThing?.Map;
             if (drafter == null || currentMap == null) return;
-
-            if (Widgets.ButtonText(copyRect, GetDraftCopyString()))
+            if (Widgets.ButtonImage(copyRect, CallToArmsTextures.CopyTexture))
             {
 				if (savedFilter == null) savedFilter = new ThingFilter();
 				savedFilter.CopyAllowancesFrom(drafter.EquipmentFilter);
@@ -99,7 +95,7 @@ namespace CallToArms
                 savedWithUtility = drafter.draftWithoutUtility;
             }
 
-            if (savedFilter != null && Widgets.ButtonText(pasteRect, GetDraftPasteString()))
+            if (savedFilter != null && Widgets.ButtonImage(pasteRect, CallToArmsTextures.PasteTexture))
             {
                 drafter.EquipmentFilter = savedFilter;
 				drafter.draftWithoutWeapon = savedWithWeapon;
@@ -132,7 +128,7 @@ namespace CallToArms
         const string tabNameKey = "CallToArms_Tab_DraftSelecter";
 		const float headerHeight = 28f;
 		const float headerPadding = 16.0f;
-		const float copyButtonSize = 60.0f;
+		const float copyButtonSize = 20.0f;
 		const float listPadding = 5.0f;
 		const float viewPadding = 16.0f;
 		const float rowPadding = 0.0f;
@@ -148,8 +144,6 @@ namespace CallToArms
 
 
         public static string GetDraftAllString() => "CallToArms_Button_DraftAll".Translate();
-		public static string GetDraftCopyString() => "CallToArms_Button_DraftCopy".Translate();
-		public static string GetDraftPasteString() => "CallToArms_Button_DraftPaste".Translate();
 		public static string GetDraftAreaEmptyString() => "CallToArms_Button_DraftAreaEmpty".Translate();
 		public static string GetDrafterCountString(int count) => "CallToArms_DrafterCount_Lable".Translate(count.Named("count"));
 
@@ -163,7 +157,7 @@ namespace CallToArms
             headerRect = windowRect;
             headerRect.height = headerHeight;
 			copyRect = headerRect;
-            copyRect.width = copyButtonSize;
+            copyRect.width = copyRect.height = copyButtonSize;
             copyRect.x = size.x - copyRect.width - 30.0f;
             pasteRect = copyRect;
             pasteRect.width = copyButtonSize;
@@ -212,13 +206,14 @@ namespace CallToArms
             Map currentMap = SelThing?.Map;
             if (drafter == null || currentMap == null) return;
 
-			if (Widgets.ButtonText(copyRect, GetDraftCopyString()))
+			
+			if (Widgets.ButtonImage(copyRect, CallToArmsTextures.CopyTexture))
 			{
 				savedList = drafter.GetSelected();
 				savedArea = drafter.DraftArea;
 			}
 
-			if (savedList != null && Widgets.ButtonText(pasteRect, GetDraftPasteString()))
+			if (savedList != null && Widgets.ButtonImage(pasteRect, CallToArmsTextures.PasteTexture))
 			{
 				drafter.SetSelected(savedList, true);
 				drafter.DraftArea = savedArea;

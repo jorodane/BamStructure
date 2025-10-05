@@ -27,8 +27,6 @@
 	<CallToArms_Tab_DraftSelecter>소집</CallToArms_Tab_DraftSelecter>
 	
 	<CallToArms_Button_DraftAll>전체 소집</CallToArms_Button_DraftAll>
-	<CallToArms_Button_DraftCopy>복사</CallToArms_Button_DraftCopy>
-	<CallToArms_Button_DraftPaste>붙여넣기</CallToArms_Button_DraftPaste>
 	<CallToArms_Button_DraftAreaEmpty>구역 설정 없음 (주변)</CallToArms_Button_DraftAreaEmpty>
 	
 	<CallToArms_Message_DraftAreaNotEnough>소집할 영역이 부족하여 소집하지 못한 인원이 {count}명 있습니다</CallToArms_Message_DraftAreaNotEnough>
