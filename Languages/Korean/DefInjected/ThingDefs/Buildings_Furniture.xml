@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<WoodBed.label>나무 침대</WoodBed.label>
+	<WoodBed.description>아늑한 매트리스와 천으로 덮여있는 나무 침대입니다.</WoodBed.description>
+	<WoodDoubleBed.label>나무 큰 침대</WoodDoubleBed.label>
+	<WoodDoubleBed.description>간단한 2인용 나무 침대입니다.</WoodDoubleBed.description>
+	<GoldRoyalBed.label>금 고급 침대</GoldRoyalBed.label>
+	<GoldRoyalBed.description>금으로 장식까지 한, 높으신 분들을 위한 호화로운 금 침대입니다. 매우 편하고 두 명까지 누울 수 있습니다.</GoldRoyalBed.description>
+	<SchoolChair.label>교실 의자</SchoolChair.label>
+	<SchoolChair.description>사람들이 앉을 수 있는 불편하고 매력적인 의자입니다.</SchoolChair.description>
+	<RoundStool.label>둥근 의자</RoundStool.label>
+	<RoundStool.description>앉을 수 있는 둥근 받침대입니다.</RoundStool.description>
+	<RoundMirror.label>둥근 거울</RoundMirror.label>
+	<RoundMirror.description>빛을 반사하는 둥근 거울입니다. 잘생긴 사람들은 때때로 본인의 외모를 통해 재미를 충족하곤 합니다.</RoundMirror.description>
+	<SquareMirror.label>네모난 거울</SquareMirror.label>
+	<SquareMirror.description>빛을 반사하는 네모난 거울입니다. 잘생긴 사람들은 때때로 본인의 외모를 통해 재미를 충족하곤 합니다.</SquareMirror.description>
+	<LinkedTable.label>조립형 식탁</LinkedTable.label>
+	<LinkedTable.description>의자가 있으면 여기서 밥을 먹습니다.</LinkedTable.description>
+	<LinkedCoveredTable.label>조립형 천 덮인 식탁</LinkedCoveredTable.label>
+	<LinkedCoveredTable.description>의자가 있으면 여기서 밥을 먹습니다.</LinkedCoveredTable.description>
+	<LinkedPlantPotRound.label>조립형 둥근 화분</LinkedPlantPotRound.label>
+	<LinkedPlantPotRound.description>꽃으로 주변 사람들의 기분을 좋게 만듭니다.</LinkedPlantPotRound.description>
+	<LinkedPlantPotSquare.label>조립형 각진 화분</LinkedPlantPotSquare.label>
+	<LinkedPlantPotSquare.description>꽃으로 주변 사람들의 기분을 좋게 만듭니다.</LinkedPlantPotSquare.description>
+	<ElectricFan.label>선풍기</ElectricFan.label>
+	<ElectricFan.description>전기를 사용해 작은 영역에 바람을 일으키는 선풍기입니다.</ElectricFan.description>
+	<SimpleStreetLamp.label>가로등</SimpleStreetLamp.label>
+	<SimpleStreetLamp.description>넓은 야외 공간에서 보기엔 좋은 아주 어두운 전등입니다.</SimpleStreetLamp.description>
+	<Window.label>창문</Window.label>
+	<Window.description>작은 빛을 내는 창문입니다. 벽에 설치할 수 있습니다.</Window.description>
+</LanguageData>

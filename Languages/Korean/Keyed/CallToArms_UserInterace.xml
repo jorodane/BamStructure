@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LanguageData>
+
+	<CallToArms_Selected_Label>긴급 소집 (선택)</CallToArms_Selected_Label>
+	<CallToArms_DrafterCount_Label>선택된 인원 : {count}</CallToArms_DrafterCount_Label>
+	<CallToArms_Not_Selected_Description>소집을 위해 선택된 인원이 없습니다.</CallToArms_Not_Selected_Description>
+	<CallToArms_HasNot_Draftable_Description>소집 가능한 인원이 없습니다.</CallToArms_HasNot_Draftable_Description>
+	<CallToArms_Selected_Description>이 건물에 할당된 정착민들을 소집합니다.</CallToArms_Selected_Description>
+	<CallToArms_All_Label>긴급 소집 (모두)</CallToArms_All_Label>
+	<CallToArms_All_Description>모든 정착민들을 소집합니다.</CallToArms_All_Description>
+	<CallToArms_AllowCarryingBaby_Label>아기를 안은 정착민 허용</CallToArms_AllowCarryingBaby_Label>
+	<CallToArms_AllowCarryingBaby_Description>아기를 안고 있는 상태의 정착민도 소집하도록 허용합니다. 허용하면 아기를 안전한 곳에 데려다 놓고 위치로 이동합니다.</CallToArms_AllowCarryingBaby_Description>
+	<CallToArms_AllowDraftChild_Label>어린이 정착민 허용</CallToArms_AllowDraftChild_Label>
+	<CallToArms_AllowCarryingBaby_Description>아직 완전히 성장하지 않은 정착민도 소집하도록 허용합니다.</CallToArms_AllowCarryingBaby_Description>
+	<CallToArms_AllowDraftWithoutWeapon_Label>무기 없이 소집 허용</CallToArms_AllowDraftWithoutWeapon_Label>
+	<CallToArms_AllowDraftWithoutUtility_Label>다용도구 없이 소집 허용</CallToArms_AllowDraftWithoutUtility_Label>
+
+	<CallToArms_Tab_EquipmentSelecter>장비</CallToArms_Tab_EquipmentSelecter>
+	<CallToArms_Tab_DraftSelecter>소집</CallToArms_Tab_DraftSelecter>
+	
+	<CallToArms_Button_DraftAll>전체 소집</CallToArms_Button_DraftAll>
+	<CallToArms_Button_DraftAreaEmpty>구역 설정 없음 (주변)</CallToArms_Button_DraftAreaEmpty>
+	
+	<CallToArms_Message_DraftAreaNotEnough>소집할 영역이 부족하여 소집하지 못한 인원이 {count}명 있습니다</CallToArms_Message_DraftAreaNotEnough>
+	<CallToArms_Message_DraftCancelByCarryingBaby>아기를 안고 있어 소집하지 못한 인원이 {count}명 있습니다.</CallToArms_Message_DraftCancelByCarryingBaby>
+	
+</LanguageData>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<TerrainDef ParentName="CoveredBridgeBase">
+					<defName>CoveredHeavyBridge</defName>
+					<label>covered heavy bridge</label>
+					<description>A stronger and face covered version of the basic bridge which supports heavy structures on top. You can build a whole colony on water with this.</description>
+					<texturePath>Terrain/Surfaces/GenericFloorTile</texturePath>
+					<bridgePropsPath>Terrain/Misc/CoveredHeavyBridgeProps</bridgePropsPath>
+					<spaceBridgePropsPath>Terrain/Misc/HeavyBridgeSpaceProps</spaceBridgePropsPath>
+					<color>(1.0, 1.0, 1.0)</color>
+					<uiIconPath>Terrain/Surfaces/CoveredHeavyBridge_MenuIcon</uiIconPath>
+					<affordances>
+						<li>Light</li>
+						<li>Medium</li>
+						<li>Heavy</li>
+						<li>Walkable</li>
+					</affordances>
+					<constructEffect>ConstructMetal</constructEffect>
+					<statBases>
+						<WorkToBuild>2500</WorkToBuild>
+					</statBases>
+					<costList>
+						<Steel>14</Steel>
+					</costList>
+					<researchPrerequisites>
+						<li>HeavyBridges</li>
+					</researchPrerequisites>
+					<designationHotKey>Misc4</designationHotKey>
+					<destroyOnBombDamageThreshold>45</destroyOnBombDamageThreshold>
+				</TerrainDef>
+			</value>
+		</match>
+	</Operation>
+</Patch>

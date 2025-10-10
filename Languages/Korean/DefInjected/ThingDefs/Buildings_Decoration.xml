@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<TinyDish.label>접시 (원형)</TinyDish.label>
+	<TinyDishSquare.label>접시 (사각형)</TinyDishSquare.label>
+	<TinySpoon.label>숟가락</TinySpoon.label>
+	<TinyKnife.label>나이프</TinyKnife.label>
+	<TinyFork.label>포크</TinyFork.label>
+	<TinyChopStick.label>젓가락</TinyChopStick.label>
+	<TinyMug.label>머그컵</TinyMug.label>
+	<TinyTeaCup_Orient.label>동양식 찻잔</TinyTeaCup_Orient.label>
+	<TinyTeaCup_Occident.label>서양식 찻잔</TinyTeaCup_Occident.label>
+	<TinyWineGlass.label>와인잔</TinyWineGlass.label>
+	<TinyNapkinBox.label>냅킨 상자</TinyNapkinBox.label>
+	<TinyCuttingBoard.label>도마</TinyCuttingBoard.label>
+	<TinyBook.label>책</TinyBook.label>
+	<TinyBookVertical.label>세워 놓은 책</TinyBookVertical.label>
+	<TinyBookOpen.label>펼쳐 놓은 책</TinyBookOpen.label>
+	<TinyBookDown.label>엎어 놓은 책</TinyBookDown.label>
+	<TinyBookend.label>북엔드</TinyBookend.label>
+	<TinyBallPointPen.label>볼펜</TinyBallPointPen.label>
+	<TinyPencil.label>연필</TinyPencil.label>
+	<TinyPillow.label>큰 베개</TinyPillow.label>
+	<TinyPillowSmall.label>작은 베개</TinyPillowSmall.label>
+	<TinyPlantPotFlower.label>화분 (꽃)</TinyPlantPotFlower.label>
+	<TinyPlantPotPlant.label>화분 (식물)</TinyPlantPotPlant.label>
+	<TinyPortraitRound.label>원형 액자</TinyPortraitRound.label>
+	<TinyPortraitSquare.label>사각형 액자</TinyPortraitSquare.label>
+	<TinyLandscapetSquare.label>풍경화</TinyLandscapetSquare.label>
+	<TinyPhone.label>휴대전화</TinyPhone.label>
+	<RecessedLight.label>매립등</RecessedLight.label>
+	<TinyDeskLamp.label>책상등</TinyDeskLamp.label>
+	<TinyCandle.label>양초</TinyCandle.label>
+</LanguageData>

@@ -44,37 +44,9 @@
 		<destroyOnBombDamageThreshold>35</destroyOnBombDamageThreshold>
 	</TerrainDef>
 
-	<TerrainDef ParentName="CoveredBridgeBase">
-		<defName>CoveredHeavyBridge</defName>
-		<label>covered heavy bridge</label>
-		<description>A stronger and face covered version of the basic bridge which supports heavy structures on top. You can build a whole colony on water with this.</description>
-		<texturePath>Terrain/Surfaces/GenericFloorTile</texturePath>
-		<bridgePropsPath>Terrain/Misc/CoveredHeavyBridgeProps</bridgePropsPath>
-		<spaceBridgePropsPath>Terrain/Misc/HeavyBridgeSpaceProps</spaceBridgePropsPath>
-		<color>(1.0, 1.0, 1.0)</color>
-		<uiIconPath>Terrain/Surfaces/CoveredHeavyBridge_MenuIcon</uiIconPath>
-		<affordances>
-			<li>Light</li>
-			<li>Medium</li>
-			<li>Heavy</li>
-			<li>Walkable</li>
-		</affordances>
-		<constructEffect>ConstructMetal</constructEffect>
-		<statBases>
-			<WorkToBuild>2500</WorkToBuild>
-		</statBases>
-		<costList>
-			<Steel>14</Steel>
-		</costList>
-		<researchPrerequisites>
-			<li>HeavyBridges</li>
-		</researchPrerequisites>
-		<designationHotKey>Misc4</designationHotKey>
-		<destroyOnBombDamageThreshold>45</destroyOnBombDamageThreshold>
-	</TerrainDef>
-
 
 	<ThingDef Abstract="True" ParentName="BuildingBase" Name="CurbStoneBase" >
+		<description>A curb stone for way</description>
 		<noRightClickDraftAttack>true</noRightClickDraftAttack>
 		<designationCategory>Floors</designationCategory>
 		<uiOrder>2040</uiOrder>
@@ -139,7 +111,6 @@
 	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneStraight" >
 		<defName>CurbStoneStraight</defName>
 		<label>curb stone straight</label>
-		<description>A curb stone for way</description>
 		<graphicData>
 			<texPath>Terrain/Surfaces/CurbStone_Single_Straight</texPath>
 		</graphicData>
@@ -148,7 +119,6 @@
 	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneCorner" >
 		<defName>CurbStoneCorner</defName>
 		<label>curb stone corner</label>
-		<description>A curb stone for way</description>
 		<graphicData>
 			<texPath>Terrain/Surfaces/CurbStone_Single_Corner</texPath>
 		</graphicData>
@@ -157,7 +127,6 @@
 	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneEdge" >
 		<defName>CurbStoneEdge</defName>
 		<label>curb stone edge</label>
-		<description>A curb stone for way</description>
 		<graphicData>
 			<texPath>Terrain/Surfaces/CurbStone_Single_Edge</texPath>
 		</graphicData>
@@ -166,7 +135,6 @@
 	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneDoubleEdge" >
 		<defName>CurbStoneDoubleEdge</defName>
 		<label>curb stone double edge</label>
-		<description>A curb stone for way</description>
 		<graphicData>
 			<texPath>Terrain/Surfaces/CurbStone_Double_Edge</texPath>
 		</graphicData>
@@ -175,7 +143,6 @@
 	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneDoubleEdgeEnd" >
 		<defName>CurbStoneDoubleEdgeEnd</defName>
 		<label>curb stone double edge end</label>
-		<description>A curb stone for way</description>
 		<graphicData>
 			<texPath>Terrain/Surfaces/CurbStone_Double_EdgeEnd</texPath>
 		</graphicData>
@@ -184,7 +151,6 @@
 	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneLeftEdgeEnd" >
 		<defName>CurbStoneLeftEdgeEnd</defName>
 		<label>curb stone left edge end</label>
-		<description>A curb stone for way</description>
 		<graphicData>
 			<texPath>Terrain/Surfaces/CurbStone_Left_EdgeEnd</texPath>
 		</graphicData>
@@ -193,7 +159,6 @@
 	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneRightEdgeEnd" >
 		<defName>CurbStoneRightEdgeEnd</defName>
 		<label>curb stone right edge end</label>
-		<description>A curb stone for way</description>
 		<graphicData>
 			<texPath>Terrain/Surfaces/CurbStone_Right_EdgeEnd</texPath>
 		</graphicData>
@@ -202,7 +167,6 @@
 	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneTripleEdge" >
 		<defName>CurbStoneTripleEdge</defName>
 		<label>curb stone triple edge</label>
-		<description>A curb stone for way</description>
 		<graphicData>
 			<texPath>Terrain/Surfaces/CurbStone_Triple_Edge</texPath>
 		</graphicData>
@@ -211,7 +175,6 @@
 	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneEveryEdge" >
 		<defName>CurbStoneEveryEdge</defName>
 		<label>curb stone every edge</label>
-		<description>A curb stone for way</description>
 		<rotatable>false</rotatable>
 		<graphicData>
 			<texPath>Terrain/Surfaces/CurbStone_Every_Edge</texPath>
@@ -221,7 +184,6 @@
 	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneSquare" >
 		<defName>CurbStoneSquare</defName>
 		<label>curb stone square</label>
-		<description>A curb stone for way</description>
 		<rotatable>false</rotatable>
 		<graphicData>
 			<texPath>Terrain/Surfaces/CurbStone_Square</texPath>
@@ -231,7 +193,6 @@
 	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneDoubleStraight" >
 		<defName>CurbStoneDoubleStraight</defName>
 		<label>curb stone double straight</label>
-		<description>A curb stone for way</description>
 		<graphicData>
 			<texPath>Terrain/Surfaces/CurbStone_Double_Straight</texPath>
 		</graphicData>
@@ -241,7 +202,6 @@
 	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneDoubleCorner" >
 		<defName>CurbStoneDoubleCorner</defName>
 		<label>curb stone double corner</label>
-		<description>A curb stone for way</description>
 		<graphicData>
 			<texPath>Terrain/Surfaces/CurbStone_Double_Corner</texPath>
 		</graphicData>
@@ -250,7 +210,6 @@
 	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneDoubleEnd" >
 		<defName>CurbStoneDoubleEnd</defName>
 		<label>curb stone double end</label>
-		<description>A curb stone for way</description>
 		<graphicData>
 			<texPath>Terrain/Surfaces/CurbStone_Double_End</texPath>
 		</graphicData>

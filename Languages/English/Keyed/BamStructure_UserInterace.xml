@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LanguageData>
+	
+	<BamStructure_Fan_Level_Desc>Wind Strength : {CurrentLevel}</BamStructure_Fan_Level_Desc>
+	<BamStructure_Fan_Button_Desc>Change to {NextLevel} (Current : {CurrentLevel})</BamStructure_Fan_Button_Desc>
+	<BamStructure_Fan_Gentle>Gentle</BamStructure_Fan_Gentle>
+	<BamStructure_Fan_Light>Light</BamStructure_Fan_Light>
+	<BamStructure_Fan_Strong>Strong</BamStructure_Fan_Strong>
+	
+</LanguageData>

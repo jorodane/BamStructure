@@ -3,7 +3,7 @@
 
 
 
-	<ThingDef ParentName="BuildingBase" Name="MVSWallBase" Abstract="True">
+	<ThingDef ParentName="BuildingBase" Name="BamWallBase" Abstract="True">
 		<thingClass>Building</thingClass>
 		<category>Building</category>
 		<replaceTags>
@@ -235,10 +235,10 @@
 	</ThingDef>
 
 
-	<ThingDef ParentName="MVSWallBase" Name="HalfWoodWall">
+	<ThingDef ParentName="BamWallBase" Name="HalfWoodWall">
 		<defName>HalfWoodWall</defName>
 		<label>half wood wall</label>
-		<description>An impassable wall. Capable of holding up a roof. Decorated by Wood on Top.</description>
+		<description>An impassable wall. Capable of holding up a roof. Decorated by wood.</description>
 		<graphicData>
 			<texPath>Things/Building/Linked/HalfWoodWall</texPath>
 			<linkFlags>
@@ -276,7 +276,7 @@
 
 
 
-	<ThingDef ParentName="MVSWallBase" Name="GlassWall">
+	<ThingDef ParentName="BamWallBase" Name="GlassWall">
 		<defName>GlassWall</defName>
 		<label>glass wall</label>
 		<description>An impassable wall. Capable of holding up a roof. Decorated by Glass In Middle Line.</description>
@@ -324,7 +324,7 @@
 	<ThingDef ParentName="GlassWall" Name="GlassWallOutside">
 		<defName>GlassWallOutside</defName>
 		<label>glass wall outside</label>
-		<description>Glass Wall But Wide Square.</description>
+		<description>Glass Wall For Wide Square.</description>
 		<graphicData>
 			<texPath>Things/Building/Linked/GlassWallOutside</texPath>
 		</graphicData>

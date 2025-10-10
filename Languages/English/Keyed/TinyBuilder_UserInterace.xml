@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LanguageData>
+
+	<TinyBuilderClear_Label>Clear Build Cache</TinyBuilderClear_Label>
+	<TinyBuilderClear_Description>Removes incorrect build cache data, allowing construction at the correct position again.</TinyBuilderClear_Description>
+	<TinyBuilderClear_Warning>Are you sure you want to clear the build cache? Current construction offsets may be reset.</TinyBuilderClear_Warning>
+	<TinyBuilderClear_Complete>Build cache cleared.</TinyBuilderClear_Complete>
+
+	<TinyBuilderSelect_Label>Select Decoration</TinyBuilderSelect_Label>
+	<TinyBuilderSelect_Description>Selects the nearest decoration object at the mouse cell.</TinyBuilderSelect_Description>
+	<TinyBuilderSelect_NoTinyThing>No decoration found in this cell.</TinyBuilderSelect_NoTinyThing>
+
+	<TinyBuilderDeconstruct_Label>Deconstruct Decoration</TinyBuilderDeconstruct_Label>
+	<TinyBuilderDeconstruct_Description>Deconstructs the nearest decoration object at the mouse cell.</TinyBuilderDeconstruct_Description>
+
+	<TinyBuilderCancel_Label>Cancel Decoration</TinyBuilderCancel_Label>
+	<TinyBuilderCancel_Description>Cancels construction of the nearest decoration object at the mouse cell.</TinyBuilderCancel_Description>
+
+</LanguageData>

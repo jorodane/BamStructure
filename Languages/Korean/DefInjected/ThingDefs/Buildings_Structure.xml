@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<LanguageData>
+	<HalfHeightWall.label>절반 벽</HalfHeightWall.label>
+	<HalfHeightWall.description>지나갈 수 없는 벽입니다. 지붕을 지탱할 수 있습니다. 의자가 있으면 여기서 밥을 먹습니다. 물건 하나를 올려 놓을 수 있습니다.</HalfHeightWall.description>
+	<HalfWoodWall.label>나무 장식 벽</HalfWoodWall.label>
+	<HalfWoodWall.description>지나갈 수 없는 벽입니다. 지붕을 지탱할 수 있습니다. 나무로 장식되었습니다.</HalfWoodWall.description>
+	<GlassWall.label>유리벽</GlassWall.label>
+	<GlassWall.description>지나갈 수 없는 벽입니다. 지붕을 지탱할 수 있습니다.</GlassWall.description>
+	<GlassWallOutside.label>유리 외곽벽</GlassWallOutside.label>
+	<GlassWallOutside.description>지나갈 수 없는 벽입니다. 지붕을 지탱할 수 있습니다. 두 겹 이상의 넓은 유리벽에 사용합니다.</GlassWallOutside.description>
+	<FenceLight.label>전등 울타리</FenceLight.label>
+	<FenceLight.description>특정 종류의 동물을 위한 헛간을 만들고 전기를 사용해 주변을 밝게 비추는 울타리입니다. 포식자는 울타리 안에 있는 동물을 사냥하지 않지만, 직접 울타리를 넘어들어와 돌아다닐 수는 있습니다.</FenceLight.description>
+	<FenceAutoLightGate.label>전등 울타리 자동문</FenceAutoLightGate.label>
+	<FenceAutoLightGate.description>전기를 사용해 주변을 밝게 비추고 문 통과 시 이동속도 감소가 적거나 없는 문입니다. 울타리처럼 몇몇의 동물만 막을 수 있습니다. 조련사는 이 문을 통해 동물들을 우리 안팎으로 몰이를 할 수 있습니다.</FenceAutoLightGate.description>
+	<GlassDoor.label>유리문</GlassDoor.label>
+	<GlassDoor.description>방을 나눕니다. 수동으로 열고 닫아야 해서 통과 시 이동속도가 느려집니다. 여닫는 데 걸리는 시간은 문의 재질에 따라 다릅니다.</GlassDoor.description>
+	<GlassAutodoor.label>유리 자동문</GlassAutodoor.label>
+	<GlassAutodoor.description>방을 나눕니다. 전기로 작동하며 문 통과 시 이동속도 감소가 적거나 없습니다.</GlassAutodoor.description>
+</LanguageData>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LanguageData>
+	
+	<BamStructure_Fan_Level_Desc>바람 세기 : {CurrentLevel}</BamStructure_Fan_Level_Desc>
+	<BamStructure_Fan_Button_Desc>{NextLevel}으로 변경 (현재 : {CurrentLevel})</BamStructure_Fan_Button_Desc>
+	<BamStructure_Fan_Gentle>미풍</BamStructure_Fan_Gentle>
+	<BamStructure_Fan_Light>약풍</BamStructure_Fan_Light>
+	<BamStructure_Fan_Strong>강풍</BamStructure_Fan_Strong>
+	
+</LanguageData>

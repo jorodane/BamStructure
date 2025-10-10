@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LanguageData>
+
+	<TinyBuilderClear_Label>건축 캐시 삭제</TinyBuilderClear_Label>
+	<TinyBuilderClear_Description>잘못 저장된 위치를 삭제하여 다시 정상적인 위치로 건설이 가능하게 합니다.</TinyBuilderClear_Description>
+	<TinyBuilderClear_Warning>정말 건축 캐시를 삭제하시겠습니까? 현재 건설 예정인 오프셋이 초기화될 위험성이 있습니다.</TinyBuilderClear_Warning>
+	<TinyBuilderClear_Complete>건축 캐시를 삭제했습니다.</TinyBuilderClear_Complete>
+	
+	<TinyBuilderSelect_Label>장식물 선택</TinyBuilderSelect_Label>
+	<TinyBuilderSelect_Description>마우스 위치의 셀에서 가장 가까운 장식물을 선택합니다.</TinyBuilderSelect_Description>
+	<TinyBuilderSelect_NoTinyThing>해당 셀에 장식물이 존재하지 않습니다.</TinyBuilderSelect_NoTinyThing>
+
+	<TinyBuilderDeconstruct_Label>장식물 해체</TinyBuilderDeconstruct_Label>
+	<TinyBuilderDeconstruct_Description>마우스 위치의 셀에서 가장 가까운 장식물을 해체합니다.</TinyBuilderDeconstruct_Description>
+
+	<TinyBuilderCancel_Label>장식물 취소</TinyBuilderCancel_Label>
+	<TinyBuilderCancel_Description>마우스 위치의 셀에서 가장 가까운 장식물 건설을 취소합니다.</TinyBuilderCancel_Description>
+	
+</LanguageData>

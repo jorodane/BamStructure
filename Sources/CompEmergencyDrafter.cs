@@ -48,10 +48,10 @@ namespace CallToArms
 
 		ThingFilterUI.UIState filterState = new ThingFilterUI.UIState();
 
-        Rect windowRect, headerRect, copyRect, pasteRect, withWeaponLableRect, withWeaponCheckRect, withUtilityLableRect, withUtilityCheckRect, filterRect;
+        Rect windowRect, headerRect, copyRect, pasteRect, withWeaponLabelRect, withWeaponCheckRect, withUtilityLabelRect, withUtilityCheckRect, filterRect;
 
-		public string GetDraftAllowDraftWithoutWeaponLableString() => "CallToArms_AllowDraftWithoutWeapon_Lable".Translate();
-		public string GetDraftAllowDraftWithoutUtilityLableString() => "CallToArms_AllowDraftWithoutUtility_Lable".Translate();
+		public string GetDraftAllowDraftWithoutWeaponLabelString() => "CallToArms_AllowDraftWithoutWeapon_Label".Translate();
+		public string GetDraftAllowDraftWithoutUtilityLabelString() => "CallToArms_AllowDraftWithoutUtility_Label".Translate();
 
 		public ITab_EquipmentSetting()
 		{
@@ -70,11 +70,11 @@ namespace CallToArms
             float currentHeight = headerHeight + headerPadding;
 			float filterWidth = windowRect.width - (filterPadding * 2);
 
-			withWeaponLableRect = new Rect(filterPadding, currentHeight, filterWidth - allowLineHeight, allowLineHeight);
-			withWeaponCheckRect = new Rect(withWeaponLableRect.width + filterPadding, currentHeight, allowLineHeight, allowLineHeight);
+			withWeaponLabelRect = new Rect(filterPadding, currentHeight, filterWidth - allowLineHeight, allowLineHeight);
+			withWeaponCheckRect = new Rect(withWeaponLabelRect.width + filterPadding, currentHeight, allowLineHeight, allowLineHeight);
 			currentHeight += allowLineHeight;
-			withUtilityLableRect = new Rect(filterPadding, currentHeight, filterWidth - allowLineHeight, allowLineHeight);
-			withUtilityCheckRect = new Rect(withUtilityLableRect.width + filterPadding, currentHeight, allowLineHeight, allowLineHeight);
+			withUtilityLabelRect = new Rect(filterPadding, currentHeight, filterWidth - allowLineHeight, allowLineHeight);
+			withUtilityCheckRect = new Rect(withUtilityLabelRect.width + filterPadding, currentHeight, allowLineHeight, allowLineHeight);
 			currentHeight += allowLineHeight;
 
 			filterRect = new Rect(filterPadding, currentHeight, filterWidth, windowRect.height - currentHeight - filterPadding);
@@ -106,10 +106,10 @@ namespace CallToArms
             Widgets.Label(headerRect, tabNameKey.Translate());
             Text.Font = GameFont.Small;
 
-			Widgets.Label(withWeaponLableRect, GetDraftAllowDraftWithoutWeaponLableString());
+			Widgets.Label(withWeaponLabelRect, GetDraftAllowDraftWithoutWeaponLabelString());
 			Widgets.Checkbox(withWeaponCheckRect.position, ref drafter.draftWithoutWeapon);
 
-			Widgets.Label(withUtilityLableRect, GetDraftAllowDraftWithoutUtilityLableString());
+			Widgets.Label(withUtilityLabelRect, GetDraftAllowDraftWithoutUtilityLabelString());
 			Widgets.Checkbox(withUtilityCheckRect.position, ref drafter.draftWithoutUtility);
 
 			ThingFilterUI.DoThingFilterConfigWindow(filterRect, filterState, drafter.EquipmentFilter, CompEmergencyDrafter.OriginFilter,1,null,CompEmergencyDrafter.OriginFilter.hiddenSpecialFilters,true,true);
@@ -145,7 +145,7 @@ namespace CallToArms
 
         public static string GetDraftAllString() => "CallToArms_Button_DraftAll".Translate();
 		public static string GetDraftAreaEmptyString() => "CallToArms_Button_DraftAreaEmpty".Translate();
-		public static string GetDrafterCountString(int count) => "CallToArms_DrafterCount_Lable".Translate(count.Named("count"));
+		public static string GetDrafterCountString(int count) => "CallToArms_DrafterCount_Label".Translate(count.Named("count"));
 
 
 		public ITab_DraftSetting()
@@ -371,25 +371,25 @@ namespace CallToArms
     public class CompEmergencyDrafter : ThingComp
     {
         public Texture2D GetCallToArms4Selected_MenuIcon() => ContentFinder<Texture2D>.Get("UI/Commands/CallToArms_Selected", true);
-        public string GetCallToArms4SelectedLableString() => "CallToArms_Selected_Lable".Translate();
+        public string GetCallToArms4SelectedLabelString() => "CallToArms_Selected_Label".Translate();
         public string GetCallToArms4SelectedDescriptionString() => "CallToArms_Selected_Description".Translate();
         public string GetCallToArms4NotSelectedDescriptionString() => "CallToArms_Not_Selected_Description".Translate();
         public string GetCallToArms4HasNotDraftableDescriptionString() => "CallToArms_HasNot_Draftable_Description".Translate();
 
         public Texture2D GetCallToArms4All_MenuIcon() => ContentFinder<Texture2D>.Get("UI/Commands/CallToArms_All", true);
-        public string GetCallToArms4AllLableString() => "CallToArms_All_Lable".Translate();
+        public string GetCallToArms4AllLabelString() => "CallToArms_All_Label".Translate();
         public string GetCallToArms4AllDescriptionString() => "CallToArms_All_Description".Translate();
 
 		public Texture2D GetDraftAllowCarryingBaby_MenuIcon() => ContentFinder<Texture2D>.Get("UI/Commands/DraftWithBaby", true);
-		public string GetDraftAllowCarryingBabyLableString() => "CallToArms_AllowCarryingBaby_Lable".Translate();
+		public string GetDraftAllowCarryingBabyLabelString() => "CallToArms_AllowCarryingBaby_Label".Translate();
 		public string GetDraftAllowCarryingBabyDescriptionString() => "CallToArms_AllowCarryingBaby_Description".Translate();
 		public Texture2D GetDraftAllowDraftChild_MenuIcon() => ContentFinder<Texture2D>.Get("UI/Commands/DraftChild", true);
-		public string GetDraftAllowDraftChildLableString() => "CallToArms_AllowDraftChild_Lable".Translate();
+		public string GetDraftAllowDraftChildLabelString() => "CallToArms_AllowDraftChild_Label".Translate();
 		public string GetDraftAllowDraftChildDescriptionString() => "CallToArms_AllowDraftChild_Description".Translate();
 
 		public string GetDraftAreaNotEnoughString(int count) => "CallToArms_Message_DraftAreaNotEnough".Translate(count.Named("count"));
 		public string GetDraftCancelByCarryingBabyString(int count) => "CallToArms_Message_DraftCancelByCarryingBaby".Translate(count.Named("count"));
-        public static string GetDrafterCountString(int count) => "CallToArms_DrafterCount_Lable".Translate(count.Named("count"));
+        public static string GetDrafterCountString(int count) => "CallToArms_DrafterCount_Label".Translate(count.Named("count"));
 
         List<Pawn> selectedColonist = new List<Pawn>();
 
@@ -531,7 +531,7 @@ namespace CallToArms
 				Disabled = !HasDraftableSelectedColonist,
 				disabledReason = !HasSelectedColonist ? GetCallToArms4NotSelectedDescriptionString()
 								: !HasDraftableSelectedColonist ? GetCallToArms4HasNotDraftableDescriptionString() : "",
-				defaultLabel = GetCallToArms4SelectedLableString(),
+				defaultLabel = GetCallToArms4SelectedLabelString(),
 				defaultDesc = GetCallToArms4SelectedDescriptionString(),
 				icon = GetCallToArms4Selected_MenuIcon(),
 				action = OnCallToArms4Selected,
@@ -540,7 +540,7 @@ namespace CallToArms
 
             yield return new Command_Action
             {
-                defaultLabel = GetCallToArms4AllLableString(),
+                defaultLabel = GetCallToArms4AllLabelString(),
                 defaultDesc = GetCallToArms4AllDescriptionString(),
                 icon = GetCallToArms4All_MenuIcon(),
                 action = OnCallToArms4All,
@@ -552,7 +552,7 @@ namespace CallToArms
                 yield return new Command_Toggle
                 {
                     isActive = GetAllowDraftChild,
-                    defaultLabel = GetDraftAllowDraftChildLableString(),
+                    defaultLabel = GetDraftAllowDraftChildLabelString(),
                     defaultDesc = GetDraftAllowDraftChildDescriptionString(),
                     icon = GetDraftAllowDraftChild_MenuIcon(),
                     toggleAction = ToggleAllowDraftChild
@@ -560,7 +560,7 @@ namespace CallToArms
                 yield return new Command_Toggle
 				{
 					isActive = GetAllowCarryingBaby,
-					defaultLabel = GetDraftAllowCarryingBabyLableString(),
+					defaultLabel = GetDraftAllowCarryingBabyLabelString(),
 					defaultDesc = GetDraftAllowCarryingBabyDescriptionString(),
 					icon = GetDraftAllowCarryingBaby_MenuIcon(),
 					toggleAction = ToggleAllowCarryingBaby
@@ -570,7 +570,7 @@ namespace CallToArms
 
 
 		bool DraftPredicate(Pawn target) => 
-			(ModsConfig.BiotechActive && 
+			(!ModsConfig.BiotechActive ||
 			(draftChild || 
 			!target.IsChild()) && 
 			(draftCarryingBaby || target.IsCarryingBaby() == null)) && 

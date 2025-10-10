@@ -3,7 +3,8 @@
 	<ThingDef Abstract ="true" ParentName="BuildingBase" Name ="TinyBase">
 		<thingClass>TinyBuilder.Building_Tiny</thingClass>
 		<defName>TinyBase</defName>
-		<designationCategory>Decoration</designationCategory>
+		<designationCategory>TinyBuildings</designationCategory>
+		<defaultPlacingRot>South</defaultPlacingRot>
 		<altitudeLayer>Item</altitudeLayer>
 		<passability>Standable</passability>
 		<tradeability>None</tradeability>
@@ -16,25 +17,70 @@
 			<li>TinyBuilder.Placeworker_TinyThing</li>
 		</placeWorkers>
 		<drawPlaceWorkersWhileSelected>false</drawPlaceWorkersWhileSelected>
-		<comps>
-			<li Class ="TinyBuilder.CompProperties_TinyThing"></li>
-		</comps>
 		<building>
 			<isEdifice>false</isEdifice>
 		</building>
-		<defaultPlacingRot>South</defaultPlacingRot>
 	</ThingDef>
 
-	
-	
-	<ThingDef ParentName="TinyBase">
-		<defName>SmallTable</defName>
-		<label>small table</label>
+	<ThingDef Abstract ="true" ParentName="TinyBase" Name ="TinyBase_Asc">
+		<defName>TinyBaseDesc</defName>
+		<comps>
+			<li Class ="TinyBuilder.CompProperties_TinyThing"></li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Abstract ="true" ParentName="TinyBase" Name ="TinyBase_Desc">
+		<defName>TinyBaseDesc</defName>
+		<comps>
+			<li Class ="TinyBuilder.CompProperties_TinyThing">
+				<sortDescending>true</sortDescending>
+			</li>
+		</comps>
+	</ThingDef>
+
+
+	<ThingDef ParentName="TinyBase_Asc" Name ="TinyDish">
+		<defName>TinyDish</defName>
+		<label>dish (round)</label>
 		<rotatable>true</rotatable>
 		<graphicData>
-			<texPath>Things/Building/Furniture/Table1x2</texPath>
+			<texPath>Things/Building/Decoration/Dish_Round</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(0.3,0.4)</drawSize>
+			<drawSize>(0.5,0.5)</drawSize>
+		</graphicData>
+		<uiIconScale>3</uiIconScale>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>5</costStuffCount>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyDish">
+		<defName>TinyDishSquare</defName>
+		<label>dish (square)</label>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Dish_Square</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinySpoon</defName>
+		<label>spoon</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<altitudeLayer>ItemImportant</altitudeLayer>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Spoon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(0.125,0.25)</drawSize>
 		</graphicData>
 		<uiIconScale>8</uiIconScale>
 		<stuffCategories>
@@ -42,7 +88,7 @@
 			<li>Woody</li>
 			<li>Stony</li>
 		</stuffCategories>
-		<costStuffCount>28</costStuffCount>
+		<costStuffCount>3</costStuffCount>
 		<statBases>
 			<WorkToBuild>100</WorkToBuild>
 			<MaxHitPoints>100</MaxHitPoints>
@@ -51,21 +97,24 @@
 		</statBases>
 	</ThingDef>
 
-	<ThingDef ParentName="TinyBase">
-		<defName>TinyChair</defName>
-		<label>tiny chair</label>
-		<description>chair but tiny.</description>
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyKnife</defName>
+		<label>knife</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<altitudeLayer>ItemImportant</altitudeLayer>
 		<graphicData>
-			<texPath>Things/Building/Furniture/DiningChair</texPath>
+			<texPath>Things/Building/Decoration/Knife</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(0.1,0.1)</drawSize>
+			<drawSize>(0.125,0.25)</drawSize>
 		</graphicData>
-		<uiIconScale>10</uiIconScale>
+		<uiIconScale>8</uiIconScale>
 		<stuffCategories>
 			<li>Metallic</li>
 			<li>Woody</li>
+			<li>Stony</li>
 		</stuffCategories>
-		<costStuffCount>45</costStuffCount>
+		<costStuffCount>3</costStuffCount>
 		<statBases>
 			<WorkToBuild>100</WorkToBuild>
 			<MaxHitPoints>100</MaxHitPoints>
@@ -74,18 +123,254 @@
 		</statBases>
 	</ThingDef>
 
-	<ThingDef ParentName="TinyBase">
-		<defName>TinyScreenTelevision</defName>
-		<label>tiny screen television</label>
-		<description>chair but tiny.</description>
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyFork</defName>
+		<label>fork</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<altitudeLayer>ItemImportant</altitudeLayer>
 		<graphicData>
-			<texPath>Things/Building/Joy/MegascreenTelevision</texPath>
+			<texPath>Things/Building/Decoration/Fork</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(0.125,0.25)</drawSize>
+		</graphicData>
+		<uiIconScale>8</uiIconScale>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>3</costStuffCount>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyChopStick</defName>
+		<label>chop stick</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<altitudeLayer>ItemImportant</altitudeLayer>
+		<graphicData>
+			<texPath>Things/Building/Decoration/ChopStick</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(0.125,0.25)</drawSize>
+		</graphicData>
+		<uiIconScale>8</uiIconScale>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>3</costStuffCount>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyMug</defName>
+		<label>mug</label>
+		<rotatable>true</rotatable>
+		<altitudeLayer>ItemImportant</altitudeLayer>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Mug</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(0.3,0.1)</drawSize>
+			<drawSize>(0.25,0.25)</drawSize>
+			<drawOffsetNorth>(0,0,0.1)</drawOffsetNorth>
+			<drawOffsetSouth>(0,0,0.1)</drawOffsetSouth>
+			<drawOffsetWest>(0,0,0.1)</drawOffsetWest>
+			<drawOffsetEast>(0,0,0.1)</drawOffsetEast>
 		</graphicData>
-		<uiIconScale>1</uiIconScale>
+		<uiIconScale>4</uiIconScale>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>5</costStuffCount>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyTeaCup_Orient</defName>
+		<label>tea cup (orient)</label>
+		<rotatable>true</rotatable>
+		<altitudeLayer>ItemImportant</altitudeLayer>
+		<graphicData>
+			<texPath>Things/Building/Decoration/TeaCup_Orient</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.125,0.125)</drawSize>
+			<drawOffsetNorth>(0,0,0.05)</drawOffsetNorth>
+			<drawOffsetSouth>(0,0,0.05)</drawOffsetSouth>
+			<drawOffsetWest>(0,0,0.05)</drawOffsetWest>
+			<drawOffsetEast>(0,0,0.05)</drawOffsetEast>
+		</graphicData>
+		<uiIconScale>8</uiIconScale>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>5</costStuffCount>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyTeaCup_Occident</defName>
+		<label>tea cup (occident)</label>
+		<rotatable>true</rotatable>
+		<altitudeLayer>ItemImportant</altitudeLayer>
+		<graphicData>
+			<texPath>Things/Building/Decoration/TeaCup_Occident</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.125,0.125)</drawSize>
+			<drawOffsetNorth>(0,0,0.05)</drawOffsetNorth>
+			<drawOffsetSouth>(0,0,0.05)</drawOffsetSouth>
+			<drawOffsetWest>(0,0,0.05)</drawOffsetWest>
+			<drawOffsetEast>(0,0,0.05)</drawOffsetEast>
+		</graphicData>
+		<uiIconScale>8</uiIconScale>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>5</costStuffCount>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyWineGlass</defName>
+		<label>wine glass</label>
+		<rotatable>true</rotatable>
+		<altitudeLayer>ItemImportant</altitudeLayer>
+		<graphicData>
+			<texPath>Things/Building/Decoration/WineGlass</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.25,0.25)</drawSize>
+			<drawOffsetNorth>(0,0,0.1)</drawOffsetNorth>
+			<drawOffsetSouth>(0,0,0.1)</drawOffsetSouth>
+			<drawOffsetWest>(0,0,0.1)</drawOffsetWest>
+			<drawOffsetEast>(0,0,0.1)</drawOffsetEast>
+		</graphicData>
+		<uiIconScale>4</uiIconScale>
 		<costList>
-			<WoodLog>20</WoodLog>
+			<Steel>3</Steel>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>1</costStuffCount>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyNapkinBox</defName>
+		<label>napkin box</label>
+		<rotatable>true</rotatable>
+		<graphicData>
+			<texPath>Things/Building/Decoration/NapkinBox</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.25,0.25)</drawSize>
+		</graphicData>
+		<uiIconScale>4</uiIconScale>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>5</costStuffCount>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyCuttingBoard</defName>
+		<label>cutting board</label>
+		<rotatable>true</rotatable>
+		<graphicData>
+			<texPath>Things/Building/Decoration/CuttingBoard</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(0.5,0.5)</drawSize>
+		</graphicData>
+		<uiIconScale>2</uiIconScale>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>5</costStuffCount>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Desc">
+		<defName>TinyBook</defName>
+		<label>book</label>
+		<rotatable>true</rotatable>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Book</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.5,0.5)</drawSize>
+		</graphicData>
+		<uiIconScale>2</uiIconScale>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>3</costStuffCount>
+		<costList>
+			<WoodLog>2</WoodLog>
 		</costList>
 		<statBases>
 			<WorkToBuild>100</WorkToBuild>
@@ -95,18 +380,28 @@
 		</statBases>
 	</ThingDef>
 
-	<ThingDef ParentName="TinyBase">
-		<defName>Smallbook</defName>
-		<label>small book</label>
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyBookVertical</defName>
+		<label>book (vertical)</label>
 		<rotatable>true</rotatable>
+		<defaultPlacingRot>East</defaultPlacingRot>
 		<graphicData>
-			<texPath>Things/Item/Book/Novel/Novel_Open_north</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(0.1,0.1)</drawSize>
+			<texPath>Things/Building/Decoration/Book_Vertical</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.5,0.5)</drawSize>
 		</graphicData>
-		<uiIconScale>10</uiIconScale>
+		<uiIconScale>2</uiIconScale>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>3</costStuffCount>
 		<costList>
-			<WoodLog>20</WoodLog>
+			<WoodLog>2</WoodLog>
 		</costList>
 		<statBases>
 			<WorkToBuild>100</WorkToBuild>
@@ -116,19 +411,208 @@
 		</statBases>
 	</ThingDef>
 
-	<ThingDef ParentName="TinyBase">
-		<defName>Tinybook</defName>
-		<label>tiny book</label>
+	<ThingDef ParentName="TinyBase_Desc">
+		<defName>TinyBookOpen</defName>
+		<label>book (open)</label>
 		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
 		<graphicData>
-			<texPath>Things/Item/Book/Textbook/Textbook</texPath>
+			<texPath>Things/Building/Decoration/Book_Open</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(0.1,0.1)</drawSize>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.5,0.5)</drawSize>
 		</graphicData>
-		<uiIconScale>10</uiIconScale>
+		<uiIconScale>2</uiIconScale>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>3</costStuffCount>
 		<costList>
-			<WoodLog>20</WoodLog>
+			<WoodLog>2</WoodLog>
 		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Desc">
+		<defName>TinyBookDown</defName>
+		<label>book (down)</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Book_Down</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.5,0.5)</drawSize>
+		</graphicData>
+		<uiIconScale>2</uiIconScale>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>3</costStuffCount>
+		<costList>
+			<WoodLog>2</WoodLog>
+		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyBookend</defName>
+		<label>bookend</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>East</defaultPlacingRot>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Bookend</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(0.25,0.25)</drawSize>
+		</graphicData>
+		<uiIconScale>4</uiIconScale>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>5</costStuffCount>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Desc">
+		<defName>TinyBallPointPen</defName>
+		<label>pen (ballpoint)</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<altitudeLayer>ItemImportant</altitudeLayer>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Pen_BallPoint</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(0.2,0.05)</drawSize>
+		</graphicData>
+		<uiIconPath>Things/Building/Decoration/Pen_BallPoint</uiIconPath>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>1</costStuffCount>
+		<costList>
+			<Steel>2</Steel>
+		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Desc">
+		<defName>TinyPencil</defName>
+		<label>pencil</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<altitudeLayer>ItemImportant</altitudeLayer>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Pencil</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.2,0.05)</drawSize>
+		</graphicData>
+		<uiIconPath>Things/Building/Decoration/Pencil</uiIconPath>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>1</costStuffCount>
+		<costList>
+			<Steel>2</Steel>
+		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Desc" name ="TinyPillow">
+		<defName>TinyPillow</defName>
+		<label>pillow</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<altitudeLayer>Item</altitudeLayer>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Pillow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(1.2,0.6)</drawSize>
+		</graphicData>
+		<uiIconPath>Things/Building/Decoration/Pillow</uiIconPath>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>3</costStuffCount>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Desc">
+		<defName>TinyPillowSmall</defName>
+		<label>pillow (small)</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<altitudeLayer>Item</altitudeLayer>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Pillow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.9,0.45)</drawSize>
+		</graphicData>
+		<uiIconPath>Things/Building/Decoration/Pillow</uiIconPath>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>3</costStuffCount>
 		<statBases>
 			<WorkToBuild>100</WorkToBuild>
 			<MaxHitPoints>100</MaxHitPoints>
@@ -137,15 +621,173 @@
 		</statBases>
 	</ThingDef>
 	
-	<ThingDef ParentName="TinyBase" Name ="RecessedLight">
-		<defName>RecessedLight</defName>
-		<label>recessed light</label>
-		<description>An ground mounted electrical lamp that lights an area. People need light to move and work at full speed.</description>
-		<altitudeLayer>FloorEmplacement</altitudeLayer>
-		<rotatable>false</rotatable>
-		<uiIconScale>4</uiIconScale>
-		<uiIconOffset>(0, -0.1)</uiIconOffset>
-		<uiOrder>2990</uiOrder>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyPlantPotFlower</defName>
+		<label>plant pot (flower)</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>East</defaultPlacingRot>
+		<graphicData>
+			<texPath>Things/Building/Decoration/PlantPot_Flower</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.5,0.5)</drawSize>
+			<drawOffsetNorth>(0,0,0.2)</drawOffsetNorth>
+			<drawOffsetSouth>(0,0,0.2)</drawOffsetSouth>
+			<drawOffsetWest>(0,0,0.2)</drawOffsetWest>
+			<drawOffsetEast>(0,0,0.2)</drawOffsetEast>
+		</graphicData>
+		<uiIconScale>3</uiIconScale>
+		<uiIconOffset>(0, -0.15)</uiIconOffset>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>5</costStuffCount>
+		<costList>
+			<WoodLog>3</WoodLog>
+		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyPlantPotPlant</defName>
+		<label>plant pot (plant)</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>East</defaultPlacingRot>
+		<graphicData>
+			<texPath>Things/Building/Decoration/PlantPot_Plant</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.5,0.5)</drawSize>
+			<drawOffsetNorth>(0,0,0.2)</drawOffsetNorth>
+			<drawOffsetSouth>(0,0,0.2)</drawOffsetSouth>
+			<drawOffsetWest>(0,0,0.2)</drawOffsetWest>
+			<drawOffsetEast>(0,0,0.2)</drawOffsetEast>
+		</graphicData>
+		<uiIconScale>3</uiIconScale>
+		<uiIconOffset>(0, -0.15)</uiIconOffset>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>5</costStuffCount>
+		<costList>
+			<WoodLog>3</WoodLog>
+		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyPortraitRound</defName>
+		<label>portrait (round)</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Portrait_Round</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(0.2,0.2)</drawSize>
+		</graphicData>
+		<uiIconScale>4.0</uiIconScale>
+		<uiIconOffset>(0, -0.05)</uiIconOffset>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>3</costStuffCount>
+		<costList>
+			<WoodLog>2</WoodLog>
+		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyPortraitSquare</defName>
+		<label>portrait (square)</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Portrait_Square</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(0.2,0.2)</drawSize>
+		</graphicData>
+		<uiIconScale>4.0</uiIconScale>
+		<uiIconOffset>(0, -0.05)</uiIconOffset>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>3</costStuffCount>
+		<costList>
+			<WoodLog>2</WoodLog>
+		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyLandscapetSquare</defName>
+		<label>landscape (square)</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Landscape_Square</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(0.3,0.2)</drawSize>
+		</graphicData>
+		<uiIconScale>4.0</uiIconScale>
+		<uiIconOffset>(0, -0.05)</uiIconOffset>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>3</costStuffCount>
+		<costList>
+			<WoodLog>2</WoodLog>
+		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef Abstract ="true" ParentName="TinyBase_Asc" Name ="TinyLamp">
 		<statBases>
 			<WorkToBuild>100</WorkToBuild>
 			<MaxHitPoints>100</MaxHitPoints>
@@ -159,17 +801,13 @@
 			<li>Metallic</li>
 			<li>Woody</li>
 			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
 		</stuffCategories>
 		<costList>
-			<Steel>1</Steel>
+			<Steel>2</Steel>
 		</costList>
-		<costStuffCount>1</costStuffCount>
-		<graphicData>
-			<texPath>Things/Building/Decoration/RecessedLight</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>CutoutComplex</shaderType>
-			<drawSize>(0.2,0.2)</drawSize>
-		</graphicData>
+		<costStuffCount>2</costStuffCount>
 		<comps>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
@@ -177,15 +815,125 @@
 				<powerUpgrades>
 					<li>
 						<researchProject>ColoredLights</researchProject>
-						<factor>0.1</factor>
+						<factor>0.5</factor>
 					</li>
 				</powerUpgrades>
 			</li>
 			<li Class="CompProperties_Glower">
-				<glowRadius>2</glowRadius>
+				<glowRadius>1</glowRadius>
 				<glowColor>(214,148,94,0)</glowColor>
 				<colorPickerEnabled>true</colorPickerEnabled>
 				<darklightToggle>true</darklightToggle>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	
+	<ThingDef ParentName="TinyLamp" Name ="TinyPhone">
+		<defName>TinyPhone</defName>
+		<label>phone</label>
+		<rotatable>true</rotatable>
+		<uiIconScale>4.0</uiIconScale>
+		<uiIconOffset>(0, -0.05)</uiIconOffset>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Phone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.2,0.3)</drawSize>
+		</graphicData>
+	</ThingDef>
+
+
+	<ThingDef ParentName="TinyLamp" Name ="RecessedLight">
+		<defName>RecessedLight</defName>
+		<label>recessed light</label>
+		<altitudeLayer>FloorEmplacement</altitudeLayer>
+		<rotatable>false</rotatable>
+		<uiIconScale>4.0</uiIconScale>
+		<uiIconOffset>(0, -0.1)</uiIconOffset>
+		<graphicData>
+			<texPath>Things/Building/Decoration/RecessedLight</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.2,0.2)</drawSize>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyLamp" Name ="TinyDeskLamp">
+		<defName>TinyDeskLamp</defName>
+		<label>deskLamp</label>
+		<altitudeLayer>ItemImportant</altitudeLayer>
+		<rotatable>true</rotatable>
+		<uiIconScale>2.0</uiIconScale>
+		<uiIconOffset>(0.0, 0.0)</uiIconOffset>
+		<defaultPlacingRot>East</defaultPlacingRot>
+		<graphicData>
+			<texPath>Things/Building/Decoration/DeskLamp</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.5,0.5)</drawSize>
+			<drawOffsetNorth>(0,0,0.2)</drawOffsetNorth>
+			<drawOffsetSouth>(0,0,0.2)</drawOffsetSouth>
+			<drawOffsetWest>(0,0,0.2)</drawOffsetWest>
+			<drawOffsetEast>(0,0,0.2)</drawOffsetEast>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyCandle</defName>
+		<label>candle</label>
+		<rotatable>true</rotatable>
+		<tickerType>Normal</tickerType>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Candle</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(0.5,0.5)</drawSize>
+			<drawOffsetNorth>(0,0,0.2)</drawOffsetNorth>
+			<drawOffsetSouth>(0,0,0.0)</drawOffsetSouth>
+			<drawOffsetWest>(0,0,0.1)</drawOffsetWest>
+			<drawOffsetEast>(0,0,-0.1)</drawOffsetEast>
+		</graphicData>
+		<uiIconOffset>(0, 0.25)</uiIconOffset>
+		<uiIconScale>3</uiIconScale>
+		<costList>
+			<WoodLog>2</WoodLog>
+		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>1</glowRadius>
+				<glowColor>(214,148,94,0)</glowColor>
+				<colorPickerEnabled>true</colorPickerEnabled>
+				<darklightToggle>true</darklightToggle>
+			</li>
+			<li Class="CompProperties_Refuelable">
+				<fuelConsumptionRate>0.4</fuelConsumptionRate>
+				<fuelCapacity>20.0</fuelCapacity>
+				<fuelConsumptionPerTickInRain>0.006</fuelConsumptionPerTickInRain>
+				<fuelFilter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</fuelFilter>
+				<initialFuelPercent>1</initialFuelPercent>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+				<functionsInVacuum>false</functionsInVacuum>
+			</li>
+			<li Class="CompProperties_HeatPusher">
+				<compClass>CompHeatPusherPowered</compClass>
+				<heatPerSecond>0.1</heatPerSecond>
+				<heatPushMaxTemperature>23</heatPushMaxTemperature>
+			</li>
+			<li Class="CompProperties_FireOverlay">
+				<fireSize>0.1</fireSize>
+				<offset>(0,0,0.2)</offset>
 			</li>
 		</comps>
 	</ThingDef>

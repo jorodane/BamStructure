@@ -75,9 +75,9 @@ namespace BamStructure
 		{
 			switch (level)
 			{
-				default: return "MVS_Fan_Gentle";
-				case 1: return "MVS_Fan_Light";
-				case 2: return "MVS_Fan_Strong";
+				default: return "BamStructure_Fan_Gentle";
+				case 1: return "BamStructure_Fan_Light";
+				case 2: return "BamStructure_Fan_Strong";
 			}
 		}
 
@@ -85,12 +85,12 @@ namespace BamStructure
 
 		public string GetLevelDescriptionString(int level)
 		{
-			return "MVS_Fan_Level_Desc".Translate(GetLevelString(level).Named("CurrentLevel"));
+			return "BamStructure_Fan_Level_Desc".Translate(GetLevelString(level).Translate().Named("CurrentLevel"));
 		}
 
 		public string GetLevelChangeButtonString(int nextLevel)
 		{
-			return "MVS_Fan_Button_Desc".Translate(GetLevelString(nextLevel).Named("NextLevel"), GetLevelString(level).Named("CurrentLevel"));
+			return "BamStructure_Fan_Button_Desc".Translate(GetLevelString(nextLevel).Translate().Named("NextLevel"), GetLevelString(level).Translate().Named("CurrentLevel"));
 		}
 
 		public Command_Action GetLevelChangeButtonAction(int wantLevel)

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LanguageData>
+
+	<CallToArms_Selected_Label>Call to Arms (Selected)</CallToArms_Selected_Label>
+	<CallToArms_DrafterCount_Label>Selected Colonists : {count}</CallToArms_DrafterCount_Label>
+	<CallToArms_Not_Selected_Description>No colonists selected for the call.</CallToArms_Not_Selected_Description>
+	<CallToArms_HasNot_Draftable_Description>No colonists available for drafting.</CallToArms_HasNot_Draftable_Description>
+	<CallToArms_Selected_Description>Calls the colonists assigned to this building to arms.</CallToArms_Selected_Description>
+	<CallToArms_All_Label>Call to Arms (All)</CallToArms_All_Label>
+	<CallToArms_All_Description>Calls all colonists to arms.</CallToArms_All_Description>
+	<CallToArms_AllowCarryingBaby_Label>Allow Colonists Carrying Babies</CallToArms_AllowCarryingBaby_Label>
+	<CallToArms_AllowCarryingBaby_Description>Allows colonists carrying babies to be called to arms. They will first bring the baby to a safe location before moving to the designated spot.</CallToArms_AllowCarryingBaby_Description>
+	<CallToArms_AllowDraftChild_Label>Allow Child Colonists</CallToArms_AllowDraftChild_Label>
+	<CallToArms_AllowCarryingBaby_Description>Allows young or not fully grown colonists to be called to arms.</CallToArms_AllowCarryingBaby_Description>
+	<CallToArms_AllowDraftWithoutWeapon_Label>Allow Unarmed Draft</CallToArms_AllowDraftWithoutWeapon_Label>
+	<CallToArms_AllowDraftWithoutUtility_Label>Allow Draft Without Utility</CallToArms_AllowDraftWithoutUtility_Label>
+
+	<CallToArms_Tab_EquipmentSelecter>Equipment</CallToArms_Tab_EquipmentSelecter>
+	<CallToArms_Tab_DraftSelecter>Draft</CallToArms_Tab_DraftSelecter>
+	
+	<CallToArms_Button_DraftAll>Draft All</CallToArms_Button_DraftAll>
+	<CallToArms_Button_DraftAreaEmpty>No Area Set (Nearby)</CallToArms_Button_DraftAreaEmpty>
+	
+	<CallToArms_Message_DraftAreaNotEnough>Not enough space in the draft area. {count} of colonists could not be drafted.</CallToArms_Message_DraftAreaNotEnough>
+	<CallToArms_Message_DraftCancelByCarryingBaby>{count} of colonists could not be drafted because they are carrying babies.</CallToArms_Message_DraftCancelByCarryingBaby>
+	
+</LanguageData>

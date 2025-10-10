@@ -2,12 +2,12 @@
 <Defs>
 
   <DesignationCategoryDef>
-		<defName>Decoration</defName>
-		<label>decoration</label>
+		<defName>TinyBuildings</defName>
+		<label>tiny</label>
 		<order>550</order>
 		<specialDesignatorClasses>
-			<li>Designator_Cancel</li>
-			<li>Designator_Deconstruct</li>
+			<li>TinyBuilder.Designator_DeconstructNearestTiny</li>
+			<li>TinyBuilder.Designator_SelectNearestTiny</li>
 			<li>TinyBuilder.Designator_ClearTinyOffsets</li>
 		</specialDesignatorClasses>
 	</DesignationCategoryDef>

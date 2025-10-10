@@ -7,6 +7,7 @@
 	<ThingDef ParentName="Bed" Name="WoodBed">
 		<defName>WoodBed</defName>
 		<label>wood bed</label>
+		<description>A cozy mattress and sheets on a wooden frame for resting.</description>
 		<graphicData>
 			<texPath>Things/Building/Furniture/Bed/WoodBed</texPath>
 		</graphicData>
@@ -23,6 +24,7 @@
 	<ThingDef ParentName="DoubleBed" Name="WoodDoubleBed">
 		<defName>WoodDoubleBed</defName>
 		<label>wood double bed</label>
+		<description>A simple double-wide wooden bed that fits two people.</description>
 		<graphicData>
 			<texPath>Things/Building/Furniture/Bed/WoodDoubleBed</texPath>
 		</graphicData>
