@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<LanguageData>
+  <CurbStoneBase.description>길을 표시하기 위한 경계석입니다.</CurbStoneBase.description>
+
+  <CurbStoneStraight.label>직선 경계석</CurbStoneStraight.label>
+  <CurbStoneCorner.label>모퉁이 경계석</CurbStoneCorner.label>
+  <CurbStoneEdge.label>모서리 경계석</CurbStoneEdge.label>
+  <CurbStoneDoubleEdge.label>양측 모서리 경계석</CurbStoneDoubleEdge.label>
+  <CurbStoneDoubleEdgeEnd.label>직선과 양측 모서리 경계석</CurbStoneDoubleEdgeEnd.label>
+  <CurbStoneLeftEdgeEnd.label>직선과 좌측 모서리 경계석</CurbStoneLeftEdgeEnd.label>
+  <CurbStoneRightEdgeEnd.label>직선과 우측 모서리 경계석</CurbStoneRightEdgeEnd.label>
+  <CurbStoneTripleEdge.label>세 방향 모서리 경계석</CurbStoneTripleEdge.label>
+  <CurbStoneEveryEdge.label>전방향 모서리 경계석</CurbStoneEveryEdge.label>
+  <CurbStoneSquare.label>전방향 직선 경계석</CurbStoneSquare.label>
+  <CurbStoneDoubleStraight.label>양방향 직선 경계석</CurbStoneDoubleStraight.label>
+  <CurbStoneDoubleCorner.label>양방향 모퉁이 경계석</CurbStoneDoubleCorner.label>
+  <CurbStoneDoubleEnd.label>양방향 마무리 경계석</CurbStoneDoubleEnd.label>
+</LanguageData>

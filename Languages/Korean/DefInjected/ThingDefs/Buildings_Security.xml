@@ -3,8 +3,8 @@
 <LanguageData>
   <EmergencyAlarm.label>경보기</EmergencyAlarm.label>
 	<EmergencyAlarm.description>반경 12타일 내의 위치로 정착민을 소집시킬 수 있는 경보기입니다. 벽에 설치할 수 있습니다.</EmergencyAlarm.description>
-	<MiniTownBell.label>작은 경고용 종</MiniTownBell.label>
-	<MiniTownBell.description>반경 12타일 내의 위치로 정착민을 소집시킬 수 있는 작은 종입니다.</MiniTownBell.description>
-	<MediumTownBell.label>경고용 종</MediumTownBell.label>
-	<MediumTownBell.description>반경 25타일 내의 위치로 정착민을 소집시킬 수 있는 중간 크기의 종입니다.</MediumTownBell.description>
+  <Mini_Town_Bell.label>작은 경고용 종</Mini_Town_Bell.label>
+  <Mini_Town_Bell.description>반경 12타일 내의 위치로 정착민을 소집시킬 수 있는 작은 종입니다.</Mini_Town_Bell.description>
+  <Medium_Town_Bell.label>경고용 종</Medium_Town_Bell.label>
+  <Medium_Town_Bell.description>반경 25타일 내의 위치로 정착민을 소집시킬 수 있는 중간 크기의 종입니다.</Medium_Town_Bell.description>
 </LanguageData>
