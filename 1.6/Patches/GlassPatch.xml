@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Glass"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="TinyWineGlass"]/costList/Steel</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="TinyWineGlass"]/costList/Steel</xpath>
+            <value>
+              <Glass>1</Glass>
+            </value>
+          </match>
+        </li>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="GlassWall"]/costList/Steel</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="GlassWall"]/costList/Steel</xpath>
+            <value>
+              <Glass>1</Glass>
+            </value>
+          </match>
+        </li>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="GlassDoor"]/costList/Steel</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="GlassDoor"]/costList/Steel</xpath>
+            <value>
+              <Glass>2</Glass>
+              <Steel>10</Steel>
+            </value>
+          </match>
+        </li>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="GlassAutodoor"]/costList/Steel</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="GlassAutodoor"]/costList/Steel</xpath>
+            <value>
+              <Glass>2</Glass>
+              <Steel>30</Steel>
+            </value>
+          </match>
+        </li>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="MirrorBase"]/costList/Steel</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="MirrorBase"]/costList/Steel</xpath>
+            <value>
+              <Glass>2</Glass>
+            </value>
+          </match>
+        </li>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="Window"]/costList/Steel</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="Window"]/costList/Steel</xpath>
+            <value>
+              <Glass>2</Glass>
+            </value>
+          </match>
+        </li>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ResearchProjectDef[defName="GlassworksResearch"]</xpath>
+          <match Class="PatchOperationSequence">
+            <operations>
+
+              <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="TinyWineGlass" or defName="GlassWall" or defName="GlassDoor" or defName="GlassAutodoor" or defName="MirrorBase" or defName="Window"]/researchPrerequisites[not(li[text()="GlassworksResearch"])]</xpath>
+                <value>
+                  <li>GlassworksResearch</li>
+                </value>
+              </li>
+
+              <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[(defName="TinyWineGlass" or defName="GlassWall" or defName="GlassDoor" or defName="GlassAutodoor" or defName="MirrorBase" or defName="Window") and not(researchPrerequisites)]</xpath>
+                <value>
+                  <researchPrerequisites>
+                    <li>GlassworksResearch</li>
+                  </researchPrerequisites>
+                </value>
+              </li>
+
+            </operations>
+          </match>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
