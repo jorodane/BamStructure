@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
-	<WoodBed.label>나무 침대</WoodBed.label>
+	<WoodBed.label>침대</WoodBed.label>
 	<WoodBed.description>아늑한 매트리스와 천으로 덮여있는 나무 침대입니다.</WoodBed.description>
-	<WoodDoubleBed.label>나무 큰 침대</WoodDoubleBed.label>
+	<WoodDoubleBed.label>큰 침대</WoodDoubleBed.label>
 	<WoodDoubleBed.description>간단한 2인용 나무 침대입니다.</WoodDoubleBed.description>
-	<GoldRoyalBed.label>금 고급 침대</GoldRoyalBed.label>
+	<GoldRoyalBed.label>고급 침대</GoldRoyalBed.label>
 	<GoldRoyalBed.description>금으로 장식까지 한, 높으신 분들을 위한 호화로운 금 침대입니다. 매우 편하고 두 명까지 누울 수 있습니다.</GoldRoyalBed.description>
 	<SchoolChair.label>교실 의자</SchoolChair.label>
 	<SchoolChair.description>사람들이 앉을 수 있는 불편하고 매력적인 의자입니다.</SchoolChair.description>

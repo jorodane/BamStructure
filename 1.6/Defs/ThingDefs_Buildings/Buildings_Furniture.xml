@@ -6,7 +6,7 @@
 	<!-- Beds -->
 	<ThingDef ParentName="Bed" Name="WoodBed">
 		<defName>WoodBed</defName>
-		<label>wood bed</label>
+		<label>bed</label>
 		<description>A cozy mattress and sheets on a wooden frame for resting.</description>
 		<graphicData>
 			<texPath>Things/Building/Furniture/Bed/WoodBed</texPath>
@@ -19,11 +19,12 @@
 		<costList>
 			<WoodLog>45</WoodLog>
 		</costList>
+		<uiOrder>2020</uiOrder>
 	</ThingDef>
 
 	<ThingDef ParentName="DoubleBed" Name="WoodDoubleBed">
 		<defName>WoodDoubleBed</defName>
-		<label>wood double bed</label>
+		<label>double bed</label>
 		<description>A simple double-wide wooden bed that fits two people.</description>
 		<graphicData>
 			<texPath>Things/Building/Furniture/Bed/WoodDoubleBed</texPath>
@@ -36,11 +37,12 @@
 		<costList>
 			<WoodLog>85</WoodLog>
 		</costList>
+		<uiOrder>2020</uiOrder>
 	</ThingDef>
 
 	<ThingDef ParentName="BasicBedBase" Name="GoldRoyalBed">
 		<defName>GoldRoyalBed</defName>
-		<label>gold royal bed</label>
+		<label>royal bed</label>
 		<description>A luxurious gold-inlaid bed fit for the highborn. Very comfy and beautiful, it is a work of art in itself. Fits two.</description>
 		<graphicData>
 			<texPath>Things/Building/Furniture/Bed/GoldRoyalBed</texPath>
@@ -78,6 +80,7 @@
 		<building>
 			<paintable>true</paintable>
 		</building>
+		<uiOrder>2020</uiOrder>
 	</ThingDef>
 
 
