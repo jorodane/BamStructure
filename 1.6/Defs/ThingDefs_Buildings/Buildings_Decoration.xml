@@ -553,7 +553,7 @@
 		</stuffCategories>
 		<costStuffCount>1</costStuffCount>
 		<costList>
-			<Steel>2</Steel>
+			<WoodLog>2</WoodLog>
 		</costList>
 		<statBases>
 			<WorkToBuild>100</WorkToBuild>
