@@ -788,6 +788,7 @@
 	</ThingDef>
 
 	<ThingDef Abstract ="true" ParentName="TinyBase_Asc" Name ="TinyLamp">
+		<thingClass>TinyBuilder.Building_TinyLamp</thingClass>
 		<statBases>
 			<WorkToBuild>100</WorkToBuild>
 			<MaxHitPoints>100</MaxHitPoints>
@@ -819,9 +820,9 @@
 					</li>
 				</powerUpgrades>
 			</li>
-			<li Class="CompProperties_Glower">
+			<li Class="TinyBuilder.CompProperties_GlowerWithNotify">
 				<glowRadius>1</glowRadius>
-				<glowColor>(214,148,94,0)</glowColor>
+				<glowColor>(255,255,255,0)</glowColor>
 				<colorPickerEnabled>true</colorPickerEnabled>
 				<darklightToggle>true</darklightToggle>
 			</li>

@@ -600,6 +600,21 @@ namespace TinyBuilder
 
     }
 
+    public class CompProperties_GlowerWithNotify : CompProperties_Glower
+    {
+        public CompProperties_GlowerWithNotify() => compClass = typeof(CompGlowerWithNotify);
+    }
+
+    public class CompGlowerWithNotify : CompGlower
+    {
+        public event System.Action OnColorChanged;
+        protected override void SetGlowColorInternal(ColorInt? color)
+        {
+            base.SetGlowColorInternal(color);
+            OnColorChanged?.Invoke();
+        }
+    }
+
     public class CompProperties_TinyThing : CompProperties
     {
         public CompProperties_TinyThing() => compClass = typeof(CompTinyThing);
@@ -643,7 +658,6 @@ namespace TinyBuilder
 
             (parent as Building_Tiny)?.InitTiny(this);
         }
-
     }
 
     public class Building_Tiny : Building
@@ -661,7 +675,6 @@ namespace TinyBuilder
             InitTiny(GetComp<CompTinyThing>());
         }
 
-
         public override Vector3 DrawPos => base.DrawPos + (asTiny?.drawOffset ?? Vector3.zero);
 
         public override void Print(SectionLayer layer)
@@ -669,16 +682,46 @@ namespace TinyBuilder
             if (asTiny == null || Graphic == null) { base.Print(layer); return; }
 
             Rot4 currentRotation = Rotation;
-            Vector3 position = DrawPos + def.graphicData.DrawOffsetForRot(currentRotation); ;
+            Vector3 position = DrawPos + def.graphicData.DrawOffsetForRot(currentRotation);
             position.y = def.altitudeLayer.AltitudeFor();
             if (asTiny.Props.sortDescending) position.y += position.z * 0.0001f;
             Material mat = Graphic.MatAt(Rotation, this);
             bool needFlip = Graphic.NeedFlip(currentRotation);
             Vector2 finalSize = Graphic.drawSize;
             float angle = Graphic.ShouldDrawRotated ? Rotation.AsAngle : 0;
+
             Printer_Plane.PrintPlane(layer, position, finalSize, mat, angle, needFlip);
         }
     }
+
+    public class Building_TinyLamp : Building_Tiny
+    {
+        CompGlowerWithNotify asGlower;
+        public override Color DrawColorTwo
+        {
+            get
+            {
+                if (asGlower == null) return base.DrawColorTwo;
+                else return asGlower.GlowColor.ToColor + Color.black;
+            }
+        }
+
+        public void InitGlow()
+        {
+            if(this.TryGetComp(out asGlower))
+            {
+                asGlower.OnColorChanged -= Notify_ColorChanged;
+                asGlower.OnColorChanged += Notify_ColorChanged;
+            }
+        }
+
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            InitGlow();
+        }
+    }
+
 
 
     public class Placeworker_TinyThing : PlaceWorker
