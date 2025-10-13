@@ -3,6 +3,64 @@ using HarmonyLib;
 using Verse;
 using UnityEngine;
 
+namespace RoofsOnRoofs
+{
+    [StaticConstructorOnStartup]
+    public static class RoofsOnRoofsHarmonyInit
+    {
+        static RoofsOnRoofsHarmonyInit()
+        {
+            Harmony harmony = new Harmony("RoofsOnRoofs.RoofBuilder");
+            harmony.PatchAll();
+        }
+    }
+
+    public static class RoofsOnRoofsTextures
+    {
+        static Material _RoofIcon;
+        public static Material RoofIcon
+        {
+            get
+            {
+                if (_RoofIcon == null) _RoofIcon = MaterialPool.MatFrom("UI/Buttons/ShowRoofGraphicOverlay", ShaderDatabase.Transparent);
+                return _RoofIcon;
+            }
+        }
+    }
+    public class RoofsOnRoofsGameComponent : GameComponent
+    {
+        static bool showRoof = false;
+        public RoofsOnRoofsGameComponent(Game game) { }
+
+        public override void ExposeData()
+        {
+            Scribe_Values.Look(ref showRoof, "ShowRoofGraphic", false);
+        }
+
+        public static void SetGraphic(bool show)
+        {
+            showRoof = show;
+            Refresh();
+        }
+
+        public static void Refresh()
+        {
+            Find.CurrentMap?.mapDrawer?.WholeMapChanged(MapMeshFlagDefOf.Roofs);
+        }
+    }
+
+    public class RoofsOnRoofsMapComponent : MapComponent
+    {
+        public RoofsOnRoofsMapComponent(Map map) : base (map) { }
+
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+            RoofsOnRoofsGameComponent.Refresh();
+        }
+    }
+}
+
 namespace TinyBuilder
 {
 

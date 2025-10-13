@@ -144,7 +144,6 @@
     <defName>LightPenMarker</defName>
     <label>light pen marker</label>
     <description>A post with a sign designating an animal pen. It must be placed in an area enclosed by fences, barricades, walls, and doors. You can assign each pen marker a set of animals to accept, and handlers will bring animals to an appropriate pen. and can light up your pen</description>
-	<thingClass>BamStructure.Building_GlowerColored</thingClass>
     <tickerType>Long</tickerType>
 	<designationCategory>Misc</designationCategory>
     <uiOrder>2065</uiOrder>
@@ -213,7 +212,7 @@
         </powerUpgrades>
       </li>
       <li Class="CompProperties_Styleable" />
-      <li Class="BamStructure.CompProperties_GlowerWithNotify">
+      <li Class="CompProperties_Glower">
         <glowRadius>11</glowRadius>
         <glowColor>(214,148,94,0)</glowColor>
         <colorPickerEnabled>true</colorPickerEnabled>
