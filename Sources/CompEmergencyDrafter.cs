@@ -50,8 +50,8 @@ namespace CallToArms
 
         Rect windowRect, headerRect, copyRect, pasteRect, withWeaponLabelRect, withWeaponCheckRect, withUtilityLabelRect, withUtilityCheckRect, filterRect;
 
-		public string GetDraftAllowDraftWithoutWeaponLabelString() => "CallToArms_AllowDraftWithoutWeapon_Label".Translate();
-		public string GetDraftAllowDraftWithoutUtilityLabelString() => "CallToArms_AllowDraftWithoutUtility_Label".Translate();
+		public static string GetDraftAllowDraftWithoutWeaponLabelString() => "CallToArms_AllowDraftWithoutWeapon_Label".Translate();
+		public static string GetDraftAllowDraftWithoutUtilityLabelString() => "CallToArms_AllowDraftWithoutUtility_Label".Translate();
 
 		public ITab_EquipmentSetting()
 		{
@@ -364,31 +364,36 @@ namespace CallToArms
                     foreach (Job currentQueue in origins) pawn.jobs.jobQueue.EnqueueLast(currentQueue);
                 }
             });
+
+            Toil end = new Toil();
+            end.initAction = () => EndJobWith(JobCondition.Succeeded);
+            end.defaultCompleteMode = ToilCompleteMode.Instant;
+            yield return end;
         }
     }
 
 
     public class CompEmergencyDrafter : ThingComp
     {
-        public Texture2D GetCallToArms4Selected_MenuIcon() => ContentFinder<Texture2D>.Get("UI/Commands/CallToArms_Selected", true);
-        public string GetCallToArms4SelectedLabelString() => "CallToArms_Selected_Label".Translate();
-        public string GetCallToArms4SelectedDescriptionString() => "CallToArms_Selected_Description".Translate();
-        public string GetCallToArms4NotSelectedDescriptionString() => "CallToArms_Not_Selected_Description".Translate();
-        public string GetCallToArms4HasNotDraftableDescriptionString() => "CallToArms_HasNot_Draftable_Description".Translate();
+        public static Texture2D GetCallToArms4Selected_MenuIcon() => ContentFinder<Texture2D>.Get("UI/Commands/CallToArms_Selected", true);
+        public static string GetCallToArms4SelectedLabelString() => "CallToArms_Selected_Label".Translate();
+        public static string GetCallToArms4SelectedDescriptionString() => "CallToArms_Selected_Description".Translate();
+        public static string GetCallToArms4NotSelectedDescriptionString() => "CallToArms_Not_Selected_Description".Translate();
+        public static string GetCallToArms4HasNotDraftableDescriptionString() => "CallToArms_HasNot_Draftable_Description".Translate();
 
-        public Texture2D GetCallToArms4All_MenuIcon() => ContentFinder<Texture2D>.Get("UI/Commands/CallToArms_All", true);
-        public string GetCallToArms4AllLabelString() => "CallToArms_All_Label".Translate();
-        public string GetCallToArms4AllDescriptionString() => "CallToArms_All_Description".Translate();
+        public static Texture2D GetCallToArms4All_MenuIcon() => ContentFinder<Texture2D>.Get("UI/Commands/CallToArms_All", true);
+        public static string GetCallToArms4AllLabelString() => "CallToArms_All_Label".Translate();
+        public static string GetCallToArms4AllDescriptionString() => "CallToArms_All_Description".Translate();
 
-		public Texture2D GetDraftAllowCarryingBaby_MenuIcon() => ContentFinder<Texture2D>.Get("UI/Commands/DraftWithBaby", true);
-		public string GetDraftAllowCarryingBabyLabelString() => "CallToArms_AllowCarryingBaby_Label".Translate();
-		public string GetDraftAllowCarryingBabyDescriptionString() => "CallToArms_AllowCarryingBaby_Description".Translate();
-		public Texture2D GetDraftAllowDraftChild_MenuIcon() => ContentFinder<Texture2D>.Get("UI/Commands/DraftChild", true);
-		public string GetDraftAllowDraftChildLabelString() => "CallToArms_AllowDraftChild_Label".Translate();
-		public string GetDraftAllowDraftChildDescriptionString() => "CallToArms_AllowDraftChild_Description".Translate();
+		public static Texture2D GetDraftAllowCarryingBaby_MenuIcon() => ContentFinder<Texture2D>.Get("UI/Commands/DraftWithBaby", true);
+		public static string GetDraftAllowCarryingBabyLabelString() => "CallToArms_AllowCarryingBaby_Label".Translate();
+		public static string GetDraftAllowCarryingBabyDescriptionString() => "CallToArms_AllowCarryingBaby_Description".Translate();
+		public static Texture2D GetDraftAllowDraftChild_MenuIcon() => ContentFinder<Texture2D>.Get("UI/Commands/DraftChild", true);
+		public static string GetDraftAllowDraftChildLabelString() => "CallToArms_AllowDraftChild_Label".Translate();
+		public static string GetDraftAllowDraftChildDescriptionString() => "CallToArms_AllowDraftChild_Description".Translate();
 
-		public string GetDraftAreaNotEnoughString(int count) => "CallToArms_Message_DraftAreaNotEnough".Translate(count.Named("count"));
-		public string GetDraftCancelByCarryingBabyString(int count) => "CallToArms_Message_DraftCancelByCarryingBaby".Translate(count.Named("count"));
+		public static string GetDraftAreaNotEnoughString(int count) => "CallToArms_Message_DraftAreaNotEnough".Translate(count.Named("count"));
+		public static string GetDraftCancelByCarryingBabyString(int count) => "CallToArms_Message_DraftCancelByCarryingBaby".Translate(count.Named("count"));
         public static string GetDrafterCountString(int count) => "CallToArms_DrafterCount_Label".Translate(count.Named("count"));
 
         List<Pawn> selectedColonist = new List<Pawn>();
@@ -630,9 +635,10 @@ namespace CallToArms
 			Map map = target.Map;
 			if (map != parent.Map) return;
 
-			target.jobs.ClearQueuedJobs();
-
 			Queue<Job> jobs = new Queue<Job>();
+			bool shiftPressed = Event.current.shift;
+			if(!shiftPressed) target.jobs.ClearQueuedJobs();
+
 
 			Pawn carryingBaby = target.IsCarryingBaby();
 			if (draftCarryingBaby && carryingBaby != null)
@@ -644,7 +650,8 @@ namespace CallToArms
 			}
 			else
 			{
-				target.drafter.Drafted = true;
+				if(shiftPressed) JobEnqueue(jobs, JobMaker.MakeJob(CallToArmsDefs.DraftAsJob));
+                else target.drafter.Drafted = true;
 			}
 
 			JobEnqueue(jobs, JobMaker.MakeJob(JobDefOf.Goto, location));
@@ -706,8 +713,7 @@ namespace CallToArms
 				JobEnqueue(jobs, JobMaker.MakeJob(JobDefOf.Goto, location));
 			}
 
-
-            Job firstJob = jobs.Dequeue();
+            Job firstJob = shiftPressed ? target.jobs.curJob : jobs.Dequeue();
 			foreach (Job currentJob in jobs) target.jobs.jobQueue.EnqueueLast(currentJob);
 
 			target.jobs.StartJob(firstJob, JobCondition.InterruptForced, target.thinker.MainThinkNodeRoot, false, true, null, JobTag.DraftedOrder, true);

@@ -60,6 +60,7 @@
     <Compile Include="JobDriver_WatchFace.cs" />
     <Compile Include="JoyGiver_WatchFace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoofsOnRoofs.cs" />
     <Compile Include="TinyBuilder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

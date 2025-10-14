@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LanguageData>
+
+	<RoofsOnRoofs_ShowRoofGraphicToggle_Description>지붕 그래픽 보이기 토글</RoofsOnRoofs_ShowRoofGraphicToggle_Description>
+
+	<RoofsOnRoofs_DeconstructRoof_Label>지붕 장식 해체</RoofsOnRoofs_DeconstructRoof_Label>
+	<RoofsOnRoofs_DeconstructRoof_Description>지붕 위에 건설한 장식을 해체합니다.</RoofsOnRoofs_DeconstructRoof_Description>
+	
+</LanguageData>

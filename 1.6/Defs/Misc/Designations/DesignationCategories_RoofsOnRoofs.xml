@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <DesignationCategoryDef>
+		<defName>DesignationCategory_Roofs</defName>
+		<label>roof (Beta)</label>
+		<order>550</order>
+		<specialDesignatorClasses>
+			<li>Designator_AreaBuildRoof</li>
+			<li>Designator_AreaNoRoof</li>
+			<li>Designator_AreaIgnoreRoof</li>
+			<li>RoofsOnRoofs.Designator_DeconstructRoof</li>
+		</specialDesignatorClasses>
+	</DesignationCategoryDef>
+
+</Defs>

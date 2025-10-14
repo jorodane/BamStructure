@@ -5,58 +5,88 @@ using UnityEngine;
 
 namespace RoofsOnRoofs
 {
-    [StaticConstructorOnStartup]
-    public static class RoofsOnRoofsHarmonyInit
+    ////Harmony Patch for Single Mod
+    //
+    //[StaticConstructorOnStartup]
+    //public static class RoofsOnRoofsHarmonyInit
+    //{
+    //    static RoofsOnRoofsHarmonyInit()
+    //    {
+    //        Harmony harmony = new Harmony("RoofsOnRoofs.RoofBuilder");
+    //        harmony.PatchAll();
+    //    }
+    //}
+
+    [DefOf]
+    public static class RoofsOnRoofsDefs
     {
-        static RoofsOnRoofsHarmonyInit()
-        {
-            Harmony harmony = new Harmony("RoofsOnRoofs.RoofBuilder");
-            harmony.PatchAll();
-        }
+        public static DesignationCategoryDef DesignationCategory_Roofs;
     }
 
+    [StaticConstructorOnStartup]
     public static class RoofsOnRoofsTextures
     {
-        static Material _RoofIcon;
-        public static Material RoofIcon
+        static Texture2D _roofIcon;
+        public static Texture2D RoofIcon
         {
             get
             {
-                if (_RoofIcon == null) _RoofIcon = MaterialPool.MatFrom("UI/Buttons/ShowRoofGraphicOverlay", ShaderDatabase.Transparent);
-                return _RoofIcon;
+                if (_roofIcon == null)
+                {
+                    _roofIcon = ContentFinder<Texture2D>.Get("UI/Buttons/ShowRoofGraphicOverlay") ?? TexButton.ShowRoofOverlay;
+                }
+                return _roofIcon;
             }
         }
     }
     public class RoofsOnRoofsGameComponent : GameComponent
     {
-        static bool showRoof = false;
+        public static event System.Action<bool> OnVisibleChanged;
+
+        static bool _lastShow = false;
+        public static bool IsShowing => _lastShow;
+
+        static bool _roofTab = false;
+        public static bool RoofTab
+        {
+            get { return _roofTab; }
+            set
+            {
+                if (_roofTab == value) return;
+                _roofTab = value;
+                UpdateShower();
+            }
+        }
+
+        static bool _showRoof = false;
+
+        public static bool ShowRoof
+        {
+            get { return _showRoof; }
+            set
+            {
+                if (_showRoof == value) return;
+                _showRoof = value;
+                UpdateShower();
+            }
+        }
+
+        static void UpdateShower()
+        {
+            bool currentShow = _showRoof || _roofTab;
+            if (_lastShow != currentShow)
+            {
+                _lastShow = currentShow;
+                OnVisibleChanged?.Invoke(currentShow);
+            }
+        }
+
         public RoofsOnRoofsGameComponent(Game game) { }
 
         public override void ExposeData()
         {
-            Scribe_Values.Look(ref showRoof, "ShowRoofGraphic", false);
-        }
-
-        public static void SetGraphic(bool show)
-        {
-            showRoof = show;
-            Refresh();
-        }
-
-        public static void Refresh()
-        {
-            Find.CurrentMap?.mapDrawer?.WholeMapChanged(MapMeshFlagDefOf.Roofs);
-        }
-    }
-
-    public class RoofsOnRoofsMapComponent : MapComponent
-    {
-        public RoofsOnRoofsMapComponent(Map map) : base (map) { }
-
-        public override void FinalizeInit()
-        {
-            base.FinalizeInit();
-            RoofsOnRoofsGameComponent.Refresh();
+            Scribe_Values.Look(ref _showRoof, "ShowRoofGraphic", false);
+            UpdateShower();
         }
     }
 }
@@ -74,6 +104,7 @@ namespace TinyBuilder
 		}
 	}
 
+	[StaticConstructorOnStartup]
     public static class TinyBuilderTextures
     {
         static Material _LFrameMat;
@@ -96,6 +127,7 @@ namespace CallToArms
         public static JobDef DraftAsJob;
     }
 
+	[StaticConstructorOnStartup]
     public static class CallToArmsTextures
     {
         static Texture2D _copyTexture;

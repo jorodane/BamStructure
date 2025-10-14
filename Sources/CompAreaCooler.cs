@@ -60,7 +60,7 @@ namespace BamStructure
 
         public bool IsOn => (Power != null && Power.PowerOn) && (Flick == null || Flick.SwitchIsOn);
 
-		public string GetIconPath(int level)
+		public static string GetIconPath(int level)
 		{
 			switch (level)
 			{
@@ -71,7 +71,7 @@ namespace BamStructure
 		}
 
 
-		public string GetLevelNamedArgument(int level)
+		public static string GetLevelNamedArgument(int level)
 		{
 			switch (level)
 			{
@@ -81,9 +81,9 @@ namespace BamStructure
 			}
 		}
 
-		public string GetLevelString(int level) => GetLevelNamedArgument(level).Translate();
+		public static string GetLevelString(int level) => GetLevelNamedArgument(level).Translate();
 
-		public string GetLevelDescriptionString(int level)
+		public static string GetLevelDescriptionString(int level)
 		{
 			return "BamStructure_Fan_Level_Desc".Translate(GetLevelString(level).Translate().Named("CurrentLevel"));
 		}

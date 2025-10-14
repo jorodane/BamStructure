@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="BuildingBase" Name="RoofBase" Abstract="True">
+		<thingClass>RoofsOnRoofs.Building_Roof</thingClass>
+		<category>Building</category>
+		<replaceTags>
+			<li>Roof</li>
+		</replaceTags>
+		<altitudeLayer>PawnUnused</altitudeLayer>
+		<passability>Standable</passability>
+		<pathCost>0</pathCost>
+		<coversFloor>false</coversFloor>
+		<blockWind>false</blockWind>
+		<clearBuildingArea>false</clearBuildingArea>
+		<noRightClickDraftAttack>true</noRightClickDraftAttack>
+		<drawStyleCategory>Floors</drawStyleCategory>
+		<tickerType>Never</tickerType>
+		<selectable>false</selectable>
+		<neverMultiSelect>true</neverMultiSelect>
+		<designationCategory>DesignationCategory_Roofs</designationCategory>
+		<uiOrder>2000</uiOrder>
+		<canOverlapZones>true</canOverlapZones>
+		<statBases>
+			<MaxHitPoints>300</MaxHitPoints>
+			<WorkToBuild>10</WorkToBuild>
+			<Flammability>0.0</Flammability>
+		</statBases>
+		<building>
+			<paintable>true</paintable>
+			<isEdifice>false</isEdifice>
+		</building>
+		<placeWorkers>
+			<li>RoofsOnRoofs.Placeworker_Roof</li>
+		</placeWorkers>
+	</ThingDef>
+
+
+	<ThingDef ParentName="RoofBase" Name="TestRoof">
+		<defName>TestRoof</defName>
+		<label>test roof</label>
+		<graphicData>
+			<texPath>Things/Building/Linked/HalfHeightWall</texPath>
+			<graphicClass>Graphic_Appearances</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<linkType>CornerFiller</linkType>
+			<damageData>
+				<cornerTL>Damage/Corner</cornerTL>
+				<cornerTR>Damage/Corner</cornerTR>
+				<cornerBL>Damage/Corner</cornerBL>
+				<cornerBR>Damage/Corner</cornerBR>
+				<edgeTop>Damage/Edge</edgeTop>
+				<edgeBot>Damage/Edge</edgeBot>
+				<edgeLeft>Damage/Edge</edgeLeft>
+				<edgeRight>Damage/Edge</edgeRight>
+			</damageData>
+			<linkFlags>
+				<li>Custom9</li>
+			</linkFlags>
+		</graphicData>
+		<uiIconPath>Things/Building/Linked/HalfHeightWall/WallSmooth_MenuIcon</uiIconPath>
+		<uiIconPathsStuff>
+			<li>
+				<appearance>Planks</appearance>
+				<iconPath>Things/Building/Linked/HalfHeightWall/WallPlanks_MenuIcon</iconPath>
+			</li>
+			<li>
+				<appearance>Bricks</appearance>
+				<iconPath>Things/Building/Linked/HalfHeightWall/WallBricks_MenuIcon</iconPath>
+			</li>
+		</uiIconPathsStuff>
+		<rotatable>false</rotatable>
+		<costStuffCount>1</costStuffCount>
+		<stuffCategories>
+			<li>Stony</li>
+			<li>Metallic</li>
+		</stuffCategories>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Linked/Wall_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
+	</ThingDef>
+
+	<ThingDef Abstract ="true" ParentName="RoofBase" Name="BrickRoofBase">
+		<costStuffCount>1</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<graphicData>
+			<drawSize>(1.01,1.01)</drawSize>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="BrickRoofBase" Name="BrickRoof_Bright">
+		<defName>BrickRoof_Bright</defName>
+		<label>brick roof (bright)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/BrickRoof_Bright</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Roof/Roof_Blueprint_Bright</texPath>
+			</blueprintGraphicData>
+		</building>
+	</ThingDef>
+
+	<ThingDef ParentName="BrickRoofBase" Name="BrickRoof_Dark">
+		<defName>BrickRoof_Dark</defName>
+		<label>brick roof (dark)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/BrickRoof_Dark</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Roof/Roof_Blueprint_Dark</texPath>
+			</blueprintGraphicData>
+		</building>
+	</ThingDef>
+
+	<ThingDef ParentName="BrickRoofBase" Name="BrickRoof_Half">
+		<defName>BrickRoof_Half</defName>
+		<label>brick roof (half)</label>
+		<rotatable>true</rotatable>
+		<graphicData>
+			<texPath>Things/Building/Roof/BrickRoof_Half</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+		</graphicData>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Roof/Roof_Blueprint_Half</texPath>
+			</blueprintGraphicData>
+		</building>
+	</ThingDef>
+
+	<ThingDef ParentName="BrickRoofBase" Name="BrickRoof_Diagonal">
+		<defName>BrickRoof_Diagonal</defName>
+		<label>brick roof (diagonal)</label>
+		<rotatable>true</rotatable>
+		<graphicData>
+			<texPath>Things/Building/Roof/BrickRoof_Diagonal</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+		</graphicData>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Roof/Roof_Blueprint_Diagonal</texPath>
+			</blueprintGraphicData>
+		</building>
+	</ThingDef>
+
+</Defs>

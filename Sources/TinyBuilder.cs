@@ -66,6 +66,7 @@ namespace TinyBuilder
         }
 
     }
+
     [HarmonyPatch(typeof(Designator_Install), nameof(Designator_Install.CanDesignateCell))]
     static class Patch_DesignatorInstall_CanDesignateCell_Tiny
     {
@@ -183,7 +184,6 @@ namespace TinyBuilder
 
             Vector3 drawPos = center.ToVector3Shifted() + center.GetMouseOffset() + finalGraphic.DrawOffset(rot);
             drawPos.y = drawAltitude.AltitudeFor();
-
 
             Graphic ghost = GhostUtility.GhostGraphicFor(finalGraphic, thingDef, ghostCol);
             Graphics.DrawMesh(ghost.MeshAt(rot), drawPos, finalGraphic.ShouldDrawRotated ? rot.AsQuat : Quaternion.identity, ghost.MatAt(rot), 0);
@@ -405,10 +405,10 @@ namespace TinyBuilder
 
     public class Designator_ClearTinyOffsets : Designator
     {
-        public string GetTinyBuilderClear_Label() => "TinyBuilderClear_Label".Translate();
-        public string GetTinyBuilderClear_Description() => "TinyBuilderClear_Description".Translate();
-        public string GetTinyBuilderClear_Warning() => "TinyBuilderClear_Warning".Translate();
-        public string GetTinyBuilderClear_Complete() => "TinyBuilderClear_Complete".Translate();
+        public static string GetTinyBuilderClear_Label() => "TinyBuilderClear_Label".Translate();
+        public static string GetTinyBuilderClear_Description() => "TinyBuilderClear_Description".Translate();
+        public static string GetTinyBuilderClear_Warning() => "TinyBuilderClear_Warning".Translate();
+        public static string GetTinyBuilderClear_Complete() => "TinyBuilderClear_Complete".Translate();
 
         public Designator_ClearTinyOffsets()
         {
