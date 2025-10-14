@@ -1,10 +1,12 @@
-﻿using RimWorld;
+﻿using HarmonyLib;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using static UnityEngine.GraphicsBuffer;
 
 namespace CallToArms
 {
@@ -30,7 +32,7 @@ namespace CallToArms
 		}
 	}
 
-	public class ITab_EquipmentSetting : ITab
+    public class ITab_EquipmentSetting : ITab
 	{
 		static ThingFilter savedFilter = null;
 		static bool savedWithWeapon = false;
@@ -340,11 +342,7 @@ namespace CallToArms
 
 	public class Building_TownBell : Building
 	{
-		//public override void DrawExtraSelectionOverlays()
-		//{
-		//	base.DrawExtraSelectionOverlays();
-		//	InspectPaneUtility.OpenTab(typeof(ITab_DraftSetting));
-		//}
+
 	}
 
     public class JobDriver_DraftAsJob : JobDriver
@@ -360,15 +358,13 @@ namespace CallToArms
                     Queue<Job> origins = new Queue<Job>();
                     foreach (QueuedJob currentQueue in pawn.jobs.jobQueue.ToArray()) origins.Enqueue(currentQueue.job.Clone());
                     pawn.drafter.Drafted = true;
+					pawn.jobs.ClearQueuedJobs();
 
+                    Job firstJob = origins.Count > 0 ? origins.Dequeue() : null;
                     foreach (Job currentQueue in origins) pawn.jobs.jobQueue.EnqueueLast(currentQueue);
+                    pawn.jobs.StartJob(firstJob, JobCondition.InterruptForced, pawn.thinker.MainThinkNodeRoot, false, true, null, JobTag.DraftedOrder, true);
                 }
             });
-
-            Toil end = new Toil();
-            end.initAction = () => EndJobWith(JobCondition.Succeeded);
-            end.defaultCompleteMode = ToilCompleteMode.Instant;
-            yield return end;
         }
     }
 
@@ -636,27 +632,22 @@ namespace CallToArms
 			if (map != parent.Map) return;
 
 			Queue<Job> jobs = new Queue<Job>();
-			bool shiftPressed = Event.current.shift;
-			if(!shiftPressed) target.jobs.ClearQueuedJobs();
+			bool isShift = Event.current.shift;
+			if (!isShift) target.jobs.ClearQueuedJobs();
 
-
-			Pawn carryingBaby = target.IsCarryingBaby();
+            Pawn carryingBaby = target.IsCarryingBaby();
 			if (draftCarryingBaby && carryingBaby != null)
 			{
 				Job safetyJob = JobMaker.MakeJob(JobDefOf.BringBabyToSafety, carryingBaby);
 				safetyJob.count = 1;
                 JobEnqueue(jobs, safetyJob);
-				JobEnqueue(jobs, JobMaker.MakeJob(CallToArmsDefs.DraftAsJob));
-			}
-			else
-			{
-				if(shiftPressed) JobEnqueue(jobs, JobMaker.MakeJob(CallToArmsDefs.DraftAsJob));
-                else target.drafter.Drafted = true;
 			}
 
-			JobEnqueue(jobs, JobMaker.MakeJob(JobDefOf.Goto, location));
+            JobEnqueue(jobs, JobMaker.MakeJob(CallToArmsDefs.DraftAsJob));
+            JobEnqueue(jobs, JobMaker.MakeJob(JobDefOf.Goto, location));
 
-			bool isDisallowedWeapon = HasDisallowedWeapon(target, out ThingWithComps disallowedWeapon);
+
+            bool isDisallowedWeapon = HasDisallowedWeapon(target, out ThingWithComps disallowedWeapon);
 			bool needChangeWeapon = isDisallowedWeapon && disallowedWeapon != null;
 			bool isDisallowedUtility = HasDisallowedUtility(target, out Apparel disallowedUtility);
 			bool needChangeUtility = isDisallowedUtility && disallowedUtility != null;
@@ -713,10 +704,13 @@ namespace CallToArms
 				JobEnqueue(jobs, JobMaker.MakeJob(JobDefOf.Goto, location));
 			}
 
-            Job firstJob = shiftPressed ? target.jobs.curJob : jobs.Dequeue();
-			foreach (Job currentJob in jobs) target.jobs.jobQueue.EnqueueLast(currentJob);
+			if (!isShift)
+			{
+				Job firstJob = jobs.Dequeue();
+				target.jobs.StartJob(firstJob, JobCondition.InterruptForced, target.thinker.MainThinkNodeRoot, false, true, null, JobTag.DraftedOrder, true);
+            }
 
-			target.jobs.StartJob(firstJob, JobCondition.InterruptForced, target.thinker.MainThinkNodeRoot, false, true, null, JobTag.DraftedOrder, true);
+            foreach (Job currentJob in jobs) target.jobs.jobQueue.EnqueueLast(currentJob);
         }
 
 		public virtual void JobEnqueue(Queue<Job> result, Job wantJob)
@@ -746,7 +740,6 @@ namespace CallToArms
 			.ToList();
 			CalltoArms(draftTargets);
 		}
-
 
 		public void OnCallToArms4All()
         {
