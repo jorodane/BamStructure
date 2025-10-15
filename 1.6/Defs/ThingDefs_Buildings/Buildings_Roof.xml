@@ -4,7 +4,7 @@
 	<ThingDef ParentName="BuildingBase" Name="RoofBase" Abstract="True">
 		<thingClass>RoofsOnRoofs.Building_Roof</thingClass>
 		<category>Building</category>
-		<altitudeLayer>Skyfaller</altitudeLayer>
+		<altitudeLayer>FogOfWar</altitudeLayer>
 		<passability>Standable</passability>
 		<pathCost>0</pathCost>
 		<coversFloor>false</coversFloor>
@@ -72,7 +72,7 @@
 	<ThingDef ParentName="RoofBase" Name="Roof_WallSide">
 		<defName>Roof_WallSide</defName>
 		<label>wall side</label>
-		<altitudeLayer>Gas</altitudeLayer>
+		<altitudeLayer>VisEffects</altitudeLayer>
 		<replaceTags>
 			<li>WallSide</li>
 		</replaceTags>
