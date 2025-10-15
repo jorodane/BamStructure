@@ -121,18 +121,6 @@ namespace RoofsOnRoofs
 
     public class Placeworker_Roof : PlaceWorker
     {
-        //public override void DrawGhost(ThingDef def, IntVec3 center, Rot4 rot, Color ghostCol, Thing thing = null)
-        //{
-        //    Graphic finalGraphic = def.graphic;
-        //    if (finalGraphic == null) return;
-
-        //    Material mat = finalGraphic.MatAt(rot);
-        //    if (mat == null) return;
-        //    ghostCol.a = 0.8f;
-        //    mat.color = ghostCol;
-        //    Graphics.DrawMesh(finalGraphic.MeshAt(rot), center.ToVector3ShiftedWithAltitude(AltitudeLayer.Darkness), finalGraphic.ShouldDrawRotated ? rot.AsQuat : Quaternion.identity, mat, 0);
-        //}
-
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null)
         {
             return map.roofGrid.Roofed(loc);

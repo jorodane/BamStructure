@@ -598,5 +598,29 @@
       <isStuffableAirtight>true</isStuffableAirtight>
     </building>
   </ThingDef>
+	
+	<ThingDef Name="FilledDoor" ParentName="DoorBase">
+    <defName>FilledDoor</defName>
+    <label>filled door</label>
+		<statBases>
+			<WorkToBuild>900</WorkToBuild>
+		</statBases>
+    <graphicData>
+      <texPath>Things/Building/Door/FilledDoorSimple_Mover</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <damageData>
+        <enabled>false</enabled>
+      </damageData>
+    </graphicData>
+    <uiIconPath>Things/Building/Door/FilledDoorSimple_MenuIcon</uiIconPath>
+    <costStuffCount>30</costStuffCount>
+    <designationHotKey>Misc1</designationHotKey>
+    <building>
+      <isStuffableAirtight>true</isStuffableAirtight>
+		<blueprintGraphicData>
+			<texPath>Things/Building/Door/FilledDoor_Blueprint</texPath>
+		</blueprintGraphicData>
+    </building>
+  </ThingDef>
 
 </Defs>

@@ -1,3 +1,3 @@
-Linked Door
-
+화장대
 Multi Floor에서도 보이게
+블루프린트 보이게

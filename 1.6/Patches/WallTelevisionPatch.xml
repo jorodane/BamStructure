@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods><li>Wall Televisions</li></mods>
+			<match Class="PatchOperationSequence">
+				<operations>
+					<li Class="PatchOperationReplace">
+						<xpath>//ThingDef[defName="DartBoard"]/building/watchBuildingStandDistanceRange</xpath>
+						<value>
+							<watchBuildingStandDistanceRange>3~3</watchBuildingStandDistanceRange>
+						</value>
+					</li>
+					<li Class="PatchOperationReplace">
+						<xpath>//ThingDef[defName="MirrorBase"]/building/watchBuildingStandDistanceRange</xpath>
+						<value>
+							<watchBuildingStandDistanceRange>2~2</watchBuildingStandDistanceRange>
+						</value>
+					</li>
+				</operations>
+			</match>
+	</Operation>
+</Patch>
