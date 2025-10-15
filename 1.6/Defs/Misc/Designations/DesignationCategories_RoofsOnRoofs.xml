@@ -10,6 +10,7 @@
 			<li>Designator_AreaNoRoof</li>
 			<li>Designator_AreaIgnoreRoof</li>
 			<li>RoofsOnRoofs.Designator_DeconstructRoof</li>
+			<li>Designator_Cancel</li>
 		</specialDesignatorClasses>
 	</DesignationCategoryDef>
 

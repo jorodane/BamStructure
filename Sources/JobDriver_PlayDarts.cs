@@ -51,7 +51,7 @@ namespace BamStructure
             dir.Normalize();
             Vector3 left = new Vector3(-dir.z, 0, dir.x);
 
-            Vector2 miss = new Vector2(Rand.Range(-0.1f, 0.1f), Rand.Range(-0.025f, 0f)) * thrower.GetStatValue(StatDefOf.MortarMissRadiusFactor);
+            Vector2 miss = new Vector2(Rand.Range(-0.1f, 0.1f), Rand.Range(-0.025f, 0f));// * thrower.GetStatValue(StatDefOf.MortarMissRadiusFactor);
             //bool centerHit = miss.sqrMagnitude <= 0.00001f;
             //if (centerHit) thrower.needs?.mood?.thoughts?.memories?.TryGainMemory(MoreVanillaStructureDefs.HitBetweenTheEyes);
 

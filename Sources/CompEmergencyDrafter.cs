@@ -6,7 +6,6 @@ using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.AI;
-using static UnityEngine.GraphicsBuffer;
 
 namespace CallToArms
 {
@@ -342,7 +341,42 @@ namespace CallToArms
 
 	public class Building_TownBell : Building
 	{
+        public static string GetDraftContextString() => "CallToArms_DraftContext_Label".Translate();
 
+
+        public override IEnumerable<FloatMenuOption> GetMultiSelectFloatMenuOptions(IEnumerable<Pawn> selPawns)
+        {
+            var comp = this.TryGetComp<CompEmergencyDrafter>();
+            if (comp == null) yield break;
+
+            if (selPawns.Any(currentPawn => currentPawn.IsDraftable(Map)))
+            {
+                yield return new FloatMenuOption(
+                GetDraftContextString(),
+                () => comp.CalltoArms(selPawns.ToList()),
+                MenuOptionPriority.Default,
+                null,
+                this
+                );
+            }
+        }
+
+        public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
+        {
+            var comp = this.TryGetComp<CompEmergencyDrafter>();
+            if (comp == null) yield break;
+
+			if (selPawn.IsDraftable(Map))
+			{
+				yield return new FloatMenuOption(
+				GetDraftContextString(),
+				() => comp.CalltoArms(new List<Pawn>() { selPawn }),
+				MenuOptionPriority.Default,
+				null,
+				this
+				);
+			}
+        }
 	}
 
     public class JobDriver_DraftAsJob : JobDriver
@@ -753,7 +787,7 @@ namespace CallToArms
 			CalltoArms(draftTargets);
 		}
 
-		void CalltoArms(List<Pawn> targetList)
+		public virtual void CalltoArms(List<Pawn> targetList)
 		{
 			if(targetList == null) return;
 

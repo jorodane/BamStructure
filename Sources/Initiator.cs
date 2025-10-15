@@ -121,6 +121,18 @@ namespace TinyBuilder
 
 namespace CallToArms
 {
+    ////Harmony Patch for Single Mod
+    //
+    //[StaticConstructorOnStartup]
+    //public static class CallToArmsHarmonyInit
+    //{
+    //    static CallToArmsHarmonyInit()
+    //    {
+    //        Harmony harmony = new Harmony("CallToArms.DraftFunctions");
+    //        harmony.PatchAll();
+    //    }
+    //}
+
     [DefOf]
     public static class CallToArmsDefs
     {

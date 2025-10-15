@@ -2,6 +2,8 @@
 
 <LanguageData>
 
+	<CallToArms_DraftContext_Label>긴급 소집</CallToArms_DraftContext_Label>
+	
 	<CallToArms_Selected_Label>긴급 소집 (선택)</CallToArms_Selected_Label>
 	<CallToArms_DrafterCount_Label>선택된 인원 : {count}</CallToArms_DrafterCount_Label>
 	<CallToArms_Not_Selected_Description>소집을 위해 선택된 인원이 없습니다.</CallToArms_Not_Selected_Description>

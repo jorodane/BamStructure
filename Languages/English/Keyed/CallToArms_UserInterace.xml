@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LanguageData>
+	<CallToArms_DraftContext_Label>Call to Arms</CallToArms_DraftContext_Label>
 
 	<CallToArms_Selected_Label>Call to Arms (Selected)</CallToArms_Selected_Label>
 	<CallToArms_DrafterCount_Label>Selected Colonists : {count}</CallToArms_DrafterCount_Label>
