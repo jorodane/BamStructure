@@ -16,7 +16,6 @@
 		<selectable>false</selectable>
 		<neverMultiSelect>true</neverMultiSelect>
 		<designationCategory>DesignationCategory_Roofs</designationCategory>
-		<uiOrder>2000</uiOrder>
 		<canOverlapZones>true</canOverlapZones>
 		<statBases>
 			<MaxHitPoints>300</MaxHitPoints>
@@ -197,6 +196,38 @@
 			<texPath>Things/Building/Roof/Roof_SmoothDark</texPath>
 		</graphicData>
 		<uiIconPath>Things/Building/Roof/Roof_SmoothDark/MenuIcon</uiIconPath>
+	</ThingDef>
+
+
+	<ThingDef ParentName="RoofBase" Name="Chimney_Simple">
+		<defName>Chimney_Simple</defName>
+		<label>chimney (simple)</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>South</defaultPlacingRot>
+		<graphicData>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<texPath>Things/Building/Roof/Chimney_Simple</texPath>
+			<drawSize>(1,2)</drawSize>
+			<drawOffset>(0,0.1,0.5)</drawOffset>
+		</graphicData>
+		<costStuffCount>10</costStuffCount>
+		<stuffCategories>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Metallic</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<uiIconOffset>(0, 0)</uiIconOffset>
+		<uiIconScale>1.0</uiIconScale>
+	</ThingDef>
+
+	<ThingDef ParentName="Chimney_Simple" Name="Chimney_Crown">
+		<defName>Chimney_Crown</defName>
+		<label>chimney (crown)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/Chimney_Crown</texPath>
+		</graphicData>
 	</ThingDef>
 
 </Defs>
