@@ -2,6 +2,7 @@
 using RimWorld;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Security.Cryptography;
 using UnityEngine;
 using Verse;
 
@@ -36,6 +37,19 @@ namespace RoofsOnRoofs
             else RoofsOnRoofsGameComponent.RoofTab = __result.def == RoofsOnRoofsDefs.DesignationCategory_Roofs;
         }
     }
+
+    [HarmonyPatch(typeof(Blueprint), "DrawAt")]
+    public static class Patch_Blueprint_Build_DrawAt_RoofsOnRoofs
+    {
+        static void Prefix(Blueprint_Build __instance, ref Vector3 drawLoc)
+        {
+            if (__instance.def?.entityDefToBuild is ThingDef buildDef && buildDef.thingClass == typeof(Building_Roof))
+            {
+                drawLoc.y = buildDef.altitudeLayer.AltitudeFor() + 0.00001f;
+            }
+        }
+    }
+
 
 
     [HarmonyPatch(typeof(Window), nameof(Window.PostClose))]
