@@ -36,7 +36,7 @@ namespace BamStructure
                 this.FailOnDespawnedOrNull(BoardIndex);
                 pawn.rotationTracker.FaceTarget(board);
                 if (pawn.IsHashIntervalTick(ThrowInterval)) ThrowDartFleck(pawn, board);
-                if (JoyUtility.JoyTickCheckEnd(pawn, 1, JoyTickFullJoyAction.EndJob, 1f, board)) { return; }
+                if (JoyUtility.JoyTickCheckEnd(pawn, 1, JoyTickFullJoyAction.EndJob, 1f, board)) { EndJobWith(JobCondition.Succeeded); return; }
             };
             yield return play;
         }

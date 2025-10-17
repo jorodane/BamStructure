@@ -10,6 +10,9 @@
 			<li>Designator_AreaNoRoof</li>
 			<li>Designator_AreaIgnoreRoof</li>
 			<li>RoofsOnRoofs.Designator_DeconstructRoof</li>
+			<li>RoofsOnRoofs.Designator_ChangeBrightnessWallSide</li>
+			<li>RoofsOnRoofs.Designator_ChangeBrightnessRoof</li>
+			<li>RoofsOnRoofs.Designator_ChangeBrightnessPatch</li>
 			<li>Designator_Cancel</li>
 		</specialDesignatorClasses>
 	</DesignationCategoryDef>

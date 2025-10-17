@@ -8,10 +8,8 @@
 		<passability>Standable</passability>
 		<pathCost>0</pathCost>
 		<coversFloor>false</coversFloor>
-		<blockWind>false</blockWind>
 		<clearBuildingArea>false</clearBuildingArea>
 		<noRightClickDraftAttack>true</noRightClickDraftAttack>
-		<drawStyleCategory>Floors</drawStyleCategory>
 		<tickerType>Never</tickerType>
 		<selectable>false</selectable>
 		<neverMultiSelect>true</neverMultiSelect>
@@ -31,16 +29,21 @@
 		</placeWorkers>
 	</ThingDef>
 
+	<!-- Wall Side -->
+		
 	<ThingDef ParentName="RoofBase" Name="Roof_WallSide">
 		<defName>Roof_WallSide</defName>
 		<label>wall side</label>
+		<uiOrder>1000</uiOrder>
 		<altitudeLayer>VisEffects</altitudeLayer>
+		<drawStyleCategory>Floors</drawStyleCategory>
 		<replaceTags>
 			<li>WallSide</li>
 		</replaceTags>
 		<graphicData>
 			<texPath>Things/Building/Roof/Roof_WallSide</texPath>
-			<graphicClass>Graphic_Appearances</graphicClass>
+			<graphicClass>RoofsOnRoofs.Graphic_Appearances_MultiColored</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
 			<linkType>Basic</linkType>
 			<linkFlags>
 				<li>Custom9</li>
@@ -70,13 +73,18 @@
 			</blueprintGraphicData>
 		</building>
 	</ThingDef>
+	
+	<!-- Linked Roof -->	
 
 	<ThingDef Abstract ="true" ParentName="RoofBase" Name="Roof_Linked">
+		<uiOrder>2000</uiOrder>
+		<drawStyleCategory>Floors</drawStyleCategory>
 		<replaceTags>
 			<li>Roof</li>
 		</replaceTags>
 		<graphicData>
-			<graphicClass>Graphic_Appearances</graphicClass>
+			<graphicClass>RoofsOnRoofs.Graphic_Appearances_MultiColored</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
 			<linkType>Basic</linkType>
 			<linkFlags>
 				<li>Custom10</li>
@@ -119,96 +127,182 @@
 
 	<ThingDef ParentName="Roof_LinkedBright" Name="Roof_BrickBright">
 		<defName>Roof_BrickBright</defName>
-		<label>roof brick (bright)</label>
+		<label>roof brick</label>
 		<graphicData>
-			<texPath>Things/Building/Roof/Roof_BrickBright</texPath>
+			<texPath>Things/Building/Roof/Roof_Brick</texPath>
 		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_BrickBright/MenuIcon</uiIconPath>
+		<uiIconPath>Things/Building/Roof/Roof_Brick/MenuIcon</uiIconPath>
 	</ThingDef>
 
 	<ThingDef ParentName="Roof_LinkedNormal" Name="Roof_BrickNormal">
 		<defName>Roof_BrickNormal</defName>
-		<label>roof brick (normal)</label>
+		<label>roof brick</label>
 		<graphicData>
-			<texPath>Things/Building/Roof/Roof_BrickNormal</texPath>
+			<texPath>Things/Building/Roof/Roof_Brick</texPath>
 		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_BrickNormal/MenuIcon</uiIconPath>
+		<uiIconPath>Things/Building/Roof/Roof_Brick/MenuIcon</uiIconPath>
 	</ThingDef>
 
 	<ThingDef ParentName="Roof_LinkedDark" Name="Roof_BrickDark">
 		<defName>Roof_BrickDark</defName>
-		<label>roof brick (dark)</label>
+		<label>roof brick</label>
 		<graphicData>
-			<texPath>Things/Building/Roof/Roof_BrickDark</texPath>
+			<texPath>Things/Building/Roof/Roof_Brick</texPath>
 		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_BrickDark/MenuIcon</uiIconPath>
+		<uiIconPath>Things/Building/Roof/Roof_Brick/MenuIcon</uiIconPath>
 	</ThingDef>
 
 	<ThingDef ParentName="Roof_LinkedBright" Name="Roof_PlankBright">
 		<defName>Roof_PlankBright</defName>
-		<label>roof plank (bright)</label>
+		<label>roof plank</label>
 		<graphicData>
-			<texPath>Things/Building/Roof/Roof_PlankBright</texPath>
+			<texPath>Things/Building/Roof/Roof_Plank</texPath>
 		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_PlankBright/MenuIcon</uiIconPath>
+		<uiIconPath>Things/Building/Roof/Roof_Plank/MenuIcon</uiIconPath>
 	</ThingDef>
 
 	<ThingDef ParentName="Roof_LinkedNormal" Name="Roof_PlankNormal">
 		<defName>Roof_PlankNormal</defName>
-		<label>roof plank (normal)</label>
+		<label>roof plank</label>
 		<graphicData>
-			<texPath>Things/Building/Roof/Roof_PlankNormal</texPath>
+			<texPath>Things/Building/Roof/Roof_Plank</texPath>
 		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_PlankNormal/MenuIcon</uiIconPath>
+		<uiIconPath>Things/Building/Roof/Roof_Plank/MenuIcon</uiIconPath>
 	</ThingDef>
 
 	<ThingDef ParentName="Roof_LinkedDark" Name="Roof_PlankDark">
 		<defName>Roof_PlankDark</defName>
-		<label>roof plank (dark)</label>
+		<label>roof plank</label>
 		<graphicData>
-			<texPath>Things/Building/Roof/Roof_PlankDark</texPath>
+			<texPath>Things/Building/Roof/Roof_Plank</texPath>
 		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_PlankDark/MenuIcon</uiIconPath>
+		<uiIconPath>Things/Building/Roof/Roof_Plank/MenuIcon</uiIconPath>
 	</ThingDef>
 
 	<ThingDef ParentName="Roof_LinkedBright" Name="Roof_SmoothBright">
 		<defName>Roof_SmoothBright</defName>
-		<label>roof smooth (bright)</label>
+		<label>roof smooth</label>
 		<graphicData>
-			<texPath>Things/Building/Roof/Roof_SmoothBright</texPath>
+			<texPath>Things/Building/Roof/Roof_Smooth</texPath>
 		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_SmoothBright/MenuIcon</uiIconPath>
+		<uiIconPath>Things/Building/Roof/Roof_Smooth/MenuIcon</uiIconPath>
 	</ThingDef>
 
 	<ThingDef ParentName="Roof_LinkedNormal" Name="Roof_SmoothNormal">
 		<defName>Roof_SmoothNormal</defName>
-		<label>roof smooth (normal)</label>
+		<label>roof smooth</label>
 		<graphicData>
-			<texPath>Things/Building/Roof/Roof_SmoothNormal</texPath>
+			<texPath>Things/Building/Roof/Roof_Smooth</texPath>
 		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_SmoothNormal/MenuIcon</uiIconPath>
+		<uiIconPath>Things/Building/Roof/Roof_Smooth/MenuIcon</uiIconPath>
 	</ThingDef>
 
 	<ThingDef ParentName="Roof_LinkedDark" Name="Roof_SmoothDark">
 		<defName>Roof_SmoothDark</defName>
-		<label>roof smooth (dark)</label>
+		<label>roof smooth</label>
 		<graphicData>
-			<texPath>Things/Building/Roof/Roof_SmoothDark</texPath>
+			<texPath>Things/Building/Roof/Roof_Smooth</texPath>
 		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_SmoothDark/MenuIcon</uiIconPath>
+		<uiIconPath>Things/Building/Roof/Roof_Smooth/MenuIcon</uiIconPath>
 	</ThingDef>
 
-
-	<ThingDef ParentName="RoofBase" Name="Chimney_Simple">
-		<defName>Chimney_Simple</defName>
-		<label>chimney (simple)</label>
+	<ThingDef ParentName="Roof_LinkedDark" Name="Roof_Invisible">
+		<defName>Roof_Invisible</defName>
+		<label>roof invisible</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/Roof_Invisible</texPath>
+		</graphicData>
+		<uiIconPath>Things/Building/Roof/Roof_Invisible/MenuIcon</uiIconPath>
+	</ThingDef>
+	
+	<!-- Wall Side Patch-->
+	
+	<ThingDef Abstract ="true" ParentName="RoofBase" Name="WallSidePatchBase">
+		<uiOrder>3000</uiOrder>
+		<altitudeLayer>VisEffects</altitudeLayer>
 		<rotatable>true</rotatable>
 		<defaultPlacingRot>South</defaultPlacingRot>
+		<replaceTags>
+			<li>WallSidePatch</li>
+		</replaceTags>
+		<graphicData>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>Cutout</shaderType>
+			<drawOffset>(0,0.1,0)</drawOffset>
+		</graphicData>
+		<costStuffCount>1</costStuffCount>
+		<stuffCategories>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Metallic</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+	</ThingDef>
+	
+	<!-- Roof Patch -->
+	
+	<ThingDef Abstract ="true" ParentName="RoofBase" Name="RoofPatchBase">
+		<uiOrder>4000</uiOrder>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>South</defaultPlacingRot>
+		<replaceTags>
+			<li>RoofPatch</li>
+		</replaceTags>
+		<graphicData>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>Cutout</shaderType>
+			<drawOffset>(0,0.1,0)</drawOffset>
+		</graphicData>
+		<costStuffCount>1</costStuffCount>
+		<stuffCategories>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Metallic</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+	</ThingDef>
+	
+	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Pinch">
+		<defName>RoofPatch_Pinch</defName>
+		<label>patch (Pinch)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/RoofPatch_Pinch</texPath>
+		</graphicData>
+	</ThingDef>
+	
+	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Tri">
+		<defName>RoofPatch_Tri</defName>
+		<label>patch (try - bright)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/RoofPatch_Tri</texPath>
+		</graphicData>
+	</ThingDef>
+
+	
+	<!-- Roof Decoration -->
+	
+	<ThingDef Abstract ="true" ParentName="RoofBase" Name="RoofDecorationBase">
+		<uiOrder>5000</uiOrder>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>South</defaultPlacingRot>
+		<replaceTags>
+			<li>RoofPatch</li>
+		</replaceTags>
+		<graphicData>
+			<drawOffset>(0,0.2,0)</drawOffset>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="RoofDecorationBase" Name="Chimney_Simple">
+		<defName>Chimney_Simple</defName>
+		<label>chimney (simple)</label>
 		<graphicData>
 			<graphicClass>Graphic_Multi</graphicClass>
 			<texPath>Things/Building/Roof/Chimney_Simple</texPath>
-			<drawSize>(1,2)</drawSize>
-			<drawOffset>(0,0.1,0.5)</drawOffset>
+			<drawSize>(3,3)</drawSize>
+			<drawOffset>(0,0.2,1)</drawOffset>
 		</graphicData>
 		<costStuffCount>10</costStuffCount>
 		<stuffCategories>
@@ -219,7 +313,7 @@
 			<li>Leathery</li>
 		</stuffCategories>
 		<uiIconOffset>(0, 0)</uiIconOffset>
-		<uiIconScale>1.0</uiIconScale>
+		<uiIconScale>0.5</uiIconScale>
 	</ThingDef>
 
 	<ThingDef ParentName="Chimney_Simple" Name="Chimney_Crown">

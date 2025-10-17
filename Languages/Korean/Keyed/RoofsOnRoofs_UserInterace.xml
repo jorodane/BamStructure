@@ -7,4 +7,14 @@
 	<RoofsOnRoofs_DeconstructRoof_Label>지붕 장식 해체</RoofsOnRoofs_DeconstructRoof_Label>
 	<RoofsOnRoofs_DeconstructRoof_Description>지붕 위에 건설한 장식을 해체합니다.</RoofsOnRoofs_DeconstructRoof_Description>
 	
+	<RoofsOnRoofs_BrightType0>밝음</RoofsOnRoofs_BrightType0>
+	<RoofsOnRoofs_BrightType1>일반</RoofsOnRoofs_BrightType1>
+	<RoofsOnRoofs_BrightType2>어둠</RoofsOnRoofs_BrightType2>
+	<RoofsOnRoofs_BrightType3>밝음/일반</RoofsOnRoofs_BrightType3>
+	<RoofsOnRoofs_BrightType4>밝음/어둠</RoofsOnRoofs_BrightType4>
+	<RoofsOnRoofs_BrightType5>일반/밝음</RoofsOnRoofs_BrightType5>
+	<RoofsOnRoofs_BrightType6>일반/어둠</RoofsOnRoofs_BrightType6>
+	<RoofsOnRoofs_BrightType7>어둠/밝음</RoofsOnRoofs_BrightType7>
+	<RoofsOnRoofs_BrightType8>어둠/일반</RoofsOnRoofs_BrightType8>
+	
 </LanguageData>
