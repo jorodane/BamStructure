@@ -199,4 +199,20 @@ namespace BamStructure
         public static FleckDef Fleck_Dart_Blue;
         public static FleckDef Fleck_Dart_Green;
     }
+
+    public class Graphic_Multi_Clamped : Graphic_Multi
+    {
+        public override void Init(GraphicRequest req)
+        {
+            base.Init(req);
+            MatWest.mainTexture.wrapMode = TextureWrapMode.Clamp;
+            MatWest.mainTexture.filterMode = FilterMode.Point;
+            MatSouth.mainTexture.wrapMode = TextureWrapMode.Clamp;
+            MatSouth.mainTexture.filterMode = FilterMode.Point;
+            MatEast.mainTexture.wrapMode = TextureWrapMode.Clamp;
+            MatEast.mainTexture.filterMode = FilterMode.Point;
+            MatNorth.mainTexture.wrapMode = TextureWrapMode.Clamp;
+            MatNorth.mainTexture.filterMode = FilterMode.Point;
+        }
+    }
 }

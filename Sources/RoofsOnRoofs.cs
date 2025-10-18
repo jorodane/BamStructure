@@ -3,6 +3,7 @@ using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Xml.Linq;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -46,7 +47,7 @@ namespace RoofsOnRoofs
         {
             if (__instance.def?.entityDefToBuild is ThingDef buildDef && buildDef.thingClass == typeof(Building_Roof))
             {
-                drawLoc.y = buildDef.altitudeLayer.AltitudeFor() + 0.00001f;
+                drawLoc.y = buildDef.altitudeLayer.AltitudeFor() + 0.1f;
             }
         }
     }
@@ -140,6 +141,10 @@ namespace RoofsOnRoofs
                 if (texture2D_m != null)
                 {
                     texture2D_m.filterMode = FilterMode.Point;
+                    texture2D_m.wrapMode = TextureWrapMode.Clamp;
+                    texture2D_m.anisoLevel = 0;
+                    texture2D_m.minimumMipmapLevel = 0;
+                    texture2D_m.mipMapBias = -10.0f;
                 }
             }
 
@@ -257,39 +262,64 @@ namespace RoofsOnRoofs
 
     public class Designator_ChangeBrightnessRoof : Designator_Deconstruct
     {
-        string[] _brightnessTypeNames;
-        string[] BrightnessTypeNames
-        { 
-            get
-            {
-                if (_brightnessTypeNames == null)
-                {
-                    _brightnessTypeNames = new string[9];
-                    for(int i = 0; i < _brightnessTypeNames.Length; i++) _brightnessTypeNames[i] = $"RoofsOnRoofs_BrightType{i}".Translate();
-                }
+        public static int brightnessCount = 9;
 
-                return _brightnessTypeNames;
-            }
-        }
+        string[] _brightnessTypeNames;
+        public string[] BrightnessTypeNames => _brightnessTypeNames;
+
+        Texture2D[] _brightnessTextures;
+        public Texture2D[] BrightnessTextures => _brightnessTextures;
+
+        List<FloatMenuOption> _brightFloatMenu = new List<FloatMenuOption>();
+
+        public List<FloatMenuOption> BrightFloatMenu => _brightFloatMenu;
 
         protected string attachmentString = string.Empty;
-        public int currentBrightnessType = 0;
+        public int currentBrightnessType = 1;
         public virtual string TargetReplaceTag => "Roof";
+        public virtual string GetLabel() => "RoofsOnRoofs_ChangeBrightnessRoof_Label".Translate();
 
-        public override AcceptanceReport CanDesignateThing(Thing t)
-        {
-            if (t.def == null || !(t.def.replaceTags?.Contains(TargetReplaceTag) ?? false)) return false; 
-            return OriginCanDesignateThing(t);
-        }
+        public override AcceptanceReport CanDesignateThing(Thing t) => OriginDesignateThing(t) && (t.def.replaceTags?.Contains(TargetReplaceTag) ?? false);
 
-        protected AcceptanceReport OriginCanDesignateThing(Thing t) => true;
+        AcceptanceReport OriginDesignateThing(Thing t) => base.CanDesignateThing(t);
+
 
         public Designator_ChangeBrightnessRoof()
         {
-            defaultLabel = "Change Roof Brightness";
+            defaultLabel = GetLabel();
+            defaultDesc = "";
             icon = ContentFinder<Texture2D>.Get("UI/Designators/ChangeBrightness_Roof", true);
             useMouseIcon = true;
             soundSucceeded = SoundDefOf.Designate_Paint;
+
+            _brightnessTextures = new Texture2D[brightnessCount];
+            _brightnessTextures[0] = ContentFinder<Texture2D>.Get("UI/Designators/Color_BB", true);
+            _brightnessTextures[1] = ContentFinder<Texture2D>.Get("UI/Designators/Color_NN", true);
+            _brightnessTextures[2] = ContentFinder<Texture2D>.Get("UI/Designators/Color_DD", true);
+            _brightnessTextures[3] = ContentFinder<Texture2D>.Get("UI/Designators/Color_BN", true);
+            _brightnessTextures[4] = ContentFinder<Texture2D>.Get("UI/Designators/Color_BD", true);
+            _brightnessTextures[5] = ContentFinder<Texture2D>.Get("UI/Designators/Color_NB", true);
+            _brightnessTextures[6] = ContentFinder<Texture2D>.Get("UI/Designators/Color_ND", true);
+            _brightnessTextures[7] = ContentFinder<Texture2D>.Get("UI/Designators/Color_DB", true);
+            _brightnessTextures[8] = ContentFinder<Texture2D>.Get("UI/Designators/Color_DN", true);
+
+            if (_brightnessTypeNames == null)
+            {
+                _brightnessTypeNames = new string[brightnessCount];
+                for (int i = 0; i < _brightnessTypeNames.Length; i++) _brightnessTypeNames[i] = $"RoofsOnRoofs_BrightType{i}".Translate();
+            }
+
+            for (int i = 0; i < _brightnessTypeNames.Length; i++)
+            {
+                int buffer = i;
+                string label = BrightnessTypeNames[i];
+                _brightFloatMenu.Add(new FloatMenuOption(label, () =>
+                {
+                    currentBrightnessType = buffer;
+                    attachmentString = label;
+                }, BrightnessTextures[i], Color.white));
+            }
+
             attachmentString = BrightnessTypeNames[currentBrightnessType];
         }
 
@@ -303,7 +333,15 @@ namespace RoofsOnRoofs
                 GenUI.DrawMouseAttachment(iconTex, attachmentString, angle, offset);
             }
         }
-
+        public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
+        {
+            get
+            {
+                Find.DesignatorManager.Select(this);
+                SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
+                return BrightFloatMenu;
+            }
+        }
         public override void DesignateThing(Thing t)
         {
             if (t is Building_Roof asRoof) asRoof.SetBrightness(currentBrightnessType);
@@ -318,39 +356,76 @@ namespace RoofsOnRoofs
 
         private void ShowFloatMenu()
         {
-            var list = new List<FloatMenuOption>();
+            Find.WindowStack.Add(new FloatMenu(BrightFloatMenu));
+        }
+    }
 
-            for (int i = 0; i <= 7; i++)
+    public class Designator_ShowRoofOverlayToggle : Designator
+    {
+        private static Texture2D _iconOn;
+        private static Texture2D IconOn
+        {
+            get
             {
-                int buffer = i;
-                string label = BrightnessTypeNames[i];
-                list.Add(new FloatMenuOption(buffer == currentBrightnessType ? $"✔ {label}" : label, () =>
-                {
-                    currentBrightnessType = buffer;
-                    attachmentString = label;
-                }));
+                if (_iconOn == null) { _iconOn = ContentFinder<Texture2D>.Get("UI/Designators/RoofOverlayOn"); }
+                return _iconOn;
             }
+        }
+        private static Texture2D _iconOff;
+        private static Texture2D IconOff
+        {
+            get
+            {
+                if (_iconOff == null) { _iconOff = ContentFinder<Texture2D>.Get("UI/Designators/RoofOverlayOff"); }
+                return _iconOff;
+            }
+        }
 
-            Find.WindowStack.Add(new FloatMenu(list));
+        public string GetLabel() => "RoofsOnRoofs_ShowRoofOverlayToggle_Description".Translate();
+        public string GetDescription() => "ShowRoofOverlayToggleButton".Translate();
+        public Designator_ShowRoofOverlayToggle()
+        {
+            defaultLabel = GetLabel();
+            defaultDesc = GetDescription();
+        }
+        public override AcceptanceReport CanDesignateCell(IntVec3 loc) => true;
+
+        public override void ProcessInput(Event ev)
+        {
+            PlaySettings setting = Find.PlaySettings;
+            if (setting == null) return;
+            ((setting.showRoofOverlay = !setting.showRoofOverlay) ? SoundDefOf.Checkbox_TurnedOn: SoundDefOf.Checkbox_TurnedOff).PlayOneShotOnCamera();
+        }
+
+        public void UpdateIcon()
+        {
+            icon = (Find.PlaySettings?.showRoofOverlay ?? false) ? IconOn : IconOff;
+        }
+        public override void DrawIcon(Rect rect, Material buttonMat, GizmoRenderParms parms)
+        {
+            UpdateIcon();
+            base.DrawIcon(rect, buttonMat, parms);
         }
     }
 
     public class Designator_ChangeBrightnessWallSide : Designator_ChangeBrightnessRoof
     {
+        public override string GetLabel() => "RoofsOnRoofs_ChangeBrightnessWallSide_Label".Translate();
         public override string TargetReplaceTag => "WallSide";
         public Designator_ChangeBrightnessWallSide()
         {
-            defaultLabel = "Change WallSide Brightness";
+            defaultLabel = GetLabel();
             icon = ContentFinder<Texture2D>.Get("UI/Designators/ChangeBrightness_WallSide", true);
         }
     }
 
     public class Designator_ChangeBrightnessPatch : Designator_ChangeBrightnessRoof
     {
+        public override string GetLabel() => "RoofsOnRoofs_ChangeBrightnessPatch_Label".Translate();
         public override string TargetReplaceTag => "RoofPatch";
         public Designator_ChangeBrightnessPatch()
         {
-            defaultLabel = "Change Patch Brightness";
+            defaultLabel = GetLabel();
             icon = ContentFinder<Texture2D>.Get("UI/Designators/ChangeBrightness_Patch", true);
         }
     }
@@ -359,22 +434,44 @@ namespace RoofsOnRoofs
 
     public class Designator_DeconstructRoof : Designator_Deconstruct
     {
-        public override AcceptanceReport CanDesignateThing(Thing t)
-        {
-            if (t.def == null || t.def.thingClass != typeof(Building_Roof)) return false;
-            return base.CanDesignateThing(t);
-        }
 
-        public static string GetDeconstructRoof_Label() => "RoofsOnRoofs_DeconstructRoof_Label".Translate();
-        public static string GetDeconstructRoof_Description() => "RoofsOnRoofs_DeconstructRoof_Description".Translate();
+        public virtual string GetLabel() => "RoofsOnRoofs_DeconstructRoof_Label".Translate();
+
+        public override AcceptanceReport CanDesignateThing(Thing t) => OriginDesignateThing(t) && (t.def.replaceTags?.Contains(TargetReplaceTag) ?? false);
+
+        AcceptanceReport OriginDesignateThing(Thing t) => base.CanDesignateThing(t);
+
+        public virtual string TargetReplaceTag => "Roof";
 
         public Designator_DeconstructRoof()
         {
-            defaultLabel = GetDeconstructRoof_Label();
-            defaultDesc = GetDeconstructRoof_Description();
+            defaultLabel = GetLabel();
+            defaultDesc = "";
             icon = ContentFinder<Texture2D>.Get("UI/Designators/DeconstructRoof", true);
             useMouseIcon = true;
             soundSucceeded = SoundDefOf.Designate_Cancel;
+        }
+    }
+
+    public class Designator_DeconstructWallSide : Designator_DeconstructRoof
+    {
+        public override string GetLabel() => "RoofsOnRoofs_DeconstructWallSide_Label".Translate();
+        public override string TargetReplaceTag => "WallSide";
+        public Designator_DeconstructWallSide()
+        {
+            defaultLabel = GetLabel();
+            icon = ContentFinder<Texture2D>.Get("UI/Designators/DeconstructWallSide", true);
+        }
+    }
+
+    public class Designator_DeconstructPatch : Designator_DeconstructRoof
+    {
+        public override string GetLabel() => "RoofsOnRoofs_DeconstructPatch_Label".Translate();
+        public override string TargetReplaceTag => "RoofPatch";
+        public Designator_DeconstructPatch()
+        {
+            defaultLabel = GetLabel();
+            icon = ContentFinder<Texture2D>.Get("UI/Designators/DeconstructPatch", true);
         }
     }
 

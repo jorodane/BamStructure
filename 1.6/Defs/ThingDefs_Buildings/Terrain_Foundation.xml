@@ -53,8 +53,8 @@
 		<altitudeLayer>FloorEmplacement</altitudeLayer>
 		<category>Building</category>
 		<thingClass>Building</thingClass>
-    <drawStyleCategory>Walls</drawStyleCategory>
-    <replaceTags>
+		<drawStyleCategory>Walls</drawStyleCategory>
+		<replaceTags>
 			<li>Floor</li>
 		</replaceTags>
 		<coversFloor>false</coversFloor>
@@ -65,7 +65,7 @@
 		<graphicData>
 			<texPath>Terrain/Surfaces/CurbStone_Single_Straight</texPath>
 			<drawSize>(1.02,1.02)</drawSize>
-			<graphicClass>Graphic_Multi</graphicClass>
+			<graphicClass>BamStructure.Graphic_Multi_Clamped</graphicClass>
 		</graphicData>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>
@@ -85,7 +85,7 @@
 		<fertility>0</fertility>
 		<clearBuildingArea>false</clearBuildingArea>
 		<scatterableOnMapGen>false</scatterableOnMapGen>
-    <!--useHitPoints>false</useHitPoints-->
+		<!--useHitPoints>false</useHitPoints-->
 		<building>
 			<isInert>false</isInert>
 			<isEdifice>false</isEdifice>

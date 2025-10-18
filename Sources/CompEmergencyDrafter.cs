@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using Verse.Sound;
 
 namespace CallToArms
 {
@@ -814,6 +815,8 @@ namespace CallToArms
 
 				Messages.Message(GetDraftAreaNotEnoughString(originCount - maxCount), missingPawns, MessageTypeDefOf.NegativeEvent, false);
 			}
+
+			if (maxCount * originCount > 0) SoundDefOf.DraftOn.PlayOneShotOnCamera(); 
 		}
 	}
 }

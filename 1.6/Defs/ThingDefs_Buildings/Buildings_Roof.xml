@@ -28,6 +28,48 @@
 			<li>RoofsOnRoofs.Placeworker_Roof</li>
 		</placeWorkers>
 	</ThingDef>
+	
+	<!-- Invisibles-->
+
+	<ThingDef ParentName="RoofBase" Name="Roof_InvisibleWallSide">
+		<defName>Roof_InvisibleWallSide</defName>
+		<label>roof invisible wallside</label>
+		<uiOrder>2000</uiOrder>
+		<drawStyleCategory>Floors</drawStyleCategory>
+		<replaceTags>
+			<li>WallSide</li>
+		</replaceTags>
+		<graphicData>
+			<graphicClass>Graphic_Appearances</graphicClass>
+			<texPath>Things/Building/Roof/Roof_Invisible</texPath>
+			<linkType>Basic</linkType>
+			<linkFlags>
+				<li>Custom9</li>
+			</linkFlags>
+		</graphicData>
+		<uiIconPath>Things/Building/Roof/Roof_Invisible/MenuIcon_WallSide</uiIconPath>
+		<rotatable>false</rotatable>
+	</ThingDef>
+
+	<ThingDef ParentName="RoofBase" Name="Roof_InvisibleRoof">
+		<defName>Roof_InvisibleRoof</defName>
+		<label>roof invisible</label>
+		<uiOrder>2000</uiOrder>
+		<drawStyleCategory>Floors</drawStyleCategory>
+		<replaceTags>
+			<li>Roof</li>
+		</replaceTags>
+		<graphicData>
+			<graphicClass>Graphic_Appearances</graphicClass>
+			<texPath>Things/Building/Roof/Roof_Invisible</texPath>
+			<linkType>Basic</linkType>
+			<linkFlags>
+				<li>Custom10</li>
+			</linkFlags>
+		</graphicData>
+		<uiIconPath>Things/Building/Roof/Roof_Invisible/MenuIcon_Roof</uiIconPath>
+		<rotatable>false</rotatable>
+	</ThingDef>
 
 	<!-- Wall Side -->
 		
@@ -101,119 +143,91 @@
 		</stuffCategories>
 	</ThingDef>
 
-	<ThingDef Abstract ="true" ParentName="Roof_Linked" Name="Roof_LinkedBright">
-		<building>
-			<blueprintGraphicData>
-				<texPath>Things/Building/Roof/RoofBright_Blueprint_Atlas</texPath>
-			</blueprintGraphicData>
-		</building>
-	</ThingDef>
-
-	<ThingDef Abstract ="true" ParentName="Roof_Linked" Name="Roof_LinkedNormal">
-		<building>
-			<blueprintGraphicData>
-				<texPath>Things/Building/Roof/RoofNormal_Blueprint_Atlas</texPath>
-			</blueprintGraphicData>
-		</building>
-	</ThingDef>
-
-	<ThingDef Abstract ="true" ParentName="Roof_Linked" Name="Roof_LinkedDark">
-		<building>
-			<blueprintGraphicData>
-				<texPath>Things/Building/Roof/RoofDark_Blueprint_Atlas</texPath>
-			</blueprintGraphicData>
-		</building>
-	</ThingDef>
-
-	<ThingDef ParentName="Roof_LinkedBright" Name="Roof_BrickBright">
-		<defName>Roof_BrickBright</defName>
+	<ThingDef ParentName="Roof_Linked" Name="Roof_Brick">
+		<defName>Roof_Brick</defName>
 		<label>roof brick</label>
 		<graphicData>
 			<texPath>Things/Building/Roof/Roof_Brick</texPath>
 		</graphicData>
 		<uiIconPath>Things/Building/Roof/Roof_Brick/MenuIcon</uiIconPath>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Roof/Roof_Brick_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
 	</ThingDef>
 
-	<ThingDef ParentName="Roof_LinkedNormal" Name="Roof_BrickNormal">
-		<defName>Roof_BrickNormal</defName>
-		<label>roof brick</label>
+	<ThingDef ParentName="Roof_Linked" Name="Roof_BrickPinch">
+		<defName>Roof_Brick_Pinch</defName>
+		<label>roof brick (pinch)</label>
 		<graphicData>
-			<texPath>Things/Building/Roof/Roof_Brick</texPath>
+			<texPath>Things/Building/Roof/Roof_Brick_Pinch</texPath>
 		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_Brick/MenuIcon</uiIconPath>
+		<uiIconPath>Things/Building/Roof/Roof_Brick_Pinch/MenuIcon</uiIconPath>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Roof/Roof_Brick_Pinch_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
 	</ThingDef>
-
-	<ThingDef ParentName="Roof_LinkedDark" Name="Roof_BrickDark">
-		<defName>Roof_BrickDark</defName>
-		<label>roof brick</label>
-		<graphicData>
-			<texPath>Things/Building/Roof/Roof_Brick</texPath>
-		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_Brick/MenuIcon</uiIconPath>
-	</ThingDef>
-
-	<ThingDef ParentName="Roof_LinkedBright" Name="Roof_PlankBright">
-		<defName>Roof_PlankBright</defName>
+	
+	<ThingDef ParentName="Roof_Linked" Name="Roof_Plank">
+		<defName>Roof_Plank</defName>
 		<label>roof plank</label>
 		<graphicData>
 			<texPath>Things/Building/Roof/Roof_Plank</texPath>
 		</graphicData>
 		<uiIconPath>Things/Building/Roof/Roof_Plank/MenuIcon</uiIconPath>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Roof/Roof_Plank_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
 	</ThingDef>
 
-	<ThingDef ParentName="Roof_LinkedNormal" Name="Roof_PlankNormal">
-		<defName>Roof_PlankNormal</defName>
-		<label>roof plank</label>
+	<ThingDef ParentName="Roof_Linked" Name="Roof_PlankPinch">
+		<defName>Roof_Plank_Pinch</defName>
+		<label>roof plank (pinch)</label>
 		<graphicData>
-			<texPath>Things/Building/Roof/Roof_Plank</texPath>
+			<texPath>Things/Building/Roof/Roof_Plank_Pinch</texPath>
 		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_Plank/MenuIcon</uiIconPath>
+		<uiIconPath>Things/Building/Roof/Roof_Plank_Pinch/MenuIcon</uiIconPath>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Roof/Roof_Plank_Pinch_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
 	</ThingDef>
 
-	<ThingDef ParentName="Roof_LinkedDark" Name="Roof_PlankDark">
-		<defName>Roof_PlankDark</defName>
-		<label>roof plank</label>
-		<graphicData>
-			<texPath>Things/Building/Roof/Roof_Plank</texPath>
-		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_Plank/MenuIcon</uiIconPath>
-	</ThingDef>
-
-	<ThingDef ParentName="Roof_LinkedBright" Name="Roof_SmoothBright">
-		<defName>Roof_SmoothBright</defName>
+	<ThingDef ParentName="Roof_Linked" Name="Roof_Smooth">
+		<defName>Roof_Smooth</defName>
 		<label>roof smooth</label>
 		<graphicData>
 			<texPath>Things/Building/Roof/Roof_Smooth</texPath>
 		</graphicData>
 		<uiIconPath>Things/Building/Roof/Roof_Smooth/MenuIcon</uiIconPath>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Roof/Roof_Smooth_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
 	</ThingDef>
 
-	<ThingDef ParentName="Roof_LinkedNormal" Name="Roof_SmoothNormal">
-		<defName>Roof_SmoothNormal</defName>
-		<label>roof smooth</label>
+	<ThingDef ParentName="Roof_Linked" Name="Roof_Smooth_Pinch">
+		<defName>Roof_Smooth_Pinch</defName>
+		<label>roof smooth (pinch)</label>
 		<graphicData>
-			<texPath>Things/Building/Roof/Roof_Smooth</texPath>
+			<texPath>Things/Building/Roof/Roof_Smooth_Pinch</texPath>
 		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_Smooth/MenuIcon</uiIconPath>
+		<uiIconPath>Things/Building/Roof/Roof_Smooth_Pinch/MenuIcon</uiIconPath>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Roof/Roof_Smooth_Pinch_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
 	</ThingDef>
 
-	<ThingDef ParentName="Roof_LinkedDark" Name="Roof_SmoothDark">
-		<defName>Roof_SmoothDark</defName>
-		<label>roof smooth</label>
-		<graphicData>
-			<texPath>Things/Building/Roof/Roof_Smooth</texPath>
-		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_Smooth/MenuIcon</uiIconPath>
-	</ThingDef>
-
-	<ThingDef ParentName="Roof_LinkedDark" Name="Roof_Invisible">
-		<defName>Roof_Invisible</defName>
-		<label>roof invisible</label>
-		<graphicData>
-			<texPath>Things/Building/Roof/Roof_Invisible</texPath>
-		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_Invisible/MenuIcon</uiIconPath>
-	</ThingDef>
+	
 	
 	<!-- Wall Side Patch-->
 	
@@ -264,27 +278,100 @@
 		</stuffCategories>
 	</ThingDef>
 	
-	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Pinch">
-		<defName>RoofPatch_Pinch</defName>
-		<label>patch (Pinch)</label>
+	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Brick_End">
+		<defName>RoofPatch_Brick_End</defName>
+		<label>patch (end brick)</label>
 		<graphicData>
-			<texPath>Things/Building/Roof/RoofPatch_Pinch</texPath>
+			<texPath>Things/Building/Roof/RoofPatch_End/Brick</texPath>
 		</graphicData>
 	</ThingDef>
 	
-	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Tri">
-		<defName>RoofPatch_Tri</defName>
-		<label>patch (try - bright)</label>
+	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Brick_End_Outline">
+		<defName>RoofPatch_Brick_End_Outline</defName>
+		<label>patch (end brick outline)</label>
 		<graphicData>
-			<texPath>Things/Building/Roof/RoofPatch_Tri</texPath>
+			<texPath>Things/Building/Roof/RoofPatch_End/Brick_Outline</texPath>
 		</graphicData>
 	</ThingDef>
 
+	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Plank_End">
+		<defName>RoofPatch_Plank_End</defName>
+		<label>patch (end plank)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/RoofPatch_End/Plank</texPath>
+		</graphicData>
+	</ThingDef>
+	
+	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Plank_End_Outline">
+		<defName>RoofPatch_Plank_End_Outline</defName>
+		<label>patch (end plank outline)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/RoofPatch_End/Plank_Outline</texPath>
+		</graphicData>
+	</ThingDef>
+	
+	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Smooth_End">
+		<defName>RoofPatch_Smooth_End</defName>
+		<label>patch (end smooth)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/RoofPatch_End/Smooth</texPath>
+		</graphicData>
+	</ThingDef>
+	
+	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Smooth_End_Outline">
+		<defName>RoofPatch_Smooth_End_Outline</defName>
+		<label>patch (end smooth outline)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/RoofPatch_End/Smooth_Outline</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<!-- Wall Side Decoration -->
+
+	<ThingDef Abstract ="true" ParentName="RoofBase" Name="WallSideDecorationBase">
+		<uiOrder>5000</uiOrder>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>South</defaultPlacingRot>
+		<replaceTags>
+			<li>WallSidePatch</li>
+		</replaceTags>
+		<graphicData>
+			<drawOffset>(0,0.1,0)</drawOffset>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="RoofDecorationBase" Name="Window_WallSide">
+		<defName>Window_WallSide</defName>
+		<label>window (wall side)</label>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Building/Roof/Window_WallSide</texPath>
+			<drawSize>(1,1)</drawSize>
+		</graphicData>
+		<costStuffCount>10</costStuffCount>
+		<stuffCategories>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Metallic</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<uiIconOffset>(0, -0.15)</uiIconOffset>
+		<uiIconScale>0.75</uiIconScale>
+	</ThingDef>
+
+	<ThingDef ParentName="Window_WallSide" Name="WindowFrame_WallSide">
+		<defName>WindowFrame_WallSide</defName>
+		<label>windowframe (wall side)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/WindowFrame_WallSide</texPath>
+		</graphicData>
+	</ThingDef>
 	
 	<!-- Roof Decoration -->
 	
 	<ThingDef Abstract ="true" ParentName="RoofBase" Name="RoofDecorationBase">
-		<uiOrder>5000</uiOrder>
+		<uiOrder>6000</uiOrder>
 		<rotatable>true</rotatable>
 		<defaultPlacingRot>South</defaultPlacingRot>
 		<replaceTags>

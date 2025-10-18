@@ -17,4 +17,5 @@
 	<GlassDoor.description>방을 나눕니다. 수동으로 열고 닫아야 해서 통과 시 이동속도가 느려집니다. 여닫는 데 걸리는 시간은 문의 재질에 따라 다릅니다.</GlassDoor.description>
 	<GlassAutodoor.label>유리 자동문</GlassAutodoor.label>
 	<GlassAutodoor.description>방을 나눕니다. 전기로 작동하며 문 통과 시 이동속도 감소가 적거나 없습니다.</GlassAutodoor.description>
+	<FilledDoor.label>꽉찬문</FilledDoor.label>
 </LanguageData>

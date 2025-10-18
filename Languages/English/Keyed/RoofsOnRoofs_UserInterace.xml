@@ -2,9 +2,25 @@
 
 <LanguageData>
 
-	<RoofsOnRoofs_ShowRoofGraphicToggle_Description>Show Roof Graphic Toggle</RoofsOnRoofs_ShowRoofGraphicToggle_Description>
+	<RoofsOnRoofs_ShowRoofGraphicToggle_Description>Show Roof Graphic</RoofsOnRoofs_ShowRoofGraphicToggle_Description>
+	<RoofsOnRoofs_ShowRoofOverlayToggle_Description>Show Roof Overlay</RoofsOnRoofs_ShowRoofOverlayToggle_Description>
 
-	<RoofsOnRoofs_DeconstructRoof_Label>Roof Decoration Deconstruct</RoofsOnRoofs_DeconstructRoof_Label>
-	<RoofsOnRoofs_DeconstructRoof_Description>Deconstruct Roof Decorations</RoofsOnRoofs_DeconstructRoof_Description>
-	
+	<RoofsOnRoofs_DeconstructRoof_Label>Deconstruct Roof Graphic</RoofsOnRoofs_DeconstructRoof_Label>
+	<RoofsOnRoofs_DeconstructWallSide_Label>Deconstruct Wall Side</RoofsOnRoofs_DeconstructWallSide_Label>
+	<RoofsOnRoofs_DeconstructPatch_Label>Deconstruct Roof Patch</RoofsOnRoofs_DeconstructPatch_Label>
+
+	<RoofsOnRoofs_ChangeBrightnessRoof_Label>Paint Roof Graphic</RoofsOnRoofs_ChangeBrightnessRoof_Label>
+	<RoofsOnRoofs_ChangeBrightnessWallSide_Label>Paint Wall Side</RoofsOnRoofs_ChangeBrightnessWallSide_Label>
+	<RoofsOnRoofs_ChangeBrightnessPatch_Label>Paint Roof Patch</RoofsOnRoofs_ChangeBrightnessPatch_Label>
+
+	<RoofsOnRoofs_BrightType0>Bright</RoofsOnRoofs_BrightType0>
+	<RoofsOnRoofs_BrightType1>Normal</RoofsOnRoofs_BrightType1>
+	<RoofsOnRoofs_BrightType2>Dark</RoofsOnRoofs_BrightType2>
+	<RoofsOnRoofs_BrightType3>Bright/Normal</RoofsOnRoofs_BrightType3>
+	<RoofsOnRoofs_BrightType4>Bright/Dark</RoofsOnRoofs_BrightType4>
+	<RoofsOnRoofs_BrightType5>Normal/Bright</RoofsOnRoofs_BrightType5>
+	<RoofsOnRoofs_BrightType6>Normal/Dark</RoofsOnRoofs_BrightType6>
+	<RoofsOnRoofs_BrightType7>Dark/Bright</RoofsOnRoofs_BrightType7>
+	<RoofsOnRoofs_BrightType8>Dark/Normal</RoofsOnRoofs_BrightType8>
+
 </LanguageData>

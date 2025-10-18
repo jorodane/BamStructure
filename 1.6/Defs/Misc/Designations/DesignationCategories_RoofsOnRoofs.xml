@@ -9,7 +9,10 @@
 			<li>Designator_AreaBuildRoof</li>
 			<li>Designator_AreaNoRoof</li>
 			<li>Designator_AreaIgnoreRoof</li>
+			<li>RoofsOnRoofs.Designator_ShowRoofOverlayToggle</li>
+			<li>RoofsOnRoofs.Designator_DeconstructWallSide</li>
 			<li>RoofsOnRoofs.Designator_DeconstructRoof</li>
+			<li>RoofsOnRoofs.Designator_DeconstructPatch</li>
 			<li>RoofsOnRoofs.Designator_ChangeBrightnessWallSide</li>
 			<li>RoofsOnRoofs.Designator_ChangeBrightnessRoof</li>
 			<li>RoofsOnRoofs.Designator_ChangeBrightnessPatch</li>

@@ -2,11 +2,17 @@
 
 <LanguageData>
 
-	<RoofsOnRoofs_ShowRoofGraphicToggle_Description>지붕 그래픽 보이기 토글</RoofsOnRoofs_ShowRoofGraphicToggle_Description>
+	<RoofsOnRoofs_ShowRoofGraphicToggle_Description>지붕 모양 보이기 토글</RoofsOnRoofs_ShowRoofGraphicToggle_Description>
+	<RoofsOnRoofs_ShowRoofOverlayToggle_Description>지붕 표시</RoofsOnRoofs_ShowRoofOverlayToggle_Description>
 
-	<RoofsOnRoofs_DeconstructRoof_Label>지붕 장식 해체</RoofsOnRoofs_DeconstructRoof_Label>
-	<RoofsOnRoofs_DeconstructRoof_Description>지붕 위에 건설한 장식을 해체합니다.</RoofsOnRoofs_DeconstructRoof_Description>
-	
+	<RoofsOnRoofs_DeconstructRoof_Label>지붕 모양 해체</RoofsOnRoofs_DeconstructRoof_Label>
+	<RoofsOnRoofs_DeconstructWallSide_Label>지붕 측면 벽 해체</RoofsOnRoofs_DeconstructWallSide_Label>
+	<RoofsOnRoofs_DeconstructPatch_Label>지붕 패치 해체</RoofsOnRoofs_DeconstructPatch_Label>
+
+	<RoofsOnRoofs_ChangeBrightnessRoof_Label>지붕 모양 색칠</RoofsOnRoofs_ChangeBrightnessRoof_Label>
+	<RoofsOnRoofs_ChangeBrightnessWallSide_Label>지붕 측면 벽 색칠</RoofsOnRoofs_ChangeBrightnessWallSide_Label>
+	<RoofsOnRoofs_ChangeBrightnessPatch_Label>지붕 패치 색칠</RoofsOnRoofs_ChangeBrightnessPatch_Label>
+
 	<RoofsOnRoofs_BrightType0>밝음</RoofsOnRoofs_BrightType0>
 	<RoofsOnRoofs_BrightType1>일반</RoofsOnRoofs_BrightType1>
 	<RoofsOnRoofs_BrightType2>어둠</RoofsOnRoofs_BrightType2>
@@ -16,5 +22,5 @@
 	<RoofsOnRoofs_BrightType6>일반/어둠</RoofsOnRoofs_BrightType6>
 	<RoofsOnRoofs_BrightType7>어둠/밝음</RoofsOnRoofs_BrightType7>
 	<RoofsOnRoofs_BrightType8>어둠/일반</RoofsOnRoofs_BrightType8>
-	
+
 </LanguageData>
