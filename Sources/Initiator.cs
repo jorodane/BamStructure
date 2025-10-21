@@ -62,7 +62,11 @@ namespace RoofsOnRoofs
 
         public static bool ShowRoof
         {
-            get { return _showRoof; }
+            get 
+            { 
+                if (ModsConfig.OdysseyActive && GravshipCapturer.IsGravshipRenderInProgress) return true;
+                return _showRoof; 
+            }
             set
             {
                 if (_showRoof == value) return;

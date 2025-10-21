@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -69,11 +70,10 @@ namespace RoofsOnRoofs
     {
         static readonly FieldInfo MapField = AccessTools.Field(typeof(RoofGrid), "map");
 
-        static void Postfix(RoofGrid __instance, IntVec3 c, bool __state)
+        static void Postfix(RoofGrid __instance, IntVec3 c)
         {
-            bool wasRoofed = __state;
-            if (__state) return;
-
+            if (__instance.Roofed(c)) return;
+            if (ModsConfig.OdysseyActive && GravshipCapturer.IsGravshipRenderInProgress) return;
             Map map = (Map)MapField.GetValue(__instance);
             if (map == null || !c.InBounds(map)) return;
 
@@ -101,7 +101,6 @@ namespace RoofsOnRoofs
                     if (buildDef?.thingClass == typeof(Building_Roof)) toCancel.Add(currentThing);
                 }
             }
-
             foreach (Thing currentThing in toDestroy) currentThing.Destroy(DestroyMode.Deconstruct);
             foreach (Thing currentThing in toCancel) currentThing.Destroy(DestroyMode.Cancel);
         }
@@ -168,7 +167,6 @@ namespace RoofsOnRoofs
         public static Color Color_Bright = Color.white;
         public static Color Color_Normal = new Color(0.9f, 0.9f, 0.9f);
         public static Color Color_Dark = new Color(0.7f, 0.7f, 0.7f);
-
         public override Color DrawColor
         {
             get
@@ -210,12 +208,12 @@ namespace RoofsOnRoofs
             }
         }
 
-        protected int brightness = 0;
+        protected int brightness = 1;
 
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref brightness, "Brightness", 0);
+            Scribe_Values.Look(ref brightness, "Brightness", 1);
         }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)

@@ -40,7 +40,7 @@
 			<li>WallSide</li>
 		</replaceTags>
 		<graphicData>
-			<graphicClass>Graphic_Appearances</graphicClass>
+			<graphicClass>RoofsOnRoofs.Graphic_Appearances_MultiColored</graphicClass>
 			<texPath>Things/Building/Roof/Roof_Invisible</texPath>
 			<linkType>Basic</linkType>
 			<linkFlags>
@@ -60,7 +60,7 @@
 			<li>Roof</li>
 		</replaceTags>
 		<graphicData>
-			<graphicClass>Graphic_Appearances</graphicClass>
+			<graphicClass>RoofsOnRoofs.Graphic_Appearances_MultiColored</graphicClass>
 			<texPath>Things/Building/Roof/Roof_Invisible</texPath>
 			<linkType>Basic</linkType>
 			<linkFlags>
