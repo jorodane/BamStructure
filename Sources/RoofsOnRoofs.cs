@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using RimWorld;
 using RimWorld.Planet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -73,7 +74,6 @@ namespace RoofsOnRoofs
         static void Postfix(RoofGrid __instance, IntVec3 c)
         {
             if (__instance.Roofed(c)) return;
-            if (ModsConfig.OdysseyActive && GravshipCapturer.IsGravshipRenderInProgress) return;
             Map map = (Map)MapField.GetValue(__instance);
             if (map == null || !c.InBounds(map)) return;
 
@@ -106,6 +106,27 @@ namespace RoofsOnRoofs
         }
     }
 
+    [HarmonyPatch(typeof(GravshipCapturer), nameof(GravshipCapturer.BeginGravshipRender))]
+    static class Patch_GravshipCapturer_BeginGravshipRender_RoofsOnRoofs
+    {
+        static void Prefix(ref Action<Capture> onComplete)
+        {
+            RoofsOnRoofsGameComponent.Capturing = true;
+            RequestRedrawAllMaps();
+            onComplete += CaptureComplete;
+        }
+
+        static void CaptureComplete(Capture capture)
+        {
+            RoofsOnRoofsGameComponent.Capturing = false;
+        }
+        public static void RequestRedrawAllMaps()
+        {
+            if (Current.ProgramState != ProgramState.Playing) return;
+            foreach (var map in Find.Maps)
+                map.mapDrawer.WholeMapChanged(MapMeshFlagDefOf.Things);
+        }
+    }
     public class Graphic_Appearances_MultiColored : Graphic_Appearances
     {
         public override void Init(GraphicRequest req)
@@ -228,12 +249,26 @@ namespace RoofsOnRoofs
             base.Destroy(mode);
             RoofsOnRoofsGameComponent.OnVisibleChanged -= OnVisibleChanged;
         }
+
+        public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+        {
+            base.DeSpawn(mode);
+            RoofsOnRoofsGameComponent.OnVisibleChanged -= OnVisibleChanged;
+        }
         public override void Print(SectionLayer layer)
         {
-            if (RoofsOnRoofsGameComponent.IsShowing) base.Print(layer);
+            if (Map == null) return;
+            switch (RoofsOnRoofsGameComponent.RenderLevel)
+            {
+                case RoofsOnRoofsGameComponent.RoofRenderLevel.Must: base.Print(layer); break;
+                case RoofsOnRoofsGameComponent.RoofRenderLevel.Need:
+                    {
+                        base.Print(layer); break;
+                    }
+            }
         }
 
-        public virtual void OnVisibleChanged(bool value)
+        public virtual void OnVisibleChanged()
         {
             Notify_ColorChanged();
         }

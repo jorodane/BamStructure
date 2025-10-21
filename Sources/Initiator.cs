@@ -41,15 +41,37 @@ namespace RoofsOnRoofs
     }
     public class RoofsOnRoofsGameComponent : GameComponent
     {
-        public static event System.Action<bool> OnVisibleChanged;
+        public static event System.Action OnVisibleChanged;
 
-        static bool _lastShow = false;
-        public static bool IsShowing => _lastShow;
+        public enum RoofRenderLevel { Not, Need, Must}
+
+        static RoofRenderLevel _renderLevel;
+        public static RoofRenderLevel RenderLevel => _renderLevel;
+
+        static bool _capturing = false;
+
+        public static bool Capturing
+        {
+            get
+            {
+                return _capturing;
+            }
+            set
+            {
+                if (_capturing == value) return;
+                _capturing = value;
+                UpdateShower();
+            }
+        }
 
         static bool _roofTab = false;
+
         public static bool RoofTab
         {
-            get { return _roofTab; }
+            get
+            {
+                return _roofTab;
+            }
             set
             {
                 if (_roofTab == value) return;
@@ -64,7 +86,6 @@ namespace RoofsOnRoofs
         {
             get 
             { 
-                if (ModsConfig.OdysseyActive && GravshipCapturer.IsGravshipRenderInProgress) return true;
                 return _showRoof; 
             }
             set
@@ -77,12 +98,21 @@ namespace RoofsOnRoofs
 
         static void UpdateShower()
         {
-            bool currentShow = _showRoof || _roofTab;
-            if (_lastShow != currentShow)
+            if (Capturing || RoofTab)
             {
-                _lastShow = currentShow;
-                OnVisibleChanged?.Invoke(currentShow);
+                _renderLevel = RoofRenderLevel.Must;
             }
+            else if(ShowRoof)
+            {
+                _renderLevel = RoofRenderLevel.Need;
+            }
+            else
+            {
+                _renderLevel = RoofRenderLevel.Not;
+            }
+
+            OnVisibleChanged?.Invoke();
+
         }
 
         public RoofsOnRoofsGameComponent(Game game) { }
