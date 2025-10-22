@@ -42,20 +42,6 @@ namespace RoofsOnRoofs
         }
     }
 
-    [HarmonyPatch(typeof(Blueprint), "DrawAt")]
-    public static class Patch_Blueprint_Build_DrawAt_RoofsOnRoofs
-    {
-        static void Prefix(Blueprint_Build __instance, ref Vector3 drawLoc)
-        {
-            if (__instance.def?.entityDefToBuild is ThingDef buildDef && buildDef.thingClass == typeof(Building_Roof))
-            {
-                drawLoc.y = buildDef.altitudeLayer.AltitudeFor() + 0.1f;
-            }
-        }
-    }
-
-
-
     [HarmonyPatch(typeof(Window), nameof(Window.PostClose))]
     public static class Patch_Window_PostClose_RoofsOnRoofs
     {
@@ -109,6 +95,44 @@ namespace RoofsOnRoofs
     [HarmonyPatch(typeof(GravshipCapturer), nameof(GravshipCapturer.BeginGravshipRender))]
     static class Patch_GravshipCapturer_BeginGravshipRender_RoofsOnRoofs
     {
+        static void Postfix()
+        {
+            RoofsOnRoofsGameComponent.Capturing = true;
+        }
+    }
+
+    [HarmonyPatch(typeof(WorldComponent_GravshipController), nameof(WorldComponent_GravshipController.InitiateTakeoff))]
+    static class Patch_WorldComponent_GravshipController_InitiateTakeoff_RoofsOnRoofs
+    {
+        static void Prefix()
+        {
+            RoofsOnRoofsGameComponent.Capturing = true;
+        }
+    }
+
+
+    [HarmonyPatch(typeof(WorldComponent_GravshipController), "BeginLandingCutscene")]
+    static class Patch_WorldComponent_GravshipController_InitiateLanding_RoofsOnRoofs
+    {
+        static void Postfix()
+        {
+            RoofsOnRoofsGameComponent.Capturing = true;
+        }
+    }
+
+
+    [HarmonyPatch(typeof(WorldComponent_GravshipController), "ResetCutscene")]
+    static class Patch_WorldComponent_GravshipController_ResetCutscene_RoofsOnRoofs
+    {
+        static void Prefix()
+        {
+            RoofsOnRoofsGameComponent.Capturing = false;
+        }
+    }
+
+    [HarmonyPatch(typeof(GravshipCapturer), nameof(GravshipCapturer.BeginTerrainRender))]
+    static class Patch_GravshipCapturer_BeginTerrainRender_RoofsOnRoofs
+    {
         static void Prefix(ref Action<Capture> onComplete)
         {
             RoofsOnRoofsGameComponent.Capturing = true;
@@ -127,6 +151,7 @@ namespace RoofsOnRoofs
                 map.mapDrawer.WholeMapChanged(MapMeshFlagDefOf.Things);
         }
     }
+
     public class Graphic_Appearances_MultiColored : Graphic_Appearances
     {
         public override void Init(GraphicRequest req)
@@ -263,7 +288,8 @@ namespace RoofsOnRoofs
                 case RoofsOnRoofsGameComponent.RoofRenderLevel.Must: base.Print(layer); break;
                 case RoofsOnRoofsGameComponent.RoofRenderLevel.Need:
                     {
-                        base.Print(layer); break;
+                        base.Print(layer);
+                        break;
                     }
             }
         }

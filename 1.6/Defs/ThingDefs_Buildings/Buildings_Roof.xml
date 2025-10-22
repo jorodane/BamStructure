@@ -4,7 +4,7 @@
 	<ThingDef ParentName="BuildingBase" Name="RoofBase" Abstract="True">
 		<thingClass>RoofsOnRoofs.Building_Roof</thingClass>
 		<category>Building</category>
-		<altitudeLayer>FogOfWar</altitudeLayer>
+		<altitudeLayer>PawnState</altitudeLayer>
 		<passability>Standable</passability>
 		<pathCost>0</pathCost>
 		<coversFloor>false</coversFloor>
@@ -77,7 +77,7 @@
 		<defName>Roof_WallSide</defName>
 		<label>wall side</label>
 		<uiOrder>1000</uiOrder>
-		<altitudeLayer>VisEffects</altitudeLayer>
+		<altitudeLayer>PawnUnused</altitudeLayer>
 		<drawStyleCategory>Floors</drawStyleCategory>
 		<replaceTags>
 			<li>WallSide</li>
@@ -233,7 +233,7 @@
 	
 	<ThingDef Abstract ="true" ParentName="RoofBase" Name="WallSidePatchBase">
 		<uiOrder>3000</uiOrder>
-		<altitudeLayer>VisEffects</altitudeLayer>
+		<altitudeLayer>PawnUnused</altitudeLayer>
 		<rotatable>true</rotatable>
 		<defaultPlacingRot>South</defaultPlacingRot>
 		<replaceTags>
@@ -241,7 +241,7 @@
 		</replaceTags>
 		<graphicData>
 			<graphicClass>Graphic_Multi</graphicClass>
-			<shaderType>Cutout</shaderType>
+			<shaderType>CutoutComplex</shaderType>
 			<drawOffset>(0,0.1,0)</drawOffset>
 		</graphicData>
 		<costStuffCount>1</costStuffCount>

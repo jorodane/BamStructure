@@ -98,7 +98,7 @@ namespace RoofsOnRoofs
 
         static void UpdateShower()
         {
-            if (Capturing || RoofTab)
+            if (GravshipCapturer.IsGravshipRenderInProgress || Capturing || RoofTab)
             {
                 _renderLevel = RoofRenderLevel.Must;
             }
