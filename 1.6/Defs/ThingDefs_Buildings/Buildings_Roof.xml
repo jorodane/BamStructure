@@ -170,6 +170,20 @@
 			</blueprintGraphicData>
 		</building>
 	</ThingDef>
+
+	<ThingDef ParentName="Roof_Linked" Name="Roof_BrickFlat">
+		<defName>Roof_Brick_Flat</defName>
+		<label>roof brick (flat)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/Roof_Brick_Flat</texPath>
+		</graphicData>
+		<uiIconPath>Things/Building/Roof/Roof_Brick_Flat/MenuIcon</uiIconPath>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Roof/Roof_Brick_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
+	</ThingDef>
 	
 	<ThingDef ParentName="Roof_Linked" Name="Roof_Plank">
 		<defName>Roof_Plank</defName>
@@ -178,6 +192,20 @@
 			<texPath>Things/Building/Roof/Roof_Plank</texPath>
 		</graphicData>
 		<uiIconPath>Things/Building/Roof/Roof_Plank/MenuIcon</uiIconPath>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Roof/Roof_Plank_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
+	</ThingDef>
+
+	<ThingDef ParentName="Roof_Linked" Name="Roof_PlankFlat">
+		<defName>Roof_Plank_Flat</defName>
+		<label>roof plank (flat)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/Roof_Plank_Flat</texPath>
+		</graphicData>
+		<uiIconPath>Things/Building/Roof/Roof_Plank_Flat/MenuIcon</uiIconPath>
 		<building>
 			<blueprintGraphicData>
 				<texPath>Things/Building/Roof/Roof_Plank_Blueprint_Atlas</texPath>
@@ -213,6 +241,21 @@
 		</building>
 	</ThingDef>
 
+	<ThingDef ParentName="Roof_Linked" Name="Roof_Smooth_Flat">
+		<defName>Roof_Smooth_Flat</defName>
+		<label>roof smooth (flat)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/Roof_Smooth_Flat</texPath>
+		</graphicData>
+		<uiIconPath>Things/Building/Roof/Roof_Smooth_Flat/MenuIcon</uiIconPath>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Roof/Roof_Smooth_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
+	</ThingDef>
+
+
 	<ThingDef ParentName="Roof_Linked" Name="Roof_Smooth_Pinch">
 		<defName>Roof_Smooth_Pinch</defName>
 		<label>roof smooth (pinch)</label>
@@ -227,7 +270,19 @@
 		</building>
 	</ThingDef>
 
-	
+	<ThingDef ParentName="Roof_Linked" Name="Roof_RoofTop">
+		<defName>Roof_RoofTop</defName>
+		<label>roof top</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/Roof_RoofTop</texPath>
+		</graphicData>
+		<uiIconPath>Things/Building/Roof/Roof_RoofTop/MenuIcon</uiIconPath>
+		<building>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Roof/Roof_Smooth_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+		</building>
+	</ThingDef>
 	
 	<!-- Wall Side Patch-->
 	
