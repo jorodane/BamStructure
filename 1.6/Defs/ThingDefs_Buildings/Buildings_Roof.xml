@@ -180,7 +180,7 @@
 		<uiIconPath>Things/Building/Roof/Roof_Brick_Flat/MenuIcon</uiIconPath>
 		<building>
 			<blueprintGraphicData>
-				<texPath>Things/Building/Roof/Roof_Brick_Blueprint_Atlas</texPath>
+				<texPath>Things/Building/Roof/RoofFlat_Brick_Blueprint_Atlas</texPath>
 			</blueprintGraphicData>
 		</building>
 	</ThingDef>
@@ -208,7 +208,7 @@
 		<uiIconPath>Things/Building/Roof/Roof_Plank_Flat/MenuIcon</uiIconPath>
 		<building>
 			<blueprintGraphicData>
-				<texPath>Things/Building/Roof/Roof_Plank_Blueprint_Atlas</texPath>
+				<texPath>Things/Building/Roof/RoofFlat_Plank_Blueprint_Atlas</texPath>
 			</blueprintGraphicData>
 		</building>
 	</ThingDef>
@@ -250,7 +250,7 @@
 		<uiIconPath>Things/Building/Roof/Roof_Smooth_Flat/MenuIcon</uiIconPath>
 		<building>
 			<blueprintGraphicData>
-				<texPath>Things/Building/Roof/Roof_Smooth_Blueprint_Atlas</texPath>
+				<texPath>Things/Building/Roof/RoofFlat_Smooth_Blueprint_Atlas</texPath>
 			</blueprintGraphicData>
 		</building>
 	</ThingDef>
@@ -279,7 +279,7 @@
 		<uiIconPath>Things/Building/Roof/Roof_RoofTop/MenuIcon</uiIconPath>
 		<building>
 			<blueprintGraphicData>
-				<texPath>Things/Building/Roof/Roof_Smooth_Blueprint_Atlas</texPath>
+				<texPath>Things/Building/Roof/Rooftop_Blueprint_Atlas</texPath>
 			</blueprintGraphicData>
 		</building>
 	</ThingDef>
