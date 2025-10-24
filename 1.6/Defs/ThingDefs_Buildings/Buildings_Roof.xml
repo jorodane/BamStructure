@@ -143,6 +143,31 @@
 		</stuffCategories>
 	</ThingDef>
 
+	<ThingDef Abstract ="true" ParentName="RoofBase" Name="Roof_LinkedCorner">
+		<uiOrder>2000</uiOrder>
+		<drawStyleCategory>Floors</drawStyleCategory>
+		<replaceTags>
+			<li>Roof</li>
+		</replaceTags>
+		<graphicData>
+			<graphicClass>RoofsOnRoofs.Graphic_Appearances_MultiColored</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<linkType>CornerFiller</linkType>
+			<linkFlags>
+				<li>Custom10</li>
+			</linkFlags>
+		</graphicData>
+		<rotatable>false</rotatable>
+		<costStuffCount>1</costStuffCount>
+		<stuffCategories>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Metallic</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+	</ThingDef>
+
 	<ThingDef ParentName="Roof_Linked" Name="Roof_Brick">
 		<defName>Roof_Brick</defName>
 		<label>roof brick</label>
@@ -270,17 +295,17 @@
 		</building>
 	</ThingDef>
 
-	<ThingDef ParentName="Roof_Linked" Name="Roof_RoofTop">
+	<ThingDef ParentName="Roof_LinkedCorner" Name="Roof_RoofTop">
 		<defName>Roof_RoofTop</defName>
 		<label>roof top</label>
 		<graphicData>
+			<graphicClass>RoofsOnRoofs.Graphic_Appearances_MultiColored</graphicClass>
 			<texPath>Things/Building/Roof/Roof_RoofTop</texPath>
 		</graphicData>
 		<uiIconPath>Things/Building/Roof/Roof_RoofTop/MenuIcon</uiIconPath>
 		<building>
 			<blueprintGraphicData>
 				<texPath>Things/Building/Roof/Rooftop_Blueprint_Atlas</texPath>
-				<linkType>CornerFiller</linkType>
 			</blueprintGraphicData>
 		</building>
 	</ThingDef>
