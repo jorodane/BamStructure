@@ -280,6 +280,7 @@
 		<building>
 			<blueprintGraphicData>
 				<texPath>Things/Building/Roof/Rooftop_Blueprint_Atlas</texPath>
+				<linkType>CornerFiller</linkType>
 			</blueprintGraphicData>
 		</building>
 	</ThingDef>
