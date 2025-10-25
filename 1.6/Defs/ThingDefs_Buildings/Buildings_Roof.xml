@@ -321,7 +321,7 @@
 			<li>WallSidePatch</li>
 		</replaceTags>
 		<graphicData>
-			<graphicClass>Graphic_Multi</graphicClass>
+			<graphicClass>RoofsOnRoofs.Graphic_Multi_MultiColored</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 			<drawOffset>(0,0.1,0)</drawOffset>
 		</graphicData>
@@ -335,6 +335,10 @@
 		</stuffCategories>
 	</ThingDef>
 	
+	
+	
+	
+	
 	<!-- Roof Patch -->
 	
 	<ThingDef Abstract ="true" ParentName="RoofBase" Name="RoofPatchBase">
@@ -345,8 +349,8 @@
 			<li>RoofPatch</li>
 		</replaceTags>
 		<graphicData>
-			<graphicClass>Graphic_Multi</graphicClass>
-			<shaderType>Cutout</shaderType>
+			<graphicClass>RoofsOnRoofs.Graphic_Multi_MultiColored</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
 			<drawOffset>(0,0.1,0)</drawOffset>
 		</graphicData>
 		<costStuffCount>1</costStuffCount>
@@ -358,6 +362,9 @@
 			<li>Leathery</li>
 		</stuffCategories>
 	</ThingDef>
+	
+	
+	
 	
 	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Brick_End">
 		<defName>RoofPatch_Brick_End</defName>
@@ -375,6 +382,29 @@
 		</graphicData>
 	</ThingDef>
 
+	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Brick_End_Singleline">
+		<defName>RoofPatch_Brick_End_Singleline</defName>
+		<label>patch (end brick singleline)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/RoofPatch_End/Brick_Singleline</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Brick_End_Spike">
+		<defName>RoofPatch_Brick_End_Spike</defName>
+		<label>patch (end brick spike)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/RoofPatch_End/Brick_Spike</texPath>
+		</graphicData>
+		<uiIconOffset>(0, -0.25)</uiIconOffset>
+	</ThingDef>
+	
+	
+	
+	
+	
+	
+
 	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Plank_End">
 		<defName>RoofPatch_Plank_End</defName>
 		<label>patch (end plank)</label>
@@ -390,6 +420,27 @@
 			<texPath>Things/Building/Roof/RoofPatch_End/Plank_Outline</texPath>
 		</graphicData>
 	</ThingDef>
+
+	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Plank_End_Singleline">
+		<defName>RoofPatch_Plank_End_Singleline</defName>
+		<label>patch (end plank singleline)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/RoofPatch_End/Plank_Singleline</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Plank_End_Spike">
+		<defName>RoofPatch_Plank_End_Spike</defName>
+		<label>patch (end plank spike)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/RoofPatch_End/Plank_Spike</texPath>
+		</graphicData>
+		<uiIconOffset>(0, -0.25)</uiIconOffset>
+	</ThingDef>
+	
+	
+	
+	
 	
 	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Smooth_End">
 		<defName>RoofPatch_Smooth_End</defName>
@@ -405,6 +456,23 @@
 		<graphicData>
 			<texPath>Things/Building/Roof/RoofPatch_End/Smooth_Outline</texPath>
 		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Smooth_End_Singleline">
+		<defName>RoofPatch_Smooth_End_Singleline</defName>
+		<label>patch (end smooth singleline)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/RoofPatch_End/Smooth_Singleline</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="RoofPatchBase" Name="RoofPatch_Smooth_End_Spike">
+		<defName>RoofPatch_Smooth_End_Spike</defName>
+		<label>patch (end smooth spike)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/RoofPatch_End/Smooth_Spike</texPath>
+		</graphicData>
+		<uiIconOffset>(0, -0.25)</uiIconOffset>
 	</ThingDef>
 
 	<!-- Wall Side Decoration -->

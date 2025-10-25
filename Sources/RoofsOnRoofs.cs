@@ -12,6 +12,22 @@ using Verse.Sound;
 
 namespace RoofsOnRoofs
 {
+    public static class Extension_RoofsOnRoofs
+    {
+        public static void GapPatch(this Texture2D targetTexture)
+        {
+            if (targetTexture != null)
+            {
+                targetTexture.filterMode = FilterMode.Point;
+                targetTexture.wrapMode = TextureWrapMode.Clamp;
+                targetTexture.anisoLevel = 0;
+                targetTexture.minimumMipmapLevel = 0;
+                targetTexture.mipMapBias = -10.0f;
+            }
+        }
+    }
+
+
     [HarmonyPatch(typeof(PlaySettings), nameof(PlaySettings.DoPlaySettingsGlobalControls))]
     public static class Patch_PlaySettings_DoPlaySettingsGlobalControls_RoofsOnRoofs
     {
@@ -183,14 +199,7 @@ namespace RoofsOnRoofs
                 Texture2D texture2D_m = (from x in ContentFinder<Texture2D>.GetAllInFolder(text)
                                        where x.name.EndsWith(stuffAppearance.defName + "_m")
                                        select x).FirstOrDefault();
-                if (texture2D_m != null)
-                {
-                    texture2D_m.filterMode = FilterMode.Point;
-                    texture2D_m.wrapMode = TextureWrapMode.Clamp;
-                    texture2D_m.anisoLevel = 0;
-                    texture2D_m.minimumMipmapLevel = 0;
-                    texture2D_m.mipMapBias = -10.0f;
-                }
+                texture2D_m?.GapPatch();
             }
 
             for (int j = 0; j < subGraphics.Length; j++)
@@ -206,6 +215,220 @@ namespace RoofsOnRoofs
         {
             return GraphicDatabase.Get<Graphic_Appearances_MultiColored>(path, newShader, drawSize, newColor, newColorTwo, data);
         }
+    }
+
+    public class Graphic_Multi_MultiColored : Graphic_Multi
+    {
+        //public override void Init(GraphicRequest req)
+        //{
+        //    ContentFinder<Texture2D>.Get(req.path + "_north", reportFailure: false)?.GapPatch();
+        //    ContentFinder<Texture2D>.Get(req.path + "_east", reportFailure: false)?.GapPatch();
+        //    ContentFinder<Texture2D>.Get(req.path + "_south", reportFailure: false)?.GapPatch();
+        //    ContentFinder<Texture2D>.Get(req.path + "_west", reportFailure: false)?.GapPatch();
+
+        //    if (req.shader.SupportsMaskTex())
+        //    {
+        //        maskPath = req.maskPath;
+        //        string text = (maskPath.NullOrEmpty() ? path : maskPath);
+        //        string text2 = (maskPath.NullOrEmpty() ? "m" : string.Empty);
+        //        ContentFinder<Texture2D>.Get(text + "_north" + text2, reportFailure: false)?.GapPatch();
+        //        ContentFinder<Texture2D>.Get(text + "_east" + text2, reportFailure: false)?.GapPatch();
+        //        ContentFinder<Texture2D>.Get(text + "_south" + text2, reportFailure: false)?.GapPatch();
+        //        ContentFinder<Texture2D>.Get(text + "_west" + text2, reportFailure: false)?.GapPatch();
+        //    }
+
+        //    base.Init(req);
+
+        //    MatNorth.SetFloat("_Cutoff", 0.22f);
+        //    MatEast.SetFloat("_Cutoff", 0.22f);
+        //    MatSouth.SetFloat("_Cutoff", 0.22f);
+        //    MatWest.SetFloat("_Cutoff", 0.22f);
+
+        //}
+
+        private Material[] mats = new Material[4];
+        private float drawRotatedExtraAngleOffset;
+        private bool westFlipped;
+        private bool eastFlipped;
+        public override Material MatWest => mats[3];
+
+        public override Material MatSouth => mats[2];
+
+        public override Material MatEast => mats[1];
+
+        public override Material MatNorth => mats[0];
+
+        public override bool WestFlipped => westFlipped;
+        public override bool EastFlipped => eastFlipped;
+        public override float DrawRotatedExtraAngleOffset => drawRotatedExtraAngleOffset;
+
+
+        public override void TryInsertIntoAtlas(TextureAtlasGroup groupKey)
+        {
+            return;
+            Material[] array = mats;
+            foreach (Material material in array)
+            {
+                Texture2D mask = null;
+                if (material.HasProperty(ShaderPropertyIDs.MaskTex))
+                {
+                    mask = (Texture2D)material.GetTexture(ShaderPropertyIDs.MaskTex);
+                }
+
+                GlobalTextureAtlasManager.TryInsertStatic(groupKey, (Texture2D)material.mainTexture, mask);
+            }
+        }
+
+        public override void Init(GraphicRequest req)
+        {
+            data = req.graphicData;
+            path = req.path;
+            maskPath = req.maskPath;
+            color = req.color;
+            colorTwo = req.colorTwo;
+            drawSize = req.drawSize;
+            Texture2D[] array = new Texture2D[mats.Length];
+            array[0] = ContentFinder<Texture2D>.Get(req.path + "_north", reportFailure: false);
+            array[1] = ContentFinder<Texture2D>.Get(req.path + "_east", reportFailure: false);
+            array[2] = ContentFinder<Texture2D>.Get(req.path + "_south", reportFailure: false);
+            array[3] = ContentFinder<Texture2D>.Get(req.path + "_west", reportFailure: false);
+            if (array[0] == null)
+            {
+                if (array[2] != null)
+                {
+                    array[0] = array[2];
+                    drawRotatedExtraAngleOffset = 180f;
+                }
+                else if (array[1] != null)
+                {
+                    array[0] = array[1];
+                    drawRotatedExtraAngleOffset = -90f;
+                }
+                else if (array[3] != null)
+                {
+                    array[0] = array[3];
+                    drawRotatedExtraAngleOffset = 90f;
+                }
+                else
+                {
+                    array[0] = ContentFinder<Texture2D>.Get(req.path, reportFailure: false);
+                }
+            }
+
+            if (array[0] == null)
+            {
+                Log.Error("Failed to find any textures at " + req.path + " while constructing " + this.ToStringSafe());
+                mats[0] = (mats[1] = (mats[2] = (mats[3] = BaseContent.BadMat)));
+                return;
+            }
+
+            if (array[2] == null)
+            {
+                array[2] = array[0];
+            }
+
+            if (array[1] == null)
+            {
+                if (array[3] != null)
+                {
+                    array[1] = array[3];
+                    eastFlipped = base.DataAllowsFlip;
+                }
+                else
+                {
+                    array[1] = array[0];
+                }
+            }
+
+            if (array[3] == null)
+            {
+                if (array[1] != null)
+                {
+                    array[3] = array[1];
+                    westFlipped = base.DataAllowsFlip;
+                }
+                else
+                {
+                    array[3] = array[0];
+                }
+            }
+
+            Texture2D[] array2 = new Texture2D[mats.Length];
+            if (req.shader.SupportsMaskTex())
+            {
+                string text = (maskPath.NullOrEmpty() ? path : maskPath);
+                string text2 = (maskPath.NullOrEmpty() ? "m" : string.Empty);
+                array2[0] = ContentFinder<Texture2D>.Get(text + "_north" + text2, reportFailure: false);
+                array2[1] = ContentFinder<Texture2D>.Get(text + "_east" + text2, reportFailure: false);
+                array2[2] = ContentFinder<Texture2D>.Get(text + "_south" + text2, reportFailure: false);
+                array2[3] = ContentFinder<Texture2D>.Get(text + "_west" + text2, reportFailure: false);
+                if (array2[0] == null)
+                {
+                    if (array2[2] != null)
+                    {
+                        array2[0] = array2[2];
+                    }
+                    else if (array2[1] != null)
+                    {
+                        array2[0] = array2[1];
+                    }
+                    else if (array2[3] != null)
+                    {
+                        array2[0] = array2[3];
+                    }
+                }
+
+                if (array2[2] == null)
+                {
+                    array2[2] = array2[0];
+                }
+
+                if (array2[1] == null)
+                {
+                    if (array2[3] != null)
+                    {
+                        array2[1] = array2[3];
+                    }
+                    else
+                    {
+                        array2[1] = array2[0];
+                    }
+                }
+
+                if (array2[3] == null)
+                {
+                    if (array2[1] != null)
+                    {
+                        array2[3] = array2[1];
+                    }
+                    else
+                    {
+                        array2[3] = array2[0];
+                    }
+                }
+            }
+
+            for (int i = 0; i < mats.Length; i++)
+            {
+                MaterialRequest req2 = default(MaterialRequest);
+                array[i].GapPatch();
+                req2.mainTex = array[i];
+                req2.shader = req.shader;
+                req2.color = color;
+                req2.colorTwo = colorTwo;
+                array2[i].GapPatch();
+                req2.maskTex = array2[i];
+                req2.shaderParameters = req.shaderParameters;
+                req2.renderQueue = req.renderQueue;
+                mats[i] = MaterialPool.MatFrom(req2);
+            }
+        }
+
+        public override Graphic GetColoredVersion(Shader newShader, Color newColor, Color newColorTwo)
+        {
+            return GraphicDatabase.Get<Graphic_Multi_MultiColored>(path, newShader, drawSize, newColor, newColorTwo, data, maskPath);
+        }
+
     }
 
     public class Building_Roof : Building

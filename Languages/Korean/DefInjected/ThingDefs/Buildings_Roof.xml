@@ -8,17 +8,27 @@
 	
 	<Roof_Brick.label>벽돌 지붕</Roof_Brick.label>
 	<Roof_Brick_Pinch.label>벽돌 지붕 (파임)</Roof_Brick_Pinch.label>
+	<Roof_Brick_Flat.label>벽돌 지붕 (평평함)</Roof_Brick_Flat.label>
 	<Roof_Plank.label>판자 지붕</Roof_Plank.label>
 	<Roof_Plank_Pinch.label>판자 지붕 (파임)</Roof_Plank_Pinch.label>
+	<Roof_Plank_Flat.label>판자 지붕 (평평함)</Roof_Plank_Flat.label>
 	<Roof_Smooth.label>단순 지붕</Roof_Smooth.label>
 	<Roof_Smooth_Pinch.label>단순 지붕 (파임)</Roof_Smooth_Pinch.label>
+	<Roof_Smooth_Flat.label>단순 지붕 (평평함)</Roof_Smooth_Flat.label>
+	<Roof_RoofTop.label>옥상 지붕</Roof_RoofTop.label>
 	
 	<RoofPatch_Brick_End.label>패치 (벽돌 모서리)</RoofPatch_Brick_End.label>
 	<RoofPatch_Brick_End_Outline.label>패치 (벽돌 모서리 외곽선)</RoofPatch_Brick_End_Outline.label>
+	<RoofPatch_Brick_End_Singleline.label>패치 (벽돌 모서리 단일선)</RoofPatch_Brick_End_Singleline.label>
+	<RoofPatch_Brick_End_Spike.label>패치 (벽돌 갓)</RoofPatch_Brick_End_Spike.label>
 	<RoofPatch_Plank_End.label>패치 (판자 모서리)</RoofPatch_Plank_End.label>
 	<RoofPatch_Plank_End_Outline.label>패치 (판자 모서리 외곽선)</RoofPatch_Plank_End_Outline.label>
+	<RoofPatch_Plank_End_Singleline.label>패치 (판자 모서리 단일선)</RoofPatch_Plank_End_Singleline.label>
+	<RoofPatch_Plank_End_Spike.label>패치 (판자 갓)</RoofPatch_Plank_End_Spike.label>
 	<RoofPatch_Smooth_End.label>패치 (단순 모서리)</RoofPatch_Smooth_End.label>
 	<RoofPatch_Smooth_End_Outline.label>패치 (단순 모서리 외곽선)</RoofPatch_Smooth_End_Outline.label>
+	<RoofPatch_Smooth_End_Singleline.label>패치 (단순 모서리 단일선)</RoofPatch_Smooth_End_Singleline.label>
+	<RoofPatch_Smooth_End_Spike.label>패치 (단순 갓)</RoofPatch_Smooth_End_Spike.label>
 	
 	<Window_WallSide.label>측면벽 창문</Window_WallSide.label>
 	<WindowFrame_WallSide.label>측면벽 창문틀</WindowFrame_WallSide.label>
