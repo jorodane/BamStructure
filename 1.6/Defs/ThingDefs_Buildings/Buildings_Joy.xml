@@ -63,6 +63,7 @@
 		</placeWorkers>
 		<designationCategory>Joy</designationCategory>
 		<designationHotKey>Misc1</designationHotKey>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
   <!-- Mirrors -->
@@ -133,6 +134,7 @@
     <designationCategory>Joy</designationCategory>
     <designationHotKey>Misc4</designationHotKey>
     <constructionSkillPrerequisite>2</constructionSkillPrerequisite>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="MirrorBase" Name ="RoundMirror">

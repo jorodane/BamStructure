@@ -88,6 +88,7 @@
 			</li>
 		</damageMultipliers>
 		<designationHotKey>Misc3</designationHotKey>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 	<ThingDef Abstract ="true" ParentName="BuildingBase" Name ="LinkableStorageBase">
@@ -135,6 +136,7 @@
 			</defaultStorageSettings>
 		</building>
 		<designationHotKey>Misc12</designationHotKey>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="LinkableStorageBase" Name ="HalfHeightWall">
@@ -457,6 +459,7 @@
 			</li>
 		</comps>
 		<tradeability>None</tradeability>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 
@@ -532,6 +535,7 @@
 				<darklightToggle>true</darklightToggle>
 			</li>
 		</comps>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 
@@ -559,6 +563,7 @@
     <building>
       <isStuffableAirtight>true</isStuffableAirtight>
     </building>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="DoorBase">
@@ -597,6 +602,7 @@
     <building>
       <isStuffableAirtight>true</isStuffableAirtight>
     </building>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
   </ThingDef>
 	
 	<ThingDef Name="FilledDoor" ParentName="DoorBase">
@@ -621,6 +627,7 @@
 			<texPath>Things/Building/Door/FilledDoor_Blueprint</texPath>
 		</blueprintGraphicData>
     </building>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
   </ThingDef>
 
 </Defs>

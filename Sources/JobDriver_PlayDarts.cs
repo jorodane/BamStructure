@@ -22,8 +22,6 @@ namespace BamStructure
 
             yield return Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell);
 
-            TargetInfo pawnInfo = new TargetInfo(pawn.Position, pawn.Map);
-            TargetInfo boardInfo = new TargetInfo(board.Position, board.Map);
             dart = GetDartFromIndex(Rand.Range(0,4)); //DefDatabase<FleckDef>.GetNamed("Fleck_Dart");
             Toil play = new Toil()
             {

@@ -136,6 +136,7 @@
     <placeWorkers>
       <li>PlaceWorker_MeditationOffsetBuildingsNear</li>
     </placeWorkers>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
   </ThingDef>
 
 
@@ -228,6 +229,7 @@
     <placeWorkers>
       <li>PlaceWorker_AnimalPenMarker</li>
     </placeWorkers>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
   </ThingDef>
 
 

@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Xml.Linq;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 using Verse.Sound;
 
 namespace RoofsOnRoofs
@@ -25,7 +26,18 @@ namespace RoofsOnRoofs
                 targetTexture.mipMapBias = -10.0f;
             }
         }
-    }
+
+		public static void GapPatchNotPoint(this Texture2D targetTexture)
+		{
+			if (targetTexture != null)
+			{
+				targetTexture.wrapMode = TextureWrapMode.Clamp;
+				targetTexture.anisoLevel = 0;
+				targetTexture.minimumMipmapLevel = 0;
+				targetTexture.mipMapBias = -10.0f;
+			}
+		}
+	}
 
 
     [HarmonyPatch(typeof(PlaySettings), nameof(PlaySettings.DoPlaySettingsGlobalControls))]
@@ -511,6 +523,7 @@ namespace RoofsOnRoofs
                 case RoofsOnRoofsGameComponent.RoofRenderLevel.Must: base.Print(layer); break;
                 case RoofsOnRoofsGameComponent.RoofRenderLevel.Need:
                     {
+						Pawn
                         base.Print(layer);
                         break;
                     }

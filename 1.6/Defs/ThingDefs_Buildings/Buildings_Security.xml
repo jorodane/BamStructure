@@ -34,6 +34,7 @@
 		<placeWorkers>
 			<li>CallToArms.PlaceWorker_TownBellDraftArea</li>
 		</placeWorkers>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="TownBellBase" Name="EmergencyAlarm">
@@ -85,7 +86,6 @@
 		<placeWorkers>
 			<li>Placeworker_AttachedToWall</li>
 		</placeWorkers>
-
 	</ThingDef>
 
 	<ThingDef ParentName="TownBellBase" Name="MiniTownBell">

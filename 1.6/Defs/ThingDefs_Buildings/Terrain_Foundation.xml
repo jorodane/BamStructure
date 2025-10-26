@@ -18,6 +18,7 @@
 		<destroyEffect>Bridge_Collapse</destroyEffect>
 		<destroyEffectWater>Bridge_CollapseWater</destroyEffectWater>
 		<cropIcon>false</cropIcon>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</TerrainDef>
 
 	<TerrainDef ParentName="CoveredBridgeBase">
@@ -42,6 +43,7 @@
 		</costList>
 		<designationHotKey>Misc4</designationHotKey>
 		<destroyOnBombDamageThreshold>35</destroyOnBombDamageThreshold>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</TerrainDef>
 
 
@@ -106,6 +108,7 @@
 				<li>CurbStoneDoubleEnd</li>
 			</relatedBuildCommands>
 		</building>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="CurbStoneBase" Name="CurbStoneStraight" >

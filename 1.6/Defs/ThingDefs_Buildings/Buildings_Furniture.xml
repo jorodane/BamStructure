@@ -20,6 +20,7 @@
 			<WoodLog>45</WoodLog>
 		</costList>
 		<uiOrder>2020</uiOrder>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="DoubleBed" Name="WoodDoubleBed">
@@ -38,6 +39,7 @@
 			<WoodLog>85</WoodLog>
 		</costList>
 		<uiOrder>2020</uiOrder>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="BasicBedBase" Name="GoldRoyalBed">
@@ -80,6 +82,7 @@
 		<building>
 			<paintable>true</paintable>
 		</building>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 		<uiOrder>2020</uiOrder>
 	</ThingDef>
 
@@ -149,6 +152,7 @@
 		<researchPrerequisites>
 			<li>ComplexFurniture</li>
 		</researchPrerequisites>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="FurnitureWithQualityBase">
@@ -205,6 +209,7 @@
 		<comps>
 			<li Class="CompProperties_Styleable" />
 		</comps>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 
@@ -252,6 +257,7 @@
 		<drawStyleCategory>Floors</drawStyleCategory>
 		<costStuffCount>20</costStuffCount>
 		<rotatable>false</rotatable>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 
@@ -294,6 +300,7 @@
 		</stuffCategories>
 		<costStuffCount>20</costStuffCount>
 		<rotatable>false</rotatable>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 	
 	
@@ -348,6 +355,7 @@
 			</relatedBuildCommands>
 		</building>
 		<rotatable>false</rotatable>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="LinkedPlantPotBase" Name ="LinkedPlantPotRound">
@@ -363,6 +371,7 @@
 				<texPath>Things/Building/Linked/LinkedPlantPotRound_Blueprint_Atlas</texPath>
 			</blueprintGraphicData>
 		</building>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="LinkedPlantPotBase" Name ="LinkedPlantPotSquare">
@@ -378,6 +387,7 @@
 				<texPath>Things/Building/Linked/LinkedPlantPotSquare_Blueprint_Atlas</texPath>
 			</blueprintGraphicData>
 		</building>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 
@@ -467,6 +477,7 @@
 			</li>
 			<li Class="CompProperties_Breakdownable"/>
 		</comps>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 
@@ -538,6 +549,7 @@
 			</li>
 		</comps>
 		<tradeability>None</tradeability>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 	<ThingDef Abstract="True" Name="WindowBase" ParentName="NonBuildableLampBase">
@@ -617,6 +629,7 @@
 				<darklightToggle>true</darklightToggle>
 			</li>
 		</comps>
+    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
 	</ThingDef>
 
 </Defs>

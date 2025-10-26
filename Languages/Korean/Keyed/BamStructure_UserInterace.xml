@@ -2,6 +2,8 @@
 
 <LanguageData>
 	
+	<BamStructure_UseCategoryIntegration>밤스트럭쳐 통합 카테고리 사용 (재시작 필요)</BamStructure_UseCategoryIntegration>
+  
 	<BamStructure_Fan_Level_Desc>바람 세기 : {CurrentLevel}</BamStructure_Fan_Level_Desc>
 	<BamStructure_Fan_Button_Desc>{NextLevel}으로 변경 (현재 : {CurrentLevel})</BamStructure_Fan_Button_Desc>
 	<BamStructure_Fan_Gentle>미풍</BamStructure_Fan_Gentle>

@@ -2,6 +2,8 @@
 using HarmonyLib;
 using Verse;
 using UnityEngine;
+using Microsoft.Win32;
+using System.Linq;
 
 namespace RoofsOnRoofs
 {
@@ -201,11 +203,25 @@ namespace BamStructure
 {
     public class BamStructureSettings : ModSettings
     {
+        public string GetUseCategoryIntegrationString() => "BamStructure_UseCategoryIntegration".Translate();
+
+		public bool useCategoryIntegration = false;
+
         public override void ExposeData()
         {
             base.ExposeData();
-        }
-    }
+
+			Scribe_Values.Look(ref useCategoryIntegration, "BamStructureCategoryIntegration", false);
+		}
+
+		public void DoWindowContents(Rect inRect)
+		{
+			var listing = new Listing_Standard();
+			listing.Begin(inRect);
+			listing.CheckboxLabeled(GetUseCategoryIntegrationString(), ref useCategoryIntegration);
+			listing.End();
+		}
+	}
 
     public class BamStructureMod : Mod
     {
@@ -216,10 +232,41 @@ namespace BamStructure
         public BamStructureMod(ModContentPack content) : base(content)
         {
             Settings = GetSettings<BamStructureSettings>();
-        }
-    }
 
-    [DefOf]
+			LongEventHandler.ExecuteWhenFinished(() =>
+			{
+				if(!Settings.useCategoryIntegration)
+				{ 
+					var removeMethod = typeof(DefDatabase<DesignationCategoryDef>).GetMethod("Remove", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+					if (removeMethod != null)
+					{
+						removeMethod?.Invoke(null, new object[] { BamStructureDefs.Designation_BamStructure });
+					}
+				}
+			});
+		}
+		public override string SettingsCategory() => "BamStructure";
+		public override void DoSettingsWindowContents(Rect inRect)
+		{
+			Settings.DoWindowContents(inRect);
+		}
+	}
+
+
+	public class CategoryIntegrator : DefModExtension
+	{
+		public override void ResolveReferences(Def parentDef)
+		{
+			base.ResolveReferences(parentDef);
+			if(BamStructureMod.Settings.useCategoryIntegration && parentDef is BuildableDef asBuildable)
+			{
+				asBuildable.designationCategory = BamStructureDefs.Designation_BamStructure;
+			}
+		}
+	}
+	
+
+	[DefOf]
     public static class BamStructureDefs
     {
         public static JobDef Play_Darts;
@@ -232,6 +279,8 @@ namespace BamStructure
         public static FleckDef Fleck_Dart_Yellow;
         public static FleckDef Fleck_Dart_Blue;
         public static FleckDef Fleck_Dart_Green;
+
+		public static DesignationCategoryDef Designation_BamStructure;
     }
 
     public class Graphic_Multi_Clamped : Graphic_Multi
