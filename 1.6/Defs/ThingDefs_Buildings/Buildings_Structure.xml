@@ -88,7 +88,9 @@
 			</li>
 		</damageMultipliers>
 		<designationHotKey>Misc3</designationHotKey>
-    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
+		<modExtensions>
+			<li Class="BamStructure.CategoryIntegrator"/>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef Abstract ="true" ParentName="BuildingBase" Name ="LinkableStorageBase">
@@ -136,7 +138,9 @@
 			</defaultStorageSettings>
 		</building>
 		<designationHotKey>Misc12</designationHotKey>
-    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
+		<modExtensions>
+			<li Class="BamStructure.CategoryIntegrator"/>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="LinkableStorageBase" Name ="HalfHeightWall">
@@ -215,8 +219,8 @@
 				<multiplier>2</multiplier>
 			</li>
 		</damageMultipliers>
-    <designationHotKey>Misc3</designationHotKey>
-    <surfaceType>Eat</surfaceType>
+		<designationHotKey>Misc3</designationHotKey>
+		<surfaceType>Eat</surfaceType>
 		<altitudeLayer>Building</altitudeLayer>
 		<passability>Impassable</passability>
 		<drawStyleCategory>Walls</drawStyleCategory>
@@ -459,7 +463,9 @@
 			</li>
 		</comps>
 		<tradeability>None</tradeability>
-    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
+		<modExtensions>
+			<li Class="BamStructure.CategoryIntegrator"/>
+		</modExtensions>
 	</ThingDef>
 
 
@@ -535,99 +541,194 @@
 				<darklightToggle>true</darklightToggle>
 			</li>
 		</comps>
-    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
+		<modExtensions>
+			<li Class="BamStructure.CategoryIntegrator"/>
+		</modExtensions>
 	</ThingDef>
 
 
 
 	<ThingDef Name="GlassDoor" ParentName="DoorBase">
-    <defName>GlassDoor</defName>
-    <label>glass door</label>
-    <description>Divides rooms with glass. Simple doors must be manually opened, which slows people down. The amount of slowdown depends on what the door is made of.</description>
-    <statBases>
-      <WorkToBuild>850</WorkToBuild>
-    </statBases>
-    <graphicData>
-      <texPath>Things/Building/Door/GlassDoorSimple_Mover</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <damageData>
-        <enabled>false</enabled>
-      </damageData>
-    </graphicData>
-    <uiIconPath>Things/Building/Door/GlassDoorSimple_MenuIcon</uiIconPath>
-    <costList>
-      <Steel>10</Steel>
-    </costList>
-    <costStuffCount>15</costStuffCount>
-    <designationHotKey>Misc1</designationHotKey>
-    <building>
-      <isStuffableAirtight>true</isStuffableAirtight>
-    </building>
-    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
-  </ThingDef>
+		<defName>GlassDoor</defName>
+		<label>glass door</label>
+		<description>Divides rooms with glass. Simple doors must be manually opened, which slows people down. The amount of slowdown depends on what the door is made of.</description>
+		<statBases>
+			<WorkToBuild>850</WorkToBuild>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Building/Door/GlassDoorSimple_Mover</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<damageData>
+				<enabled>false</enabled>
+			</damageData>
+		</graphicData>
+		<uiIconPath>Things/Building/Door/GlassDoorSimple_MenuIcon</uiIconPath>
+		<costList>
+			<Steel>10</Steel>
+		</costList>
+		<costStuffCount>15</costStuffCount>
+		<designationHotKey>Misc1</designationHotKey>
+		<building>
+			<isStuffableAirtight>true</isStuffableAirtight>
+		</building>
+		<modExtensions>
+			<li Class="BamStructure.CategoryIntegrator"/>
+		</modExtensions>
+	</ThingDef>
 
-  <ThingDef ParentName="DoorBase">
-    <defName>GlassAutodoor</defName>
-    <label>glass autodoor</label>
-    <description>Divides rooms with glass. Powered operation allows people to move through the door without slowing down.</description>
-    <statBases>
-      <WorkToBuild>1100</WorkToBuild>
-    </statBases>
-    <graphicData>
-      <texPath>Things/Building/Door/GlassAutodoor_Mover</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <damageData>
-        <enabled>false</enabled>
-      </damageData>
-    </graphicData>
-    <uiIconPath>Things/Building/Door/GlassAutodoor_MenuIcon</uiIconPath>
-    <costList>
-      <Steel>50</Steel>
-      <ComponentIndustrial>2</ComponentIndustrial>
-    </costList>
-    <costStuffCount>15</costStuffCount>
-    <comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <basePowerConsumption>50</basePowerConsumption>
-      </li>
-      <li Class="CompProperties_Breakdownable"/>
-      <li Class="CompProperties_Styleable" />
-    </comps>
-    <designationHotKey>Misc2</designationHotKey>
-    <researchPrerequisites>
-      <li>Autodoors</li>
-    </researchPrerequisites>
-    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
-    <building>
-      <isStuffableAirtight>true</isStuffableAirtight>
-    </building>
-    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
-  </ThingDef>
-	
+	<ThingDef Name="GlassAutodoor" ParentName="DoorBase">
+		<defName>GlassAutodoor</defName>
+		<label>glass autodoor</label>
+		<description>Divides rooms with glass. Powered operation allows people to move through the door without slowing down.</description>
+		<statBases>
+			<WorkToBuild>1100</WorkToBuild>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Building/Door/GlassAutodoor_Mover</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<damageData>
+				<enabled>false</enabled>
+			</damageData>
+		</graphicData>
+		<uiIconPath>Things/Building/Door/GlassAutodoor_MenuIcon</uiIconPath>
+		<costList>
+			<Steel>50</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<costStuffCount>15</costStuffCount>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>50</basePowerConsumption>
+			</li>
+			<li Class="CompProperties_Breakdownable"/>
+			<li Class="CompProperties_Styleable" />
+		</comps>
+		<designationHotKey>Misc2</designationHotKey>
+		<researchPrerequisites>
+			<li>Autodoors</li>
+		</researchPrerequisites>
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+		<building>
+			<isStuffableAirtight>true</isStuffableAirtight>
+		</building>
+		<modExtensions>
+			<li Class="BamStructure.CategoryIntegrator"/>
+		</modExtensions>
+	</ThingDef>
+
 	<ThingDef Name="FilledDoor" ParentName="DoorBase">
-    <defName>FilledDoor</defName>
-    <label>filled door</label>
+		<defName>FilledDoor</defName>
+		<label>filled door</label>
 		<statBases>
 			<WorkToBuild>900</WorkToBuild>
 		</statBases>
-    <graphicData>
-      <texPath>Things/Building/Door/FilledDoorSimple_Mover</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <damageData>
-        <enabled>false</enabled>
-      </damageData>
-    </graphicData>
-    <uiIconPath>Things/Building/Door/FilledDoorSimple_MenuIcon</uiIconPath>
-    <costStuffCount>30</costStuffCount>
-    <designationHotKey>Misc1</designationHotKey>
-    <building>
-      <isStuffableAirtight>true</isStuffableAirtight>
-		<blueprintGraphicData>
-			<texPath>Things/Building/Door/FilledDoor_Blueprint</texPath>
-		</blueprintGraphicData>
-    </building>
-    <modExtensions><li Class="BamStructure.CategoryIntegrator"/></modExtensions>
-  </ThingDef>
+		<graphicData>
+			<texPath>Things/Building/Door/FilledDoorSimple_Mover</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<damageData>
+				<enabled>false</enabled>
+			</damageData>
+		</graphicData>
+		<uiIconPath>Things/Building/Door/FilledDoorSimple_MenuIcon</uiIconPath>
+		<costStuffCount>30</costStuffCount>
+		<designationHotKey>Misc1</designationHotKey>
+		<building>
+			<isStuffableAirtight>true</isStuffableAirtight>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Door/FilledDoor_Blueprint</texPath>
+			</blueprintGraphicData>
+		</building>
+		<modExtensions>
+			<li Class="BamStructure.CategoryIntegrator"/>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef Name="FilledAutodoor" ParentName="DoorBase">
+		<defName>FilledAutodoor</defName>
+		<label>filled autodoor</label>
+		<statBases>
+			<WorkToBuild>1100</WorkToBuild>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Building/Door/FilledAutodoor_Mover</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<damageData>
+				<enabled>false</enabled>
+			</damageData>
+		</graphicData>
+		<uiIconPath>Things/Building/Door/FilledAutodoor_MenuIcon</uiIconPath>
+		<costList>
+			<Steel>50</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<costStuffCount>20</costStuffCount>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>50</basePowerConsumption>
+			</li>
+			<li Class="CompProperties_Breakdownable"/>
+			<li Class="CompProperties_Styleable" />
+		</comps>
+		<designationHotKey>Misc2</designationHotKey>
+		<researchPrerequisites>
+			<li>Autodoors</li>
+		</researchPrerequisites>
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+		<building>
+			<isStuffableAirtight>true</isStuffableAirtight>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Door/FilledAutodoor_Blueprint</texPath>
+			</blueprintGraphicData>
+		</building>
+		<modExtensions>
+			<li Class="BamStructure.CategoryIntegrator"/>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef Name="RevolvingDoor" ParentName="DoorBase">
+		<defName>RevolvingDoor</defName>
+		<label>revolving door</label>
+		<altitudeLayer>Pawn</altitudeLayer>
+		<statBases>
+			<WorkToBuild>1100</WorkToBuild>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Building/Door/RevolvingDoor_Mover</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<damageData>
+				<enabled>false</enabled>
+			</damageData>
+		</graphicData>
+		<uiIconPath>Things/Building/Door/RevolvingDoor_MenuIcon</uiIconPath>
+		<costList>
+			<Steel>50</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<costStuffCount>20</costStuffCount>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>50</basePowerConsumption>
+			</li>
+			<li Class="CompProperties_Breakdownable"/>
+			<li Class="CompProperties_Styleable" />
+		</comps>
+		<designationHotKey>Misc2</designationHotKey>
+		<researchPrerequisites>
+			<li>Autodoors</li>
+		</researchPrerequisites>
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+		<building>
+			<isStuffableAirtight>true</isStuffableAirtight>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Door/RevolvingDoor_Blueprint</texPath>
+			</blueprintGraphicData>
+		</building>
+		<modExtensions>
+			<li Class="BamStructure.CategoryIntegrator"/>
+		</modExtensions>
+	</ThingDef>
 
 </Defs>

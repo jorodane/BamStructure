@@ -1,10 +1,12 @@
-﻿using HarmonyLib;
+﻿using BamStructure;
+using HarmonyLib;
 using RimWorld;
 using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Xml.Linq;
 using UnityEngine;
 using Verse;
@@ -79,6 +81,35 @@ namespace RoofsOnRoofs
             if (!(Find.MainTabsRoot?.OpenTab?.TabWindow is MainTabWindow_Architect)) RoofsOnRoofsGameComponent.RoofTab = false;
         }
     }
+
+    //[HarmonyPatch(typeof(Selector), nameof(Selector.IsSelected))]
+    //public static class Patch_Selector_Select_RoofsOnRoofs
+    //{
+    //    static bool Prefix(ref object obj, ref bool __result)
+    //    {
+    //        if (obj is Building_Roof && !RoofsOnRoofsGameComponent.ShowRoof) return !(__result = true);
+    //        return true;
+    //    }
+    //}
+
+    //[HarmonyPatch(typeof(Selector), nameof(Selector.Deselect))]
+    //static class Patch_Selector_Deselect_RoofsOnRoofs
+    //{
+    //    static void Postfix(object obj)
+    //    {
+    //        if (obj is Building_Roof) RoofsOnRoofsGameComponent.Selected--;
+    //    }
+    //}
+    //[HarmonyPatch(typeof(Selector), nameof(Selector.ClearSelection))]
+    //static class Patch_Selector_ClearSelection_RoofsOnRoofs
+    //{
+    //    static void Postfix()
+    //    {
+    //        RoofsOnRoofsGameComponent.Selected = 0;
+    //    }
+    //}
+
+
 
     [HarmonyPatch(typeof(RoofGrid), nameof(RoofGrid.SetRoof))]
     static class Patch_RoofGrid_SetRoof_RoofsOnRoofs
@@ -231,33 +262,6 @@ namespace RoofsOnRoofs
 
     public class Graphic_Multi_MultiColored : Graphic_Multi
     {
-        //public override void Init(GraphicRequest req)
-        //{
-        //    ContentFinder<Texture2D>.Get(req.path + "_north", reportFailure: false)?.GapPatch();
-        //    ContentFinder<Texture2D>.Get(req.path + "_east", reportFailure: false)?.GapPatch();
-        //    ContentFinder<Texture2D>.Get(req.path + "_south", reportFailure: false)?.GapPatch();
-        //    ContentFinder<Texture2D>.Get(req.path + "_west", reportFailure: false)?.GapPatch();
-
-        //    if (req.shader.SupportsMaskTex())
-        //    {
-        //        maskPath = req.maskPath;
-        //        string text = (maskPath.NullOrEmpty() ? path : maskPath);
-        //        string text2 = (maskPath.NullOrEmpty() ? "m" : string.Empty);
-        //        ContentFinder<Texture2D>.Get(text + "_north" + text2, reportFailure: false)?.GapPatch();
-        //        ContentFinder<Texture2D>.Get(text + "_east" + text2, reportFailure: false)?.GapPatch();
-        //        ContentFinder<Texture2D>.Get(text + "_south" + text2, reportFailure: false)?.GapPatch();
-        //        ContentFinder<Texture2D>.Get(text + "_west" + text2, reportFailure: false)?.GapPatch();
-        //    }
-
-        //    base.Init(req);
-
-        //    MatNorth.SetFloat("_Cutoff", 0.22f);
-        //    MatEast.SetFloat("_Cutoff", 0.22f);
-        //    MatSouth.SetFloat("_Cutoff", 0.22f);
-        //    MatWest.SetFloat("_Cutoff", 0.22f);
-
-        //}
-
         private Material[] mats = new Material[4];
         private float drawRotatedExtraAngleOffset;
         private bool westFlipped;
@@ -275,21 +279,7 @@ namespace RoofsOnRoofs
         public override float DrawRotatedExtraAngleOffset => drawRotatedExtraAngleOffset;
 
 
-        public override void TryInsertIntoAtlas(TextureAtlasGroup groupKey)
-        {
-            return;
-            Material[] array = mats;
-            foreach (Material material in array)
-            {
-                Texture2D mask = null;
-                if (material.HasProperty(ShaderPropertyIDs.MaskTex))
-                {
-                    mask = (Texture2D)material.GetTexture(ShaderPropertyIDs.MaskTex);
-                }
-
-                GlobalTextureAtlasManager.TryInsertStatic(groupKey, (Texture2D)material.mainTexture, mask);
-            }
-        }
+        public override void TryInsertIntoAtlas(TextureAtlasGroup groupKey){ return; }
 
         public override void Init(GraphicRequest req)
         {
@@ -443,53 +433,266 @@ namespace RoofsOnRoofs
 
     }
 
-    public class Building_Roof : Building
+
+
+
+
+
+
+    public class RoofsOnRoofsGameComponent : GameComponent
     {
-        public static Color Color_Bright = Color.white;
-        public static Color Color_Normal = new Color(0.9f, 0.9f, 0.9f);
-        public static Color Color_Dark = new Color(0.7f, 0.7f, 0.7f);
-        public override Color DrawColor
+        public static event Action OnVisibleChanged;
+
+        public enum RoofRenderLevel { Not, Need, Must }
+
+        static RoofRenderLevel _renderLevel;
+        public static RoofRenderLevel RenderLevel => _renderLevel;
+
+        //static float _lastUpdateTime = 0.0f;
+
+        //public static float LastUpdateTime => _lastUpdateTime;
+
+        //static int _selected = 0;
+        //public static int Selected
+        //{
+        //    get => _selected;
+        //    set
+        //    {
+        //        value = Mathf.Max(value, 0);
+        //        if (_selected == value) return;
+        //        if(value == 0)
+        //        {
+        //            _selected = 0;
+        //        }
+        //        else if(_selected != 0)
+        //        {
+        //            _selected = value;
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            _selected = value;
+        //        }
+        //        UpdateShower();
+        //    }
+        //}
+
+        static bool _capturing = false;
+
+        public static bool Capturing
         {
-            get
+            get => _capturing;
+            set
             {
-                Color result = base.DrawColor;
-                switch(brightness)
-                {
-                    default: result *= Color_Bright; break;
-                    case 1: result *= Color_Normal; break;
-                    case 2: result *= Color_Dark; break;
-                    case 3: result *= Color_Bright; break;
-                    case 4: result *= Color_Bright; break;
-                    case 5: result *= Color_Normal; break;
-                    case 6: result *= Color_Normal; break;
-                    case 7: result *= Color_Dark; break;
-                    case 8: result *= Color_Dark; break;
-                }
-                return result;
-            }
-        }
-        public override Color DrawColorTwo
-        {
-            get
-            {
-                Color result = base.DrawColor;
-                switch (brightness)
-                {
-                    default: result *= Color_Bright; break;
-                    case 1: result *= Color_Normal; break;
-                    case 2: result *= Color_Dark; break;
-                    case 3: result *= Color_Normal; break;
-                    case 4: result *= Color_Dark; break;
-                    case 5: result *= Color_Bright; break;
-                    case 6: result *= Color_Dark; break;
-                    case 7: result *= Color_Bright; break;
-                    case 8: result *= Color_Normal; break;
-                }
-                return result;
+                if (_capturing == value) return;
+                _capturing = value;
+                UpdateShower();
             }
         }
 
+        static bool _roofTab = false;
+
+        public static bool RoofTab
+        {
+            get => _roofTab;
+            set
+            {
+                if (_roofTab == value) return;
+                _roofTab = value;
+                UpdateShower();
+            }
+        }
+
+        static bool _showRoof = false;
+
+        public static bool ShowRoof
+        {
+            get => _showRoof;
+            set
+            {
+                if (_showRoof == value) return;
+                _showRoof = value;
+                UpdateShower();
+            }
+        }
+
+
+        public static void UpdateShower()
+        {
+            if (GravshipCapturer.IsGravshipRenderInProgress || Capturing || RoofTab)// || Selected > 0)
+            {
+                _renderLevel = RoofRenderLevel.Must;
+            }
+            else if (ShowRoof)
+            {
+                _renderLevel = RoofRenderLevel.Need;
+            }
+            else
+            {
+                _renderLevel = RoofRenderLevel.Not;
+            }
+            //_lastUpdateTime = Time.time;
+            OnVisibleChanged?.Invoke();
+        }
+
+        public RoofsOnRoofsGameComponent(Game game) { }
+
+        public override void ExposeData()
+        {
+            Scribe_Values.Look(ref _showRoof, "ShowRoofGraphic", false);
+            OnVisibleChanged = null;
+            UpdateShower();
+        }
+
+        public override void StartedNewGame()
+        {
+            OnVisibleChanged = null;
+            base.StartedNewGame();
+        }
+    }
+
+
+    /// <summary>
+    /// ///////////////////////////////////////////////////////////////////////////////////////////////
+    /// </summary>
+    public class MapComponent_RoofVisibility : MapComponent
+    {
+        public int[] roofVisibleGrid;
+        private FloodFiller flooder;
+
+        public MapComponent_RoofVisibility(Map map) : base(map) { }
+
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+            int cellCount = map.cellIndices.NumGridCells;
+            if(roofVisibleGrid == null || roofVisibleGrid.Length != cellCount) roofVisibleGrid = new int[cellCount];
+            else Array.Clear(roofVisibleGrid, 0, cellCount);
+            flooder = map.floodFiller;
+        }
+
+        public void ClearAll()
+        {
+            if (roofVisibleGrid != null)
+            {
+                Array.Clear(roofVisibleGrid, 0, roofVisibleGrid.Length);
+                RoofsOnRoofsGameComponent.UpdateShower();
+            }
+        }
+
+        public int this[IntVec3 c] => roofVisibleGrid != null ? roofVisibleGrid[map.cellIndices.CellToIndex(c)] : 0;
+
+        bool GetRoofed(IntVec3 targetCell, Map from) => targetCell.IsValid && from.roofGrid.Roofed(targetCell);
+        bool GetRoofed(IntVec3 targetCell) => targetCell.IsValid && targetCell.InBounds(map) && map.roofGrid.Roofed(targetCell);
+
+        public void OnPawnSelected(List<Pawn> pawns)
+        {
+            ClearAll();
+            foreach(Pawn currentPawn in pawns)
+            {
+                if(currentPawn == null || currentPawn.Map != map) continue;
+                IntVec3 currentPosition = currentPawn.Position;
+                if (GetRoofed(currentPosition)) OnCellChanged(currentPosition, +1);
+            }
+            RoofsOnRoofsGameComponent.UpdateShower();
+        }
+
+        public void OnPawnMoved(Pawn from, IntVec3 oldPoisition, IntVec3 newPoisition)
+        {
+            if (from?.Map != map) return;
+            bool oldRoofed = GetRoofed(oldPoisition);
+            if(oldRoofed != GetRoofed(newPoisition))
+            {
+                if(oldRoofed)   OnCellChanged(oldPoisition, -1);
+                else            OnCellChanged(newPoisition, +1);
+            }
+            RoofsOnRoofsGameComponent.UpdateShower();
+        }
+
+        public void OnCellChanged(IntVec3 position, int delta)
+        {
+            int originIndex = map.cellIndices.CellToIndex(position);
+            if ((uint)originIndex > (uint)roofVisibleGrid.Length) return;
+
+            int result = roofVisibleGrid[originIndex] + delta;
+
+            flooder.FloodFill(
+                position,
+                GetRoofed,
+                targetCell =>
+                {
+                    int i = map.cellIndices.CellToIndex(targetCell);
+                    if ((uint)i < (uint)roofVisibleGrid.Length) roofVisibleGrid[i] = result;
+                },
+                int.MaxValue
+            );
+        }
+    }
+
+    [HarmonyPatch(typeof(Selector), nameof(Selector.ClearSelection))]
+    static class Patch_Selector_ClearSelection
+    {
+        static void Postfix() => Find.CurrentMap?.GetComponent<MapComponent_RoofVisibility>()?.ClearAll();
+    }
+
+    [HarmonyPatch(typeof(Selector), nameof(Selector.Select))]
+    static class Patch_Selector_Select
+    {
+        static void Postfix()
+        {
+            Map map = Find.CurrentMap;
+            if (map == null) return;
+
+            MapComponent_RoofVisibility comp = map.GetComponent<MapComponent_RoofVisibility>();
+            if (comp == null) return;
+
+            comp.OnPawnSelected(Find.Selector.SelectedPawns);
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn_PathFollower), "TryEnterNextPathCell")]
+    public static class Patch_Pawn_PathFollower_TryEnterNextPathCell
+    {
+        static readonly FieldInfo field_Pawn = typeof(Pawn_PathFollower).Field("pawn");
+        static readonly FieldInfo field_LastCell = typeof(Pawn_PathFollower).Field("lastCell");
+
+        static void Prefix(Pawn_PathFollower __instance)
+        {
+            Pawn pawn = field_Pawn.GetValue(__instance) as Pawn;
+            Map map = pawn.Map;
+            if (map == null) return;
+
+            IntVec3 current = (IntVec3)field_LastCell.GetValue(__instance);
+            IntVec3 next = __instance.nextCell;
+            if (next != current)
+            {
+                var comp = map.GetComponent<MapComponent_RoofVisibility>();
+                if (comp != null && Find.Selector.IsSelected(pawn))
+                {
+                    comp.OnPawnMoved(pawn, current, next);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// /////////////////////////////////////////////////////////////////////////
+    /// </summary>
+
+    public class Building_Roof : Building
+    {
+        public readonly static Color Color_Bright = Color.white;
+        public readonly static Color Color_Normal = new Color(0.9f, 0.9f, 0.9f);
+        public readonly static Color Color_Dark = new Color(0.7f, 0.7f, 0.7f);
+
+        public readonly static Color[] Color_MainList = { Color_Bright, Color_Normal, Color_Dark, Color_Bright, Color_Bright, Color_Normal, Color_Normal, Color_Dark, Color_Dark };
+        public readonly static Color[] Color_SubList = { Color_Bright, Color_Normal, Color_Dark, Color_Normal, Color_Dark, Color_Bright, Color_Dark, Color_Bright, Color_Dark };
+        public override Color DrawColor => base.DrawColor * Color_MainList[brightness];
+        public override Color DrawColorTwo => base.DrawColor * Color_SubList[brightness];
+
         protected int brightness = 1;
+        protected bool showing = false;
+        MapComponent_RoofVisibility visibilityComp = null;
 
         public override void ExposeData()
         {
@@ -502,11 +705,25 @@ namespace RoofsOnRoofs
             base.SpawnSetup(map, respawningAfterLoad);
             RoofsOnRoofsGameComponent.OnVisibleChanged -= OnVisibleChanged;
             RoofsOnRoofsGameComponent.OnVisibleChanged += OnVisibleChanged;
+            visibilityComp = map.GetComponent<MapComponent_RoofVisibility>();
+            showing = GetRoofVisible();
         }
 
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
             base.Destroy(mode);
+            RoofsOnRoofsGameComponent.OnVisibleChanged -= OnVisibleChanged;
+        }
+
+        //public override void Notify_ThingSelected()
+        //{
+        //    base.Notify_ThingSelected();
+        //    RoofsOnRoofsGameComponent.Selected++;
+        //}
+
+        public override void Discard(bool silentlyRemoveReferences = false)
+        {
+            base.Discard(silentlyRemoveReferences);
             RoofsOnRoofsGameComponent.OnVisibleChanged -= OnVisibleChanged;
         }
 
@@ -517,22 +734,30 @@ namespace RoofsOnRoofs
         }
         public override void Print(SectionLayer layer)
         {
-            if (Map == null) return;
+            if(showing) base.Print(layer);
+        }
+
+        public virtual bool GetRoofVisible()
+        {
+            if (Map == null) return false;
             switch (RoofsOnRoofsGameComponent.RenderLevel)
             {
-                case RoofsOnRoofsGameComponent.RoofRenderLevel.Must: base.Print(layer); break;
-                case RoofsOnRoofsGameComponent.RoofRenderLevel.Need:
-                    {
-						Pawn
-                        base.Print(layer);
-                        break;
-                    }
+                case RoofsOnRoofsGameComponent.RoofRenderLevel.Must: return true;
+                case RoofsOnRoofsGameComponent.RoofRenderLevel.Need: return GetRoofVisibleByPosition();
+                default: return false;
             }
         }
 
+        public virtual bool GetRoofVisibleByPosition() => (visibilityComp != null && visibilityComp[Position] <= 0);
+
         public virtual void OnVisibleChanged()
         {
-            Notify_ColorChanged();
+            bool currentShowing = GetRoofVisible();
+            if(currentShowing != showing)
+            {
+                Notify_ColorChanged();
+                showing = currentShowing;
+            }
         }
 
         public virtual void SetBrightness(int wantBrightness)
@@ -541,6 +766,19 @@ namespace RoofsOnRoofs
             Notify_ColorChanged();
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public class Placeworker_Roof : PlaceWorker
     {
@@ -554,6 +792,13 @@ namespace RoofsOnRoofs
             return true;
         }
     }
+
+
+
+
+
+
+
 
     public class Designator_ChangeBrightnessRoof : Designator_Deconstruct
     {

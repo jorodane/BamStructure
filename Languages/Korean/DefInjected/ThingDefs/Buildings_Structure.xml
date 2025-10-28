@@ -18,4 +18,6 @@
 	<GlassAutodoor.label>유리 자동문</GlassAutodoor.label>
 	<GlassAutodoor.description>방을 나눕니다. 전기로 작동하며 문 통과 시 이동속도 감소가 적거나 없습니다.</GlassAutodoor.description>
 	<FilledDoor.label>꽉찬문</FilledDoor.label>
+	<FilledAutodoor.label>꽉찬 자동문</FilledAutodoor.label>
+	<RevolvingDoor.label>회전문</RevolvingDoor.label>
 </LanguageData>

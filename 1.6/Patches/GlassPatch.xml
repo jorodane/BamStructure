@@ -32,7 +32,6 @@
             <xpath>/Defs/ThingDef[defName="GlassDoor"]/costList/Steel</xpath>
             <value>
               <Glass>2</Glass>
-              <Steel>10</Steel>
             </value>
           </match>
         </li>
@@ -47,6 +46,16 @@
             </value>
           </match>
         </li>
+
+		  <li Class="PatchOperationConditional">
+			  <xpath>/Defs/ThingDef[defName="RevolvingDoor"]/costList/Steel</xpath>
+			  <match Class="PatchOperationReplace">
+				  <xpath>/Defs/ThingDef[defName="RevolvingDoor"]/costList/Steel</xpath>
+				  <value>
+					  <Glass>2</Glass>
+				  </value>
+			  </match>
+		  </li>
 
         <li Class="PatchOperationConditional">
           <xpath>/Defs/ThingDef[defName="MirrorBase"]/costList/Steel</xpath>
@@ -74,14 +83,14 @@
             <operations>
 
               <li Class="PatchOperationAdd">
-                <xpath>/Defs/ThingDef[defName="TinyWineGlass" or defName="GlassWall" or defName="GlassDoor" or defName="GlassAutodoor" or defName="MirrorBase" or defName="Window"]/researchPrerequisites[not(li[text()="GlassworksResearch"])]</xpath>
+                <xpath>/Defs/ThingDef[defName="TinyWineGlass" or defName="GlassWall" or defName="GlassDoor" or defName="GlassAutodoor" or defName="RevolvingDoor" or defName="MirrorBase" or defName="Window"]/researchPrerequisites[not(li[text()="GlassworksResearch"])]</xpath>
                 <value>
                   <li>GlassworksResearch</li>
                 </value>
               </li>
 
               <li Class="PatchOperationAdd">
-                <xpath>/Defs/ThingDef[(defName="TinyWineGlass" or defName="GlassWall" or defName="GlassDoor" or defName="GlassAutodoor" or defName="MirrorBase" or defName="Window") and not(researchPrerequisites)]</xpath>
+                <xpath>/Defs/ThingDef[(defName="TinyWineGlass" or defName="GlassWall" or defName="GlassDoor" or defName="GlassAutodoor" or defName="RevolvingDoor" or defName="MirrorBase" or defName="Window") and not(researchPrerequisites)]</xpath>
                 <value>
                   <researchPrerequisites>
                     <li>GlassworksResearch</li>
