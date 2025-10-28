@@ -120,14 +120,17 @@ namespace BamStructure
     public class BamStructureSettings : ModSettings
     {
         public string GetUseCategoryIntegrationString() => "BamStructure_UseCategoryIntegration".Translate();
+        public string GetTrackPawnMovementForRoofVisibilityString() => "RoofsOnRoofs_TrackPawnMovementForRoofVisibility".Translate();
 
 		public bool useCategoryIntegration = false;
+		public static bool trackPawnMovementForRoofVisibility = true;
 
         public override void ExposeData()
         {
             base.ExposeData();
 
 			Scribe_Values.Look(ref useCategoryIntegration, "BamStructureCategoryIntegration", false);
+			Scribe_Values.Look(ref trackPawnMovementForRoofVisibility, "RoofsOnRoofsTrackPawnMovementForRoofVisibility", true);
 		}
 
 		public void DoWindowContents(Rect inRect)
@@ -135,6 +138,7 @@ namespace BamStructure
 			var listing = new Listing_Standard();
 			listing.Begin(inRect);
 			listing.CheckboxLabeled(GetUseCategoryIntegrationString(), ref useCategoryIntegration);
+			listing.CheckboxLabeled(GetTrackPawnMovementForRoofVisibilityString(), ref trackPawnMovementForRoofVisibility);
 			listing.End();
 		}
 	}

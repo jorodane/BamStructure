@@ -118,9 +118,15 @@ namespace RoofsOnRoofs
 
         static void Postfix(RoofGrid __instance, IntVec3 c)
         {
-            if (__instance.Roofed(c)) return;
+            bool newRoof = __instance.Roofed(c);
+
             Map map = (Map)MapField.GetValue(__instance);
             if (map == null || !c.InBounds(map)) return;
+
+            MapComponent_RoofVisibility visibilityComp = map.GetComponent<MapComponent_RoofVisibility>();
+            visibilityComp?.OnRoofChanged(c, newRoof);
+
+            if (newRoof) return;
 
             List<Thing> everyThings = map.thingGrid.ThingsListAtFast(c);
             if (everyThings == null || everyThings.Count == 0) return;
@@ -532,6 +538,11 @@ namespace RoofsOnRoofs
                 _renderLevel = RoofRenderLevel.Not;
             }
             //_lastUpdateTime = Time.time;
+            UpdateVisible();
+        }
+
+        public static void UpdateVisible()
+        {
             OnVisibleChanged?.Invoke();
         }
 
@@ -558,9 +569,20 @@ namespace RoofsOnRoofs
     public class MapComponent_RoofVisibility : MapComponent
     {
         public int[] roofVisibleGrid;
-        private FloodFiller flooder;
+        FloodFiller flooder;
+        bool isDirty = false;
 
         public MapComponent_RoofVisibility(Map map) : base(map) { }
+
+        public override void MapComponentUpdate()
+        {
+            base.MapComponentUpdate();
+            if (isDirty)
+            {
+                RoofsOnRoofsGameComponent.UpdateShower();
+                isDirty = false;
+            }
+        }
 
         public override void FinalizeInit()
         {
@@ -576,56 +598,82 @@ namespace RoofsOnRoofs
             if (roofVisibleGrid != null)
             {
                 Array.Clear(roofVisibleGrid, 0, roofVisibleGrid.Length);
-                RoofsOnRoofsGameComponent.UpdateShower();
+                isDirty = true;
             }
         }
 
-        public int this[IntVec3 c] => roofVisibleGrid != null ? roofVisibleGrid[map.cellIndices.CellToIndex(c)] : 0;
+        public int this[IntVec3 c] => (roofVisibleGrid != null && c.InBounds(map)) ? roofVisibleGrid[map.cellIndices.CellToIndex(c)] : 0;
 
         bool GetRoofed(IntVec3 targetCell, Map from) => targetCell.IsValid && from.roofGrid.Roofed(targetCell);
         bool GetRoofed(IntVec3 targetCell) => targetCell.IsValid && targetCell.InBounds(map) && map.roofGrid.Roofed(targetCell);
 
-        public void OnPawnSelected(List<Pawn> pawns)
+        public void OnObjectSelected(List<object> objects)
         {
             ClearAll();
-            foreach(Pawn currentPawn in pawns)
+            foreach(object currentObject in objects)
             {
-                if(currentPawn == null || currentPawn.Map != map) continue;
-                IntVec3 currentPosition = currentPawn.Position;
-                if (GetRoofed(currentPosition)) OnCellChanged(currentPosition, +1);
+                if(currentObject is Thing currentThing)
+                {
+                    if (currentThing == null || currentThing.Map != map) continue;
+                    IntVec3 currentPosition = currentThing.Position;
+                    if (GetRoofed(currentPosition)) OnCellChanged(currentPosition, +1);
+                }
             }
-            RoofsOnRoofsGameComponent.UpdateShower();
         }
 
         public void OnPawnMoved(Pawn from, IntVec3 oldPoisition, IntVec3 newPoisition)
         {
             if (from?.Map != map) return;
             bool oldRoofed = GetRoofed(oldPoisition);
+
+            if (oldPoisition == newPoisition || !oldPoisition.IsValid || !newPoisition.IsValid) return;
+
             if(oldRoofed != GetRoofed(newPoisition))
             {
                 if(oldRoofed)   OnCellChanged(oldPoisition, -1);
                 else            OnCellChanged(newPoisition, +1);
             }
-            RoofsOnRoofsGameComponent.UpdateShower();
         }
 
         public void OnCellChanged(IntVec3 position, int delta)
         {
-            int originIndex = map.cellIndices.CellToIndex(position);
-            if ((uint)originIndex > (uint)roofVisibleGrid.Length) return;
-
-            int result = roofVisibleGrid[originIndex] + delta;
-
+            isDirty = true;
             flooder.FloodFill(
                 position,
                 GetRoofed,
                 targetCell =>
                 {
+                    if (!targetCell.InBounds(map)) return;
                     int i = map.cellIndices.CellToIndex(targetCell);
-                    if ((uint)i < (uint)roofVisibleGrid.Length) roofVisibleGrid[i] = result;
+                    if ((uint)i < (uint)roofVisibleGrid.Length) roofVisibleGrid[i] += delta;
                 },
                 int.MaxValue
             );
+        }
+
+        public void OnRoofChanged(IntVec3 position, bool roofed)
+        {
+            if (roofVisibleGrid == null || !position.InBounds(map)) return;
+            int cellIndex = map.cellIndices.CellToIndex(position);
+            if ((uint)cellIndex < (uint)roofVisibleGrid.Length)
+            {
+                if(!roofed) roofVisibleGrid[cellIndex] = 0;
+                else
+                {
+                    IntVec3[] nearPositions = { position + IntVec3.East, position + IntVec3.South, position + IntVec3.West, position + IntVec3.North };
+                    int maxCount = 0;
+                    foreach (IntVec3 checkingPosition in nearPositions)
+                    {
+                        if (!position.InBounds(map)) continue;
+                        int checkingIndex = map.cellIndices.CellToIndex(checkingPosition);
+                        if ((uint)checkingIndex < (uint)roofVisibleGrid.Length)
+                        {
+                            maxCount = Math.Max(roofVisibleGrid[checkingIndex], maxCount);
+                        }
+                    }
+                    roofVisibleGrid[cellIndex] = maxCount;
+                }
+            }
         }
     }
 
@@ -646,30 +694,40 @@ namespace RoofsOnRoofs
             MapComponent_RoofVisibility comp = map.GetComponent<MapComponent_RoofVisibility>();
             if (comp == null) return;
 
-            comp.OnPawnSelected(Find.Selector.SelectedPawns);
+            comp.OnObjectSelected(Find.Selector.SelectedObjects);
         }
     }
 
     [HarmonyPatch(typeof(Pawn_PathFollower), "TryEnterNextPathCell")]
     public static class Patch_Pawn_PathFollower_TryEnterNextPathCell
     {
-        static readonly FieldInfo field_Pawn = typeof(Pawn_PathFollower).Field("pawn");
-        static readonly FieldInfo field_LastCell = typeof(Pawn_PathFollower).Field("lastCell");
+        static readonly FieldInfo field_Pawn = AccessTools.Field(typeof(Pawn_PathFollower), "pawn");
 
-        static void Prefix(Pawn_PathFollower __instance)
+        static void Prefix(Pawn_PathFollower __instance, out IntVec3 __state)
         {
+            if (BamStructureSettings.trackPawnMovementForRoofVisibility && field_Pawn.GetValue(__instance) is Pawn asPawn)
+            {
+                __state = asPawn.Position;
+            }
+            else __state = IntVec3.Zero;
+        }
+
+        static void Postfix(Pawn_PathFollower __instance, IntVec3 __state)
+        {
+            if (!BamStructureSettings.trackPawnMovementForRoofVisibility) return;
             Pawn pawn = field_Pawn.GetValue(__instance) as Pawn;
+            if (!Find.Selector.IsSelected(pawn)) return;
+
             Map map = pawn.Map;
             if (map == null) return;
 
-            IntVec3 current = (IntVec3)field_LastCell.GetValue(__instance);
-            IntVec3 next = __instance.nextCell;
-            if (next != current)
+            IntVec3 next = pawn.Position;
+            if (next != __state)
             {
-                var comp = map.GetComponent<MapComponent_RoofVisibility>();
-                if (comp != null && Find.Selector.IsSelected(pawn))
+                MapComponent_RoofVisibility comp = map.GetComponent<MapComponent_RoofVisibility>();
+                if (comp != null)
                 {
-                    comp.OnPawnMoved(pawn, current, next);
+                    comp.OnPawnMoved(pawn, __state, next);
                 }
             }
         }
@@ -692,7 +750,7 @@ namespace RoofsOnRoofs
 
         protected int brightness = 1;
         protected bool showing = false;
-        MapComponent_RoofVisibility visibilityComp = null;
+        MapComponent_RoofVisibility visibilityComponent = null;
 
         public override void ExposeData()
         {
@@ -705,7 +763,7 @@ namespace RoofsOnRoofs
             base.SpawnSetup(map, respawningAfterLoad);
             RoofsOnRoofsGameComponent.OnVisibleChanged -= OnVisibleChanged;
             RoofsOnRoofsGameComponent.OnVisibleChanged += OnVisibleChanged;
-            visibilityComp = map.GetComponent<MapComponent_RoofVisibility>();
+            visibilityComponent = map.GetComponent<MapComponent_RoofVisibility>();
             showing = GetRoofVisible();
         }
 
@@ -748,7 +806,7 @@ namespace RoofsOnRoofs
             }
         }
 
-        public virtual bool GetRoofVisibleByPosition() => (visibilityComp != null && visibilityComp[Position] <= 0);
+        public virtual bool GetRoofVisibleByPosition() => (visibilityComponent != null && visibilityComponent[Position] <= 0);
 
         public virtual void OnVisibleChanged()
         {

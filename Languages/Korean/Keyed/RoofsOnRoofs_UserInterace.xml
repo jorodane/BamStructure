@@ -2,6 +2,8 @@
 
 <LanguageData>
 
+	<RoofsOnRoofs_TrackPawnMovementForRoofVisibility>선택한 폰의 움직임에 따라 지붕 보이기 (성능 영향)</RoofsOnRoofs_TrackPawnMovementForRoofVisibility>
+	
 	<RoofsOnRoofs_ShowRoofGraphicToggle_Description>지붕 모양 보이기 토글</RoofsOnRoofs_ShowRoofGraphicToggle_Description>
 	<RoofsOnRoofs_ShowRoofOverlayToggle_Description>지붕 표시</RoofsOnRoofs_ShowRoofOverlayToggle_Description>
 
