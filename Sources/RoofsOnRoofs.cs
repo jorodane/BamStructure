@@ -609,14 +609,17 @@ namespace RoofsOnRoofs
 
         public void OnObjectSelected(List<object> objects)
         {
-            ClearAll();
-            foreach(object currentObject in objects)
+            if (BamStructureSettings.trackThingSelectForRoofVisibility)
             {
-                if(currentObject is Thing currentThing)
+                ClearAll();
+                foreach(object currentObject in objects)
                 {
-                    if (currentThing == null || currentThing.Map != map) continue;
-                    IntVec3 currentPosition = currentThing.Position;
-                    if (GetRoofed(currentPosition)) OnCellChanged(currentPosition, +1);
+                    if(currentObject is Thing currentThing)
+                    {
+                        if (currentThing == null || currentThing.Map != map) continue;
+                        IntVec3 currentPosition = currentThing.Position;
+                        if (GetRoofed(currentPosition)) OnCellChanged(currentPosition, +1);
+                    }
                 }
             }
         }

@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Ideology</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<ThingDef ParentName="BuildingBase">
+					<defName>EndStylingStation</defName>
+					<label>end styling station</label>
+					<description>A small bedside table with a mirror which makes nearby beds a little bit more comfortable. Must be placed directly adjacent to the head of the bed. Placing more than one end table near the same bed has no effect. People can use this to change their look.</description>
+					<thingClass>Building_StylingStation</thingClass>
+					<minifiedDef>MinifiedThing</minifiedDef>
+					<replaceTags>
+						<li>Table</li>
+					</replaceTags>
+					<statBases>
+						<WorkToBuild>2000</WorkToBuild>
+						<MaxHitPoints>120</MaxHitPoints>
+						<Flammability>0.8</Flammability>
+						<Mass>15</Mass>
+					</statBases>
+					<graphicData>
+						<texPath>Things/Building/Furniture/EndStylingStation</texPath>
+						<graphicClass>Graphic_Multi</graphicClass>
+						<shaderType>CutoutComplex</shaderType>
+						<drawSize>(1.5,1.5)</drawSize>
+						<drawOffset>(0,0,0.25)</drawOffset>
+						<shadowData>
+							<volume>(1,0.5,1)</volume>
+						</shadowData>
+						<damageData>
+							<rect>(0.1,0.1,0.8,0.8)</rect>
+						</damageData>
+					</graphicData>
+					<thingCategories>
+						<li>BuildingsFurniture</li>
+					</thingCategories>
+					<uiIconScale>0.75</uiIconScale>
+					<uiIconOffset>(0, -0.05)</uiIconOffset>
+					<canOverlapZones>false</canOverlapZones>
+					<altitudeLayer>Building</altitudeLayer>
+					<fillPercent>0.5</fillPercent>
+					<useHitPoints>True</useHitPoints>
+					<passability>PassThroughOnly</passability>
+					<pathCost>50</pathCost>
+					<hasInteractionCell>true</hasInteractionCell>
+					<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+					<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+					<researchPrerequisites>
+						<li>ComplexFurniture</li>
+					</researchPrerequisites>
+					<designationCategory>Ideology</designationCategory>
+					<costStuffCount>80</costStuffCount>
+					<costList>
+						<Steel>30</Steel>
+					</costList>
+					<stuffCategories>
+						<li>Metallic</li>
+						<li>Woody</li>
+						<li>Stony</li>
+					</stuffCategories>
+					<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+					<building>
+						<joyKind>Television</joyKind>
+						<watchBuildingStandDistanceRange>-1~-1</watchBuildingStandDistanceRange>
+						<watchBuildingStandRectWidth>1</watchBuildingStandRectWidth>
+						<watchBuildingInSameRoom>true</watchBuildingInSameRoom>
+						<effectWatching>WatchingTelevision</effectWatching>
+						<paintable>true</paintable>
+					</building>
+					<comps>
+						<li Class="CompProperties_Facility">
+							<statOffsets>
+								<Comfort>0.05</Comfort>
+							</statOffsets>
+							<maxSimultaneous>1</maxSimultaneous>
+							<mustBePlacedAdjacentCardinalToBedHead>true</mustBePlacedAdjacentCardinalToBedHead>
+						</li>
+					</comps>
+					<placeWorkers>
+						<li>PlaceWorker_ShowFacilitiesConnections</li>
+						<li>PlaceWorker_PreventInteractionSpotOverlap</li>
+					</placeWorkers>
+					<modExtensions>
+						<li Class="BamStructure.CategoryIntegrator"/>
+					</modExtensions>
+				</ThingDef>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Ideology</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="BasicBedBase"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+			<value>
+				<li>EndStylingStation</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Ideology</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/JoyGiverDef[@Name="Watch_Face"]/thingDefs</xpath>
+			<value>
+				<li>EndStylingStation</li>
+			</value>
+		</match>
+	</Operation>
+</Patch>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<JoyGiverDef>
+	<JoyGiverDef Name="Play_Darts">
 		<defName>Play_Darts</defName>
 		<giverClass>JoyGiver_WatchBuilding</giverClass>
 		<baseChance>2.5</baseChance>
@@ -16,7 +16,7 @@
 		</requiredCapacities>
 	</JoyGiverDef>
 
-	<JoyGiverDef>
+	<JoyGiverDef Name="Watch_Face">
 		<defName>Watch_Face</defName>
 		<giverClass>BamStructure.JoyGiver_WatchFace</giverClass>
 		<baseChance>1.5</baseChance>

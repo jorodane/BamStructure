@@ -121,9 +121,11 @@ namespace BamStructure
     {
         public string GetUseCategoryIntegrationString() => "BamStructure_UseCategoryIntegration".Translate();
         public string GetTrackPawnMovementForRoofVisibilityString() => "RoofsOnRoofs_TrackPawnMovementForRoofVisibility".Translate();
+        public string GetTrackThingSelectForRoofVisibilityString() => "RoofsOnRoofs_TrackThingSelectForRoofVisibility".Translate();
 
 		public bool useCategoryIntegration = false;
 		public static bool trackPawnMovementForRoofVisibility = true;
+		public static bool trackThingSelectForRoofVisibility = false;
 
         public override void ExposeData()
         {
@@ -131,6 +133,7 @@ namespace BamStructure
 
 			Scribe_Values.Look(ref useCategoryIntegration, "BamStructureCategoryIntegration", false);
 			Scribe_Values.Look(ref trackPawnMovementForRoofVisibility, "RoofsOnRoofsTrackPawnMovementForRoofVisibility", true);
+			Scribe_Values.Look(ref trackThingSelectForRoofVisibility, "RoofsOnRoofsTrackThingSelectForRoofVisibility", false);
 		}
 
 		public void DoWindowContents(Rect inRect)
@@ -139,6 +142,7 @@ namespace BamStructure
 			listing.Begin(inRect);
 			listing.CheckboxLabeled(GetUseCategoryIntegrationString(), ref useCategoryIntegration);
 			listing.CheckboxLabeled(GetTrackPawnMovementForRoofVisibilityString(), ref trackPawnMovementForRoofVisibility);
+			listing.CheckboxLabeled(GetTrackThingSelectForRoofVisibilityString(), ref trackThingSelectForRoofVisibility);
 			listing.End();
 		}
 	}

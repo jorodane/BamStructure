@@ -2,6 +2,7 @@
 
 <LanguageData>
 	<RoofsOnRoofs_TrackPawnMovementForRoofVisibility>Track Pawn Movement For Roof Visibility (Effect to Performance)</RoofsOnRoofs_TrackPawnMovementForRoofVisibility>
+	<RoofsOnRoofs_TrackThingSelectForRoofVisibility>Track Selected Thing For Roof Visibility (Effect to Performance)</RoofsOnRoofs_TrackThingSelectForRoofVisibility>
 
 	<RoofsOnRoofs_ShowRoofGraphicToggle_Description>Show Roof Graphic</RoofsOnRoofs_ShowRoofGraphicToggle_Description>
 	<RoofsOnRoofs_ShowRoofOverlayToggle_Description>Show Roof Overlay</RoofsOnRoofs_ShowRoofOverlayToggle_Description>
