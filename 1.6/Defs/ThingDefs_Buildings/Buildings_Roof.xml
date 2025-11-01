@@ -72,10 +72,8 @@
 	</ThingDef>
 
 	<!-- Wall Side -->
-		
-	<ThingDef ParentName="RoofBase" Name="Roof_WallSide">
-		<defName>Roof_WallSide</defName>
-		<label>wall side</label>
+
+	<ThingDef Abstract ="True" ParentName="RoofBase" Name="Roof_WallSideBase">
 		<uiOrder>1000</uiOrder>
 		<altitudeLayer>PawnUnused</altitudeLayer>
 		<drawStyleCategory>Floors</drawStyleCategory>
@@ -83,7 +81,6 @@
 			<li>WallSide</li>
 		</replaceTags>
 		<graphicData>
-			<texPath>Things/Building/Roof/Roof_WallSide</texPath>
 			<graphicClass>RoofsOnRoofs.Graphic_Appearances_MultiColored</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 			<linkType>Basic</linkType>
@@ -91,17 +88,6 @@
 				<li>Custom9</li>
 			</linkFlags>
 		</graphicData>
-		<uiIconPath>Things/Building/Roof/Roof_WallSide/WallSmooth_MenuIcon</uiIconPath>
-		<uiIconPathsStuff>
-			<li>
-				<appearance>Planks</appearance>
-				<iconPath>Things/Building/Roof/Roof_WallSide/WallPlanks_MenuIcon</iconPath>
-			</li>
-			<li>
-				<appearance>Bricks</appearance>
-				<iconPath>Things/Building/Roof/Roof_WallSide/WallBricks_MenuIcon</iconPath>
-			</li>
-		</uiIconPathsStuff>
 		<rotatable>false</rotatable>
 		<costStuffCount>1</costStuffCount>
 		<stuffCategories>
@@ -115,6 +101,35 @@
 			</blueprintGraphicData>
 		</building>
 	</ThingDef>
+
+	<ThingDef ParentName="Roof_WallSideBase" Name="Roof_WallSide">
+		<defName>Roof_WallSide</defName>
+		<label>wall side</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/Roof_WallSide</texPath>
+		</graphicData>
+		<uiIconPath>Things/Building/Roof/Roof_WallSide/WallSmooth_MenuIcon</uiIconPath>
+		<uiIconPathsStuff>
+			<li>
+				<appearance>Planks</appearance>
+				<iconPath>Things/Building/Roof/Roof_WallSide/WallPlanks_MenuIcon</iconPath>
+			</li>
+			<li>
+				<appearance>Bricks</appearance>
+				<iconPath>Things/Building/Roof/Roof_WallSide/WallBricks_MenuIcon</iconPath>
+			</li>
+		</uiIconPathsStuff>
+	</ThingDef>
+
+
+	<!--<ThingDef ParentName="Roof_WallSideBase" Name="Roof_WallSideRibet">
+		<defName>Roof_WallSideRibet</defName>
+		<label>wall side (ribet)</label>
+		<graphicData>
+			<texPath>Things/Building/Roof/Roof_WallSideRibet</texPath>
+		</graphicData>
+		<uiIconPath>Things/Building/Roof/Roof_WallSideRibet/MenuIcon</uiIconPath>
+	</ThingDef>-->
 	
 	<!-- Linked Roof -->	
 

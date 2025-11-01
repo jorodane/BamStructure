@@ -6,6 +6,7 @@
 	<TinyKnife.label>나이프</TinyKnife.label>
 	<TinyFork.label>포크</TinyFork.label>
 	<TinyChopStick.label>젓가락</TinyChopStick.label>
+	<TinyScissors.label>가위</TinyScissors.label>
 	<TinyMug.label>머그컵</TinyMug.label>
 	<TinyTeaCup_Orient.label>동양식 찻잔</TinyTeaCup_Orient.label>
 	<TinyTeaCup_Occident.label>서양식 찻잔</TinyTeaCup_Occident.label>
@@ -23,6 +24,13 @@
 	<TinyPillowSmall.label>작은 베개</TinyPillowSmall.label>
 	<TinyPlantPotFlower.label>화분 (꽃)</TinyPlantPotFlower.label>
 	<TinyPlantPotPlant.label>화분 (식물)</TinyPlantPotPlant.label>
+	<TinyBeerBottle.label>맥주병</TinyBeerBottle.label>
+	<TinyWineBottle.label>와인병</TinyWineBottle.label>
+	<TinyCylinder_Black.label>실린더 (검은색)</TinyCylinder_Black.label>
+	<TinyCylinder_White.label>실린더 (검은색)</TinyCylinder_White.label>
+	<TinyTube.label>튜브</TinyTube.label>
+	<TinyLipStick.label>립스틱</TinyLipStick.label>
+	<TinyDiffuser.label>디퓨저</TinyDiffuser.label>
 	<TinyPortraitRound.label>원형 액자</TinyPortraitRound.label>
 	<TinyPortraitSquare.label>사각형 액자</TinyPortraitSquare.label>
 	<TinyLandscapetSquare.label>풍경화</TinyLandscapetSquare.label>

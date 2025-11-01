@@ -6,6 +6,8 @@
 	<WoodDoubleBed.description>간단한 2인용 나무 침대입니다.</WoodDoubleBed.description>
 	<GoldRoyalBed.label>고급 침대</GoldRoyalBed.label>
 	<GoldRoyalBed.description>금으로 장식까지 한, 높으신 분들을 위한 호화로운 금 침대입니다. 매우 편하고 두 명까지 누울 수 있습니다.</GoldRoyalBed.description>
+	<BamSleepingBag.label>미라형 침낭</BamSleepingBag.label>
+	<BamSleepingBag.description>천이나 가죽으로 만들어 바닥에 놓는 간단한 침대입니다. 가볍고, 말아서 쉽게 운반할 수 있지만 고정식 침대처럼 편하진 않습니다.</BamSleepingBag.description>
 	<SchoolChair.label>교실 의자</SchoolChair.label>
 	<SchoolChair.description>사람들이 앉을 수 있는 불편하고 매력적인 의자입니다.</SchoolChair.description>
 	<RoundStool.label>둥근 의자</RoundStool.label>
@@ -28,4 +30,7 @@
 	<SimpleStreetLamp.description>넓은 야외 공간에서 보기엔 좋은 아주 어두운 전등입니다.</SimpleStreetLamp.description>
 	<Window.label>창문</Window.label>
 	<Window.description>작은 빛을 내는 창문입니다. 벽에 설치할 수 있습니다.</Window.description>
+
+	<EndStylingStation.label>화장용 협탁</EndStylingStation.label>
+	<EndStylingStation.description>침대 옆에 두어 편안함을 충족시킬 수 있는 협탁입니다. 빛을 반사하는 네모난 거울이 달려 화장대로 사용할 수 있습니다. 잘생긴 사람들은 때때로 본인의 외모를 통해 재미를 충족하곤 합니다.</EndStylingStation.description>
 </LanguageData>

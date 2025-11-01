@@ -87,7 +87,57 @@
 	</ThingDef>
 
 
-
+  <ThingDef ParentName="BedWithQualityBase">
+    <defName>BamSleepingBag</defName>
+    <label>sleeping bag</label>
+    <description>A simple bed that lays on the floor, usually made of cloth or leather, often lined with fur. It is lightweight and can be rolled up for easy transport, but it is not quite as comfortable as a typical bed. Caravans can use bedrolls while traveling for better sleep.</description>
+	  <defaultPlacingRot>South</defaultPlacingRot>
+	  <graphicData>
+      <texPath>Things/Building/Furniture/Bed/SleepingBag</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(1,2)</drawSize>
+    </graphicData>
+    <castEdgeShadows>True</castEdgeShadows>
+    <statBases>
+      <MaxHitPoints>75</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <Mass>2.5</Mass>
+      <BedRestEffectiveness>0.95</BedRestEffectiveness>
+      <ImmunityGainSpeedFactor>1.05</ImmunityGainSpeedFactor>
+      <Comfort>0.68</Comfort>
+      <WorkToBuild>600</WorkToBuild>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_AffectedByFacilities">
+        <linkableFacilities>
+          <li>Dresser</li>
+          <li>EndTable</li>
+          <li MayRequire="Ludeon.RimWorld.Ideology">SleepAccelerator</li>
+        </linkableFacilities>
+      </li>
+    </comps>
+    <size>(1,2)</size>
+    <stuffCategories>
+      <li>Fabric</li>
+      <li>Leathery</li>
+    </stuffCategories>
+    <costStuffCount>40</costStuffCount>
+    <building>
+      <bed_showSleeperBody>false</bed_showSleeperBody>
+      <bed_healPerDay>4</bed_healPerDay>
+      <bed_caravansCanUse>true</bed_caravansCanUse>
+      <destroySound>BuildingDestroyed_Soft_Medium</destroySound>
+      <destroyShakeAmount>0</destroyShakeAmount>
+    </building>
+    <pathCost>14</pathCost>
+    <passability>Standable</passability>
+    <designationHotKey>Misc2</designationHotKey>
+	  <modExtensions>
+		  <li Class="BamStructure.CategoryIntegrator"/>
+	  </modExtensions>
+	  <uiOrder>2025</uiOrder>
+  </ThingDef>
 
 
 

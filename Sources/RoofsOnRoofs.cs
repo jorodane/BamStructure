@@ -622,6 +622,19 @@ namespace RoofsOnRoofs
                     }
                 }
             }
+            else if(BamStructureSettings.trackPawnMovementForRoofVisibility)
+            {
+                ClearAll();
+                foreach (object currentObject in objects)
+                {
+                    if (currentObject is Pawn currentPawn)
+                    {
+                        if (currentPawn == null || currentPawn.Map != map) continue;
+                        IntVec3 currentPosition = currentPawn.Position;
+                        if (GetRoofed(currentPosition)) OnCellChanged(currentPosition, +1);
+                    }
+                }
+            }
         }
 
         public void OnPawnMoved(Pawn from, IntVec3 oldPoisition, IntVec3 newPoisition)

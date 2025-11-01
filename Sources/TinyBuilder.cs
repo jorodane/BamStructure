@@ -16,7 +16,7 @@ namespace TinyBuilder
             Event currentEvent = Event.current;
             if (currentEvent != null)
             {
-                float snapSize = currentEvent.control ? 0.1f : currentEvent.shift ? 0.25f : 0.0f;
+                float snapSize = currentEvent.alt ? 0.5f : currentEvent.control ? 0.1f : currentEvent.shift ? 0.25f : 0.0f;
                 if(snapSize > 0.0f)
                 {
                     result.x = Mathf.Round(result.x / snapSize) * snapSize;

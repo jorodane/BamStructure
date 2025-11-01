@@ -176,6 +176,32 @@
 	</ThingDef>
 
 	<ThingDef ParentName="TinyBase_Asc">
+		<defName>TinyScissors</defName>
+		<label>scissors</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<altitudeLayer>ItemImportant</altitudeLayer>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Scissors</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(0.125,0.25)</drawSize>
+		</graphicData>
+		<uiIconScale>8</uiIconScale>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>3</costStuffCount>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc">
 		<defName>TinyMug</defName>
 		<label>mug</label>
 		<rotatable>true</rotatable>
@@ -693,6 +719,111 @@
 			<Flammability>1.0</Flammability>
 		</statBases>
 	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc" Name ="TinyBeerBottle">
+		<defName>TinyBeerBottle</defName>
+		<label>beer bottle</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<graphicData>
+			<texPath>Things/Building/Decoration/BeerBottle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(0.25,0.5)</drawSize>
+			<drawOffsetNorth>(0,0,0.2)</drawOffsetNorth>
+			<drawOffsetSouth>(0,0,0.2)</drawOffsetSouth>
+			<drawOffsetWest>(-0.2,0,0)</drawOffsetWest>
+			<drawOffsetEast>(0.2,0,0)</drawOffsetEast>
+		</graphicData>
+		<uiIconScale>3</uiIconScale>
+		<uiIconOffset>(0, -0.05)</uiIconOffset>
+		<costList>
+			<Steel>3</Steel>
+		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+	
+	<ThingDef ParentName="TinyBeerBottle" Name ="TinyWineBottle">
+		<defName>TinyWineBottle</defName>
+		<label>wine bottle</label>
+		<graphicData>
+			<texPath>Things/Building/Decoration/WineBottle</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyBase_Asc" Name ="TinyCylinder_Black">
+		<defName>TinyCylinder_Black</defName>
+		<label>cylinder (black)</label>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>South</defaultPlacingRot>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Cylinder_Black</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(0.25,0.25)</drawSize>
+			<drawOffset>(0,0,0.1)</drawOffset>
+		</graphicData>
+		<uiIconScale>3</uiIconScale>
+		<uiIconOffset>(0, -0.1)</uiIconOffset>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<costStuffCount>5</costStuffCount>
+		<costList>
+			<WoodLog>3</WoodLog>
+		</costList>
+		<statBases>
+			<WorkToBuild>100</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>1.0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyCylinder_Black" Name ="TinyCylinder_White">
+		<defName>TinyCylinder_White</defName>
+		<label>cylinder (white)</label>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Cylinder_White</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyCylinder_Black" Name ="TinyTube">
+		<defName>TinyTube</defName>
+		<label>tube</label>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Tube</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="TinyCylinder_Black" Name ="TinyLipStick">
+		<defName>TinyLipStick</defName>
+		<label>lipstick</label>
+		<graphicData>
+			<texPath>Things/Building/Decoration/LipStick</texPath>
+			<drawSize>(0.15,0.15)</drawSize>
+			<drawOffset>(0,0,0.05)</drawOffset>
+		</graphicData>
+	</ThingDef>
+
+
+	<ThingDef ParentName="TinyCylinder_Black" Name ="TinyDiffuser">
+		<defName>TinyDiffuser</defName>
+		<label>diffuser</label>
+		<graphicData>
+			<texPath>Things/Building/Decoration/Diffuser</texPath>
+		</graphicData>
+	</ThingDef>
+
+
 
 	<ThingDef ParentName="TinyBase_Asc">
 		<defName>TinyPortraitRound</defName>
