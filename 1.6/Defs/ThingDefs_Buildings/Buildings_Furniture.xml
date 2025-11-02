@@ -4,7 +4,32 @@
 
 	
 	<!-- Beds -->
-	<ThingDef ParentName="Bed" Name="WoodBed">
+  <ThingDef ParentName="Bed" Name="BamHammock">
+    <defName>BamHammock</defName>
+    <label>hammock</label>
+    <description>A cozy sheets hanging on a wooden frame for resting.</description>
+    <graphicData>
+      <texPath>Things/Building/Furniture/Bed/Hammock</texPath>
+    </graphicData>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <costStuffCount>40</costStuffCount>
+    <stuffCategories>
+      <li>Fabric</li>
+      <li>Leathery</li>
+    </stuffCategories>
+    <costList>
+      <WoodLog>25</WoodLog>
+    </costList>
+    <building>
+      <bed_showSleeperBody>true</bed_showSleeperBody>
+    </building>
+    <uiOrder>2020</uiOrder>
+    <modExtensions>
+      <li Class="BamStructure.CategoryIntegrator"/>
+    </modExtensions>
+  </ThingDef>
+
+  <ThingDef ParentName="Bed" Name="WoodBed">
 		<defName>WoodBed</defName>
 		<label>bed</label>
 		<description>A cozy mattress and sheets on a wooden frame for resting.</description>

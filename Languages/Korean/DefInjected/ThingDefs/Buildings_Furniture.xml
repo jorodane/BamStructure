@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
+  <BamHammock.label>해먹</BamHammock.label>
+  <BamHammock.description>아늑한 천을 나무 프레임에 달아놓은 침대입니다.</BamHammock.description>
 	<WoodBed.label>침대</WoodBed.label>
 	<WoodBed.description>아늑한 매트리스와 천으로 덮여있는 나무 침대입니다.</WoodBed.description>
 	<WoodDoubleBed.label>큰 침대</WoodDoubleBed.label>
