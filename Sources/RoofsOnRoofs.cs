@@ -217,6 +217,62 @@ namespace RoofsOnRoofs
         }
     }
 
+    [HarmonyPatch(typeof(Selector), nameof(Selector.ClearSelection))]
+    static class Patch_Selector_ClearSelection
+    {
+        static void Postfix() => Find.CurrentMap?.GetComponent<MapComponent_RoofVisibility>()?.ClearAll();
+    }
+
+    [HarmonyPatch(typeof(Selector), nameof(Selector.Select))]
+    static class Patch_Selector_Select
+    {
+        static void Postfix()
+        {
+            Map map = Find.CurrentMap;
+            if (map == null) return;
+
+            MapComponent_RoofVisibility comp = map.GetComponent<MapComponent_RoofVisibility>();
+            if (comp == null) return;
+
+            comp.OnObjectSelected(Find.Selector.SelectedObjects);
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn_PathFollower), "TryEnterNextPathCell")]
+    public static class Patch_Pawn_PathFollower_TryEnterNextPathCell
+    {
+        static readonly FieldInfo field_Pawn = AccessTools.Field(typeof(Pawn_PathFollower), "pawn");
+
+        static void Prefix(Pawn_PathFollower __instance, out IntVec3 __state)
+        {
+            if (BamStructureSettings.trackPawnMovementForRoofVisibility && field_Pawn.GetValue(__instance) is Pawn asPawn)
+            {
+                __state = asPawn.Position;
+            }
+            else __state = IntVec3.Zero;
+        }
+
+        static void Postfix(Pawn_PathFollower __instance, IntVec3 __state)
+        {
+            if (!BamStructureSettings.trackPawnMovementForRoofVisibility) return;
+            Pawn pawn = field_Pawn.GetValue(__instance) as Pawn;
+            if (!Find.Selector.IsSelected(pawn)) return;
+
+            Map map = pawn.Map;
+            if (map == null) return;
+
+            IntVec3 next = pawn.Position;
+            if (next != __state)
+            {
+                MapComponent_RoofVisibility comp = map.GetComponent<MapComponent_RoofVisibility>();
+                if (comp != null)
+                {
+                    comp.OnPawnMoved(pawn, __state, next);
+                }
+            }
+        }
+    }
+
     public class Graphic_Appearances_MultiColored : Graphic_Appearances
     {
         public override void Init(GraphicRequest req)
@@ -563,9 +619,6 @@ namespace RoofsOnRoofs
     }
 
 
-    /// <summary>
-    /// ///////////////////////////////////////////////////////////////////////////////////////////////
-    /// </summary>
     public class MapComponent_RoofVisibility : MapComponent
     {
         public int[] roofVisibleGrid;
@@ -693,65 +746,7 @@ namespace RoofsOnRoofs
         }
     }
 
-    [HarmonyPatch(typeof(Selector), nameof(Selector.ClearSelection))]
-    static class Patch_Selector_ClearSelection
-    {
-        static void Postfix() => Find.CurrentMap?.GetComponent<MapComponent_RoofVisibility>()?.ClearAll();
-    }
-
-    [HarmonyPatch(typeof(Selector), nameof(Selector.Select))]
-    static class Patch_Selector_Select
-    {
-        static void Postfix()
-        {
-            Map map = Find.CurrentMap;
-            if (map == null) return;
-
-            MapComponent_RoofVisibility comp = map.GetComponent<MapComponent_RoofVisibility>();
-            if (comp == null) return;
-
-            comp.OnObjectSelected(Find.Selector.SelectedObjects);
-        }
-    }
-
-    [HarmonyPatch(typeof(Pawn_PathFollower), "TryEnterNextPathCell")]
-    public static class Patch_Pawn_PathFollower_TryEnterNextPathCell
-    {
-        static readonly FieldInfo field_Pawn = AccessTools.Field(typeof(Pawn_PathFollower), "pawn");
-
-        static void Prefix(Pawn_PathFollower __instance, out IntVec3 __state)
-        {
-            if (BamStructureSettings.trackPawnMovementForRoofVisibility && field_Pawn.GetValue(__instance) is Pawn asPawn)
-            {
-                __state = asPawn.Position;
-            }
-            else __state = IntVec3.Zero;
-        }
-
-        static void Postfix(Pawn_PathFollower __instance, IntVec3 __state)
-        {
-            if (!BamStructureSettings.trackPawnMovementForRoofVisibility) return;
-            Pawn pawn = field_Pawn.GetValue(__instance) as Pawn;
-            if (!Find.Selector.IsSelected(pawn)) return;
-
-            Map map = pawn.Map;
-            if (map == null) return;
-
-            IntVec3 next = pawn.Position;
-            if (next != __state)
-            {
-                MapComponent_RoofVisibility comp = map.GetComponent<MapComponent_RoofVisibility>();
-                if (comp != null)
-                {
-                    comp.OnPawnMoved(pawn, __state, next);
-                }
-            }
-        }
-    }
-
-    /// <summary>
-    /// /////////////////////////////////////////////////////////////////////////
-    /// </summary>
+    
 
     public class Building_Roof : Building
     {
