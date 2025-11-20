@@ -205,8 +205,6 @@ namespace BamStructure
         public static FleckDef Fleck_Dart_Green;
 
 		public static DesignationCategoryDef Designation_BamStructure;
-
-        public static ThingDef EndStylingStation;
     }
 
     public class Graphic_Multi_Clamped : Graphic_Multi

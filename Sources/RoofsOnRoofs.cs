@@ -39,7 +39,14 @@ namespace RoofsOnRoofs
 				targetTexture.mipMapBias = -10.0f;
 			}
 		}
-	}
+
+        public static bool IsDevQuickTest()
+        {
+            return Find.GameInitData == null
+                && Find.Scenario == null
+                && Find.World == null;
+        }
+    }
 
 
     [HarmonyPatch(typeof(PlaySettings), nameof(PlaySettings.DoPlaySettingsGlobalControls))]
@@ -228,6 +235,8 @@ namespace RoofsOnRoofs
     {
         static void Postfix()
         {
+            if (Extension_RoofsOnRoofs.IsDevQuickTest()) return;
+
             Map map = Find.CurrentMap;
             if (map == null) return;
 
@@ -254,8 +263,10 @@ namespace RoofsOnRoofs
 
         static void Postfix(Pawn_PathFollower __instance, IntVec3 __state)
         {
+            if (Extension_RoofsOnRoofs.IsDevQuickTest()) return;
             if (!BamStructureSettings.trackPawnMovementForRoofVisibility) return;
             Pawn pawn = field_Pawn.GetValue(__instance) as Pawn;
+            if (!pawn.pather.MovingNow) return;
             if (!Find.Selector.IsSelected(pawn)) return;
 
             Map map = pawn.Map;
@@ -671,7 +682,15 @@ namespace RoofsOnRoofs
                     {
                         if (currentThing == null || currentThing.Map != map) continue;
                         IntVec3 currentPosition = currentThing.Position;
-                        if (GetRoofed(currentPosition)) OnCellChanged(currentPosition, +1);
+                        if (GetRoofed(currentPosition))
+                        {
+                            if(!(currentThing is Pawn))
+                            {
+                                int i = map.cellIndices.CellToIndex(currentThing.Position);
+                                if ((uint)i < (uint)roofVisibleGrid.Length && roofVisibleGrid[i] > 0) continue;
+                            }
+                            OnCellChanged(currentPosition, +1);
+                        }
                     }
                 }
             }
