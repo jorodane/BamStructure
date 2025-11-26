@@ -1,4 +1,5 @@
 ﻿using BamStructure;
+using RoofsOnRoofs;
 using HarmonyLib;
 using RimWorld;
 using RimWorld.Planet;
@@ -752,7 +753,7 @@ namespace RoofsOnRoofs
                     int maxCount = 0;
                     foreach (IntVec3 checkingPosition in nearPositions)
                     {
-                        if (!position.InBounds(map)) continue;
+                        if (!checkingPosition.InBounds(map)) continue;
                         int checkingIndex = map.cellIndices.CellToIndex(checkingPosition);
                         if ((uint)checkingIndex < (uint)roofVisibleGrid.Length)
                         {
@@ -786,6 +787,11 @@ namespace RoofsOnRoofs
         {
             base.ExposeData();
             Scribe_Values.Look(ref brightness, "Brightness", 1);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                RoofsOnRoofsGameComponent.OnVisibleChanged -= OnVisibleChanged;
+                RoofsOnRoofsGameComponent.OnVisibleChanged += OnVisibleChanged;
+            }
         }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
@@ -990,25 +996,6 @@ namespace RoofsOnRoofs
 
     public class Designator_ShowRoofOverlayToggle : Designator
     {
-        private static Texture2D _iconOn;
-        private static Texture2D IconOn
-        {
-            get
-            {
-                if (_iconOn == null) { _iconOn = ContentFinder<Texture2D>.Get("UI/Designators/RoofOverlayOn"); }
-                return _iconOn;
-            }
-        }
-        private static Texture2D _iconOff;
-        private static Texture2D IconOff
-        {
-            get
-            {
-                if (_iconOff == null) { _iconOff = ContentFinder<Texture2D>.Get("UI/Designators/RoofOverlayOff"); }
-                return _iconOff;
-            }
-        }
-
         public string GetLabel() => "RoofsOnRoofs_ShowRoofOverlayToggle_Description".Translate();
         public string GetDescription() => "ShowRoofOverlayToggleButton".Translate();
         public Designator_ShowRoofOverlayToggle()
@@ -1027,7 +1014,7 @@ namespace RoofsOnRoofs
 
         public void UpdateIcon()
         {
-            icon = (Find.PlaySettings?.showRoofOverlay ?? false) ? IconOn : IconOff;
+            icon = (Find.PlaySettings?.showRoofOverlay ?? false) ? RoofsOnRoofsTextures.IconRoofOverlayOn : RoofsOnRoofsTextures.IconRoofOverlayOff;
         }
         public override void DrawIcon(Rect rect, Material buttonMat, GizmoRenderParms parms)
         {

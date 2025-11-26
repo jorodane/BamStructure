@@ -40,6 +40,25 @@ namespace RoofsOnRoofs
                 return _roofIcon;
             }
         }
+
+        static Texture2D _iconRoofOverlayOn;
+        public static Texture2D IconRoofOverlayOn
+        {
+            get
+            {
+                if (_iconRoofOverlayOn == null) { _iconRoofOverlayOn = ContentFinder<Texture2D>.Get("UI/Designators/RoofOverlayOn"); }
+                return _iconRoofOverlayOn;
+            }
+        }
+        static Texture2D _iconRoofOverlayOff;
+        public static Texture2D IconRoofOverlayOff
+        {
+            get
+            {
+                if (_iconRoofOverlayOff == null) { _iconRoofOverlayOff = ContentFinder<Texture2D>.Get("UI/Designators/RoofOverlayOff"); }
+                return _iconRoofOverlayOff;
+            }
+        }
     }
 }
 
