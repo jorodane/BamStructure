@@ -255,6 +255,11 @@ namespace RoofsOnRoofs
 
         static void Prefix(Pawn_PathFollower __instance, out IntVec3 __state)
         {
+            if (__instance == null || field_Pawn == null)
+            {
+                __state = IntVec3.Zero;
+                return;
+            }
             if (BamStructureSettings.trackPawnMovementForRoofVisibility && field_Pawn.GetValue(__instance) is Pawn asPawn)
             {
                 __state = asPawn.Position;
@@ -266,9 +271,10 @@ namespace RoofsOnRoofs
         {
             if (Extension_RoofsOnRoofs.IsDevQuickTest()) return;
             if (!BamStructureSettings.trackPawnMovementForRoofVisibility) return;
+            if (field_Pawn == null) return;
             Pawn pawn = field_Pawn.GetValue(__instance) as Pawn;
-            if (!pawn.pather.MovingNow) return;
-            if (!Find.Selector.IsSelected(pawn)) return;
+            if (pawn.pather == null || !pawn.pather.MovingNow) return;
+            if (Find.Selector == null || !Find.Selector.IsSelected(pawn)) return;
 
             Map map = pawn.Map;
             if (map == null) return;
