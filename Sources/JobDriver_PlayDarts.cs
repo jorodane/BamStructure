@@ -13,8 +13,7 @@ namespace BamStructure
         TargetIndex BoardIndex => TargetIndex.A;
         FleckDef dart;
 
-        public override bool TryMakePreToilReservations(bool errorOnFailed) => pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
-
+        public override bool TryMakePreToilReservations(bool errorOnFailed) => pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed) && pawn.Reserve(job.targetB, job, 1, -1, null, errorOnFailed);
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedOrNull(BoardIndex);
@@ -29,19 +28,22 @@ namespace BamStructure
                 handlingFacing = true,
                 defaultCompleteMode = ToilCompleteMode.Never
             };
+            play.initAction = () =>
+            {
+                pawn.pather.StopDead();
+                pawn.rotationTracker.FaceTarget(board);
+            };
             play.tickAction = () =>
             {
-                this.FailOnDespawnedOrNull(BoardIndex);
-                pawn.rotationTracker.FaceTarget(board);
                 if (pawn.IsHashIntervalTick(ThrowInterval)) ThrowDartFleck(pawn, board);
-                if (JoyUtility.JoyTickCheckEnd(pawn, 1, JoyTickFullJoyAction.EndJob, 1f, board)) { EndJobWith(JobCondition.Succeeded); return; }
+                if (pawn.IsHashIntervalTick(60) && JoyUtility.JoyTickCheckEnd(pawn, 60, JoyTickFullJoyAction.EndJob, 1f, board)) { EndJobWith(JobCondition.Succeeded); return; }
             };
             yield return play;
         }
 
         private void ThrowDartFleck(Pawn thrower, Thing board)
         {
-            if (thrower == null || board == null) return;
+            if (thrower?.Map == null || board == null) return;
             Vector3 from = thrower.DrawPos;
             Vector3 to = board.DrawPos;
             Vector3 dir = to - from;
